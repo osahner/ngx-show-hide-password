@@ -1,4 +1,4 @@
-import { NgModule, Component, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -12,14 +12,6 @@ import { CommonModule } from '@angular/common';
  *
  * @description Add split input button to password or text input. Toggles input type between "text" and "password".
  */
- @NgModule({
-  imports: [CommonModule, FormsModule],
-  exports: [ShowHidePasswordComponent],
-  declarations: [ShowHidePasswordComponent],
-})
-export class ShowHidePasswordModule {
-}
-
 @Component({
   selector: 'show-hide-password',
   template: `

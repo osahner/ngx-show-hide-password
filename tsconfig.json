@@ -18,14 +18,9 @@
     ]
   },
   "files": [
-    "src/ng2-show-hide-password.ts"
+    "index.ts"
   ],
-  "awesomeTypescriptLoaderOptions": {
-    "resolveGlobs": true,
-    "forkChecker": true
-  },
   "angularCompilerOptions": {
-    "strictMetadataEmit": true,
     "skipTemplateCodegen": true
   }
 }

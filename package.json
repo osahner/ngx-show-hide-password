@@ -1,8 +1,8 @@
 {
   "name": "ng2-show-hide-password",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "Angular2 (v4) Bootstrap 4 password component",
-  "main": "src/ng2-show-hide-password.ts",
+  "main": "index.ts",
   "scripts": {
     "ngc": "node_modules/.bin/ngc",
     "tsc": "node_modules/.bin/tsc",
