@@ -1,7 +1,6 @@
-
-import { NgModule, Component, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import {
+  Component, ElementRef, Input, OnInit, Renderer2
+} from '@angular/core';
 
 /**
  * @whatItDoes Add show hide button to text/password input fields.
@@ -17,15 +16,25 @@ import { CommonModule } from '@angular/common';
   selector: 'show-hide-password',
   template: `
     <ng-content></ng-content>
-    <span class="input-group-btn">
-      <button class="btn btn-secondary py-0" type="button" (click)="toggleShow($event)">
-        <i class="fa" [ngClass]="{'fa-eye-slash': !isHidden, 'fa-eye': isHidden, 'fa-2x': size === 'lg'}"></i>
+    <span *ngIf="icon" class="input-group-btn">
+      <button class="btn btn-secondary" type="button" (click)="toggleShow($event)" [ngSwitch]="icon">
+        <span *ngSwitchCase="'entypo'" class="icon"
+          [ngClass]="{'icon-eye-with-line': !isHidden, 'icon-eye': isHidden}"
+          [style.font-size]="size === 'lg' ? '1.5rem' : ''"></span>
+        <i *ngSwitchDefault class="fa fa-fw"
+          [ngClass]="{'fa-eye-slash': !isHidden, 'fa-eye': isHidden, 'fa-lg': size === 'lg'}"></i>
       </button>
-    </span>`,
+    </span>
+    <span *ngIf="!icon" class="input-group-addon">
+      <input type="checkbox" class="" (click)="toggleShow($event)">
+    </span>
+  `,
 })
 export class ShowHidePasswordComponent implements OnInit {
   @Input()
   public size: 'sm' | 'lg';
+  @Input()
+  public icon: 'fontawesome' | 'entypo';
 
   public input: any;
 
@@ -52,12 +61,4 @@ export class ShowHidePasswordComponent implements OnInit {
     this.isHidden = !this.isHidden;
     this.renderer.setAttribute(this.input, 'type', this.isHidden ? 'password' : 'text');
   }
-}
-
-@NgModule({
-  imports: [CommonModule, FormsModule],
-  exports: [ShowHidePasswordComponent],
-  declarations: [ShowHidePasswordComponent],
-})
-export class ShowHidePasswordModule {
 }
