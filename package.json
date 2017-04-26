@@ -1,0 +1,50 @@
+{
+  "name": "ng2-show-hide-password",
+  "version": "1.0.0",
+  "description": "Angular2 (v4) Bootstrap 4 password component",
+  "main": "src/ng2-show-hide-password.ts",
+  "scripts": {
+    "ngc": "node_modules/.bin/ngc",
+    "tsc": "node_modules/.bin/tsc",
+    "build": "rimraf dist && tsc",
+    "build-aot": "rimraf dist && ngc",
+    "clean": "rimraf dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/osahner/ng2-show-hide-password.git"
+  },
+  "keywords": [
+    "Angular2",
+    "Bootstrap4",
+    "Password"
+  ],
+  "author": "Oliver Sahner <osahner@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/osahner/ng2-show-hide-password/issues"
+  },
+  "homepage": "https://github.com/osahner/ng2-show-hide-password#readme",
+  "peerDependencies": {
+    "@angular/core": ">=4.0.0"
+  },
+  "devDependencies": {
+    "@angular/common": "^=4.0.3",
+    "@angular/compiler": "^=4.0.3",
+    "@angular/compiler-cli": "^=4.0.3",
+    "@angular/core": "^=4.0.3",
+    "@angular/forms": "^=4.0.3",
+    "@angular/platform-browser": "^=4.0.3",
+    "@angular/platform-browser-dynamic": "^=4.0.3",
+    "@angular/platform-server": "^=4.0.3",
+    "@types/core-js": "^0.9.41",
+    "@types/node": "^7.0.12",
+    "codelyzer": "^2.1.1",
+    "rimraf": "^2.6.1",
+    "rxjs": "^5.3.0",
+    "tslint": "^5.0.0",
+    "typedoc": "^0.5.10",
+    "typescript": "2.2.2",
+    "zone.js": "=0.8.4"
+  }
+}
