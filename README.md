@@ -34,10 +34,14 @@ import { ShowHidePasswordModule } from 'ng2-show-hide-password';
 ```
 
 ```html
-<show-hide-password size="sm" icon="entypo">
+<show-hide-password size="lg" icon="entypo">
   <input type="password" name=... />
 </show-hide-password>
 ```
+
+![Hidden password](docs/hidden.png)
+
+![Exposed password](docs/exposed.png)
 
 ### Attributes
 
