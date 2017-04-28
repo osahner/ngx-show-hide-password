@@ -17,7 +17,8 @@ import { CommonModule } from '@angular/common';
   template: `
     <ng-content></ng-content>
     <span *ngIf="icon" class="input-group-btn">
-      <button class="btn btn-secondary" type="button" (click)="toggleShow($event)" [ngSwitch]="icon">
+      <button class="btn btn-secondary" type="button" (click)="toggleShow($event)"
+      [attr.title]="isHidden ? 'Show password' : 'Hide password'" [ngSwitch]="icon">
         <span *ngSwitchCase="'entypo'" class="icon"
           [ngClass]="{'icon-eye-with-line': !isHidden, 'icon-eye': isHidden}"
           [style.font-size]="size === 'lg' ? '1.5rem' : ''"></span>
@@ -26,7 +27,7 @@ import { CommonModule } from '@angular/common';
       </button>
     </span>
     <span *ngIf="!icon" class="input-group-addon">
-      <input type="checkbox" class="" (click)="toggleShow($event)">
+      <input type="checkbox" class="" (click)="toggleShow($event)" [attr.title]="isHidden ? 'Show password' : 'Hide password'">
     </span>
   `,
 })

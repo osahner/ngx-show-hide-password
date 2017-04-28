@@ -1,6 +1,6 @@
 # ng2-show-hide-password
 
-## Angular 2 Add show hide button to text/password input fields
+## Add a show hide button to password input fields
 
 Add split input button to password or text input. Toggles input type between "text" and "password". 
 
@@ -8,8 +8,9 @@ Add split input button to password or text input. Toggles input type between "te
 * **Angular 2** `>=4.0.0`
 * **Bootstrap 4** `v6`
 
-#### Optional 
-* [fontawesome](http://fontawesome.io/) or [entypo](http://entypo.com/)
+#### Optional Icons
+* [fontawesome](http://fontawesome.io/)
+* [entypo](http://entypo.com/)
 
 ### Installation
 
@@ -17,7 +18,7 @@ Add split input button to password or text input. Toggles input type between "te
 $ npm install https://github.com/osahner/ng2-show-hide-password.git --save
 ```
 
-### Basic Example
+### Example
 
 ```ts
 // app.module.ts
@@ -33,7 +34,7 @@ import { ShowHidePasswordModule } from 'ng2-show-hide-password';
 ```
 
 ```html
-<show-hide-password size="sm|lg" icon="entypo|fontawesome">
+<show-hide-password size="sm" icon="entypo">
   <input type="password" name=... />
 </show-hide-password>
 ```

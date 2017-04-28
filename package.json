@@ -1,6 +1,6 @@
 {
   "name": "ng2-show-hide-password",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Angular2 (v4) Bootstrap 4 password component",
   "main": "index.ts",
   "scripts": {
@@ -26,7 +26,8 @@
   },
   "homepage": "https://github.com/osahner/ng2-show-hide-password#readme",
   "peerDependencies": {
-    "@angular/core": ">=4.0.0"
+    "@angular/core": ">=4.0.0",
+    "bootstrap": "next"
   },
   "devDependencies": {
     "@angular/common": "^=4.0.3",
