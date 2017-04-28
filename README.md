@@ -39,9 +39,10 @@ import { ShowHidePasswordModule } from 'ng2-show-hide-password';
 </show-hide-password>
 ```
 
-![Hidden password](docs/hidden.png)
+Password hidden | Password exposed
+------------ | -------------
+![Hidden password](docs/hidden.png) | ![Exposed password](docs/exposed.png)
 
-![Exposed password](docs/exposed.png)
 
 ### Attributes
 
