@@ -43,7 +43,7 @@ import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 
 Password hidden | Password exposed
 ------------ | -------------
-![Hidden password](docs/hidden.png) | ![Exposed password](docs/exposed.png)
+![Hidden password](resources/hidden.png) | ![Exposed password](resources/exposed.png)
 
 
 ### Attributes

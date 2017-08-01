@@ -29,7 +29,7 @@ import { CommonModule } from '@angular/common';
     <span *ngIf="!icon" class="input-group-addon">
       <input type="checkbox" class="" (click)="toggleShow($event)" [attr.title]="isHidden ? 'Show password' : 'Hide password'">
     </span>
-  `,
+  `
 })
 export class ShowHidePasswordComponent implements OnInit {
   @Input()
