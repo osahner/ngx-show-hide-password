@@ -221,14 +221,17 @@
 <li><a href="http://entypo.com/">entypo</a></li>
 </ul>
 <h3 id="installation">Installation</h3>
-<pre class="line-numbers"><code class="language-none">$ npm install https://github.com/osahner/ngx-show-hide-password.git --save</code></pre><h3 id="example">Example</h3>
+<pre class="line-numbers"><code class="language-none">$ npm install ngx-show-hide-password --save</code></pre><h3 id="example">Example</h3>
 <pre class="line-numbers"><code class="language-ts">// app.module.ts
 import { ShowHidePasswordModule } from &#39;ngx-show-hide-password&#39;;
 ...
 &#64;NgModule({
   ...
   imports: [
-    ShowHidePasswordModule,
+    BrowserModule,
+    FormsModule,
+    ShowHidePasswordModule.forRoot(),
+    ...
   ],
   ...
 })</code></pre><pre class="line-numbers"><code class="language-html">&lt;show-hide-password size=&quot;lg&quot; icon=&quot;entypo&quot;&gt;
