@@ -131,7 +131,7 @@ gulp.task('rollup:umd', function () {
       // The name to use for the module for UMD/IIFE bundles
       // (required for bundles with exports)
       // See https://github.com/rollup/rollup/wiki/JavaScript-API#modulename
-      moduleName: 'angular-library-name',
+      moduleName: 'ngx-show-shide-password',
 
       // See https://github.com/rollup/rollup/wiki/JavaScript-API#globals
       globals: {
@@ -139,7 +139,7 @@ gulp.task('rollup:umd', function () {
       }
 
     }))
-    .pipe(rename('angular-library-name.umd.js'))
+    .pipe(rename('ngx-show-shide-password.umd.js'))
     .pipe(gulp.dest(distFolder));
 });
 
