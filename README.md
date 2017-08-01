@@ -17,7 +17,7 @@ Add split input button to password or text input. Toggles input type between "te
 ### Installation
 
 ```
-$ npm install https://github.com/osahner/ngx-show-hide-password.git --save
+$ npm install ngx-show-hide-password --save
 ```
 
 ### Example
