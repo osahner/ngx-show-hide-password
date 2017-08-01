@@ -3,14 +3,12 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 /**
- * @whatItDoes Add show hide button to text/password input fields.
+ * Add a split input button to password or text input. Toggles input type between "text" and "password".
  *
- * @howToUse
+ * @example
  * <show-hide-password size="sm|lg">
- *   <input type="password" name=... />
+ * <input type="password" name=... />
  * </show-hide-password>
- *
- * @description Add split input button to password or text input. Toggles input type between "text" and "password".
  */
 @Component({
   selector: 'show-hide-password',
@@ -32,19 +30,32 @@ import { CommonModule } from '@angular/common';
   `
 })
 export class ShowHidePasswordComponent implements OnInit {
+  /**
+   * can be 'sm' = small, 'lg' = large or empty = default
+   */
   @Input()
   public size: 'sm' | 'lg';
+  /**
+   * can be 'fontawesome', 'entypo' or empty for checkbox
+   */
   @Input()
   public icon: 'fontawesome' | 'entypo';
-
+  /**
+   * the shielded Input element
+   */
   public input: any;
-
+  /**
+   * current state
+   */
   public isHidden: boolean;
 
   constructor(private elem: ElementRef,
               private renderer: Renderer2) {
   }
-
+  
+  /**
+   * init component
+   */
   ngOnInit(): void {
     this.input = this.elem.nativeElement.querySelector('input');
     this.renderer.addClass(this.elem.nativeElement, 'input-group');
@@ -56,9 +67,12 @@ export class ShowHidePasswordComponent implements OnInit {
 
     this.isHidden = this.input.type === 'password';
   }
-
-
-  public toggleShow($event: any) {
+  
+  /**
+   * toggles type of input (text|password)
+   * @param $event not used
+   */
+  public toggleShow($event: any): void {
     this.isHidden = !this.isHidden;
     this.renderer.setAttribute(this.input, 'type', this.isHidden ? 'password' : 'text');
   }

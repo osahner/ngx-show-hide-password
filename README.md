@@ -49,7 +49,7 @@ Password hidden | Password exposed
 ### Attributes
 
 * **size**: `sm`, `lg` or nothing
-* **icon**: `fontawesome`, `entypo` or nothing (= checkbox)
+* **icon**: `fontawesome`, `entypo` or empty|nothing (= checkbox)
 
 ### LICENCE
 
