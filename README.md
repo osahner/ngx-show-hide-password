@@ -29,7 +29,10 @@ import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 @NgModule({
   ...
   imports: [
-    ShowHidePasswordModule,
+    BrowserModule,
+    FormsModule,
+    ShowHidePasswordModule.forRoot(),
+    ...
   ],
   ...
 })
@@ -43,13 +46,13 @@ import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 
 Password hidden | Password exposed
 ------------ | -------------
-![Hidden password](docs/hidden.png) | ![Exposed password](docs/exposed.png)
+![Hidden password](resources/hidden.png) | ![Exposed password](resources/exposed.png)
 
 
 ### Attributes
 
 * **size**: `sm`, `lg` or nothing
-* **icon**: `fontawesome`, `entypo` or nothing (= checkbox)
+* **icon**: `fontawesome`, `entypo` or empty|nothing (= checkbox)
 
 ### LICENCE
 
