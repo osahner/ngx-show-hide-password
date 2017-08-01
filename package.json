@@ -18,9 +18,9 @@
     "url": "git+https://github.com/osahner/ngx-show-hide-password.git"
   },
   "keywords": [
-    "Angular2",
-    "Bootstrap4",
-    "Password"
+    "angular",
+    "bootstrap",
+    "password"
   ],
   "author": {
     "name": "Oliver Sahner",
@@ -32,7 +32,10 @@
   },
   "homepage": "https://github.com/osahner/ngx-show-hide-password#readme",
   "peerDependencies": {
-    "@angular/core": ">=4.0.0"
+    "@angular/core": "^4.0.0",
+    "bootstrap": "^4.0.0-alpha.6",
+    "rxjs": "^5.1.0",
+    "zone.js": "^0.8.4"
   },
   "devDependencies": {
     "@angular/common": "^4.0.0",

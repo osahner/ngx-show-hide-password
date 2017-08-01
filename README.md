@@ -29,7 +29,10 @@ import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 @NgModule({
   ...
   imports: [
-    ShowHidePasswordModule,
+    BrowserModule,
+    FormsModule,
+    ShowHidePasswordModule.forRoot(),
+    ...
   ],
   ...
 })
