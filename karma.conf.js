@@ -15,7 +15,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'src/*.spec.ts'
+    'src/*.spec.ts'
     ],
 
 
@@ -64,6 +64,14 @@ module.exports = function(config) {
 
     // Concurrency level
     // how many browser should be started simultaneous
-    concurrency: Infinity
+    concurrency: Infinity,
+
+    // http://blog.500tech.com/setting-up-travis-ci-to-run-tests-on-latest-google-chrome-version/
+    customLaunchers: {
+      Chrome_travis_ci: {
+        base: 'Chrome',
+        flags: ['--no-sandbox']
+      }
+    }
   })
 }
