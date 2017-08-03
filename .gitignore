@@ -11,8 +11,6 @@ src/*.d.ts
 .idea
 .project
 .settings
-.idea/*
-*.iml
 
 # VS Code
 .vscode/*
@@ -23,10 +21,15 @@ Desktop.ini
 
 # Mac
 .DS_Store
-**/.DS_Store
 
 # Ngc generated files
 **/*.ngfactory.ts
 
 # Build files
 dist/*
+
+# Karma transform
+init-test-bed.spec.js
+
+# coverage
+coverage

@@ -1,32 +1,46 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { By }              from '@angular/platform-browser';
-import { DebugElement }    from '@angular/core';
-import { } from 'jasmine';
+import { fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ShowHidePasswordModule } from './';
+import { By } from '@angular/platform-browser';
 
-import { ShowHidePasswordComponent } from './ngx-show-hide-password.component';
-
-describe('ShowHidePasswordComponent', () => {
-
-  let comp:    ShowHidePasswordComponent;
-  let fixture: ComponentFixture<ShowHidePasswordComponent>;
-  let de:      DebugElement;
-  let el:      HTMLElement;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ShowHidePasswordComponent ], // declare the test component
+describe('ShowHidePasswordModule', () => {
+  
+  beforeEach(
+    () => {
+      TestBed.configureTestingModule({
+        declarations: [TestComponent],
+        imports: [
+          FormsModule,
+          ShowHidePasswordModule.forRoot()
+        ]
+      });
     });
-
-    fixture = TestBed.createComponent(ShowHidePasswordComponent);
-
-    comp = fixture.componentInstance; // BannerComponent test instance
-
-    // query for the title <h1> by CSS element selector
-    de = fixture.debugElement.query(By.css('span'));
-    el = de.nativeElement;
-  });
-
-  it('Should be false', () => {
-    expect(false).toBe(true);
-  });
+  
+  it('should work', fakeAsync(() => {
+    const fixture = TestBed.overrideComponent(TestComponent, {
+      set: {
+        template: `<show-hide-password size="sm" icon="fontwaesome"><input type="password" [(ngModel)]="model"></show-hide-password>`
+      }
+    }).createComponent(TestComponent);
+    fixture.detectChanges();
+    
+    const buttonDebugEl = fixture.debugElement.query(By.css('button'));
+    const inputDebugEl = fixture.debugElement.query(By.css('input'));
+    
+    expect(inputDebugEl.attributes['type']).toBe('password');
+    buttonDebugEl.triggerEventHandler('click', {});
+    tick();
+    expect(inputDebugEl.attributes['type']).toBe('text');
+    buttonDebugEl.triggerEventHandler('click', {});
+    tick();
+    expect(inputDebugEl.attributes['type']).toBe('password');
+  }));
 });
+
+@Component({ selector: 'test-cmp', template: '' })
+class TestComponent {
+  disabled;
+  model;
+}
+
