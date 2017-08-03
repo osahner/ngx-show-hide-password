@@ -19,7 +19,9 @@
     "url": "https://github.com/osahner/ngx-show-hide-password/issues"
   },
   "homepage": "https://github.com/osahner/ngx-show-hide-password#readme",
+  "main": "ngx-show-hide-password.umd.js",
   "module": "ngx-show-hide-password.js",
+  "jsnext:main": "ngx-show-hide-password.js",
   "typings": "ngx-show-hide-password.d.ts",
   "peerDependencies": {
     "@angular/core": "^4.0.0",
