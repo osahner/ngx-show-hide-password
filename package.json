@@ -42,6 +42,7 @@
     "@angular/compiler": "^4.3.3",
     "@angular/compiler-cli": "^4.3.3",
     "@angular/core": "^4.3.3",
+    "@angular/forms": "^4.3.3",
     "@angular/platform-browser": "^4.3.3",
     "@angular/platform-browser-dynamic": "^4.3.3",
     "@compodoc/compodoc": "^1.0.0-beta.13",
@@ -68,6 +69,7 @@
     "node-sass-tilde-importer": "^1.0.0",
     "node-watch": "^0.5.2",
     "protractor": "~5.1.0",
+    "reflect-metadata": "^0.1.10",
     "rollup": "^0.41.6",
     "run-sequence": "^1.2.2",
     "rxjs": "^5.1.0",
@@ -79,7 +81,5 @@
   "engines": {
     "node": ">=6.0.0"
   },
-  "dependencies": {
-    "@angular/forms": "^4.3.3"
-  }
+  "dependencies": {}
 }
