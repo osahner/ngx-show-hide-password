@@ -18,8 +18,8 @@ import { Component, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
         <span *ngSwitchCase="'entypo'" class="icon"
           [ngClass]="{'icon-eye-with-line': !isHidden, 'icon-eye': isHidden}"
           [style.font-size]="size === 'lg' ? '1.5rem' : ''"></span>
-        <i *ngSwitchDefault class="fa fa-fw"
-          [ngClass]="{'fa-eye-slash': !isHidden, 'fa-eye': isHidden, 'fa-lg': size === 'lg'}"></i>
+        <i class="fa fa-fw" [ngClass]="{'fa-eye-slash': !isHidden, 'fa-eye': isHidden, 'fa-lg': size === 'lg'}"
+          *ngSwitchDefault></i>
       </button>
     </span>
     <span *ngIf="!icon" class="input-group-addon">
@@ -66,10 +66,7 @@ export class ShowHidePasswordComponent implements OnInit {
       }
       this.isHidden = this.input.type === 'password';
     } else {
-      if (console && typeof console.log === 'function') {
-        console.log('ERROR: No input element found.');
-        console.log('Please read the docs!');
-      }
+      throw new Error(`No input element found. Please read the docs!`);
     }
   }
   

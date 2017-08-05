@@ -17,7 +17,7 @@ describe('ShowHidePasswordModule', () => {
       });
     });
   
-  it('should work', fakeAsync(() => {
+  it('should toggle state with a button', fakeAsync(() => {
     const fixture = TestBed.overrideComponent(TestComponent, {
       set: {
         template: `<show-hide-password size="sm" icon="fontwaesome"><input type="password" [(ngModel)]="model"></show-hide-password>`
@@ -35,6 +35,38 @@ describe('ShowHidePasswordModule', () => {
     buttonDebugEl.triggerEventHandler('click', {});
     tick();
     expect(inputDebugEl.attributes['type']).toBe('password');
+  }));
+  
+  it('should toggle state with a checkbox', fakeAsync(() => {
+    const fixture = TestBed.overrideComponent(TestComponent, {
+      set: {
+        template: `<show-hide-password size="sm"><input type="password" [(ngModel)]="model"></show-hide-password>`
+      }
+    }).createComponent(TestComponent);
+    fixture.detectChanges();
+    
+    const checkboxDebugEl = fixture.debugElement.query(By.css('.input-group-addon > input'));
+    const inputDebugEl = fixture.debugElement.query(By.css('input'));
+    
+    expect(inputDebugEl.attributes['type']).toBe('password');
+    checkboxDebugEl.triggerEventHandler('click', {});
+    tick();
+    expect(inputDebugEl.attributes['type']).toBe('text');
+    checkboxDebugEl.triggerEventHandler('click', {});
+    tick();
+    expect(inputDebugEl.attributes['type']).toBe('password');
+  }));
+  
+  it('should throw error', fakeAsync(() => {
+    TestBed.overrideComponent(TestComponent, {
+      set: {
+        template: `<show-hide-password size="sm"></show-hide-password>`
+      }
+    });
+    expect(() => {
+      const fixture = TestBed.createComponent(TestComponent);
+      fixture.detectChanges();
+    }).toThrow();
   }));
 });
 
