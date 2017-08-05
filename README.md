@@ -4,6 +4,8 @@
 
 Add split input button to password or text input. Toggles input type between "text" and "password". 
 
+[![Build Status](https://travis-ci.org/osahner/ngx-show-hide-password.svg?branch=master)](https://travis-ci.org/osahner/ngx-show-hide-password)
+
 #### Requires 
 
 * **Angular 4** `>=4.0.0`
@@ -40,7 +42,7 @@ import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 
 ```html
 <show-hide-password size="lg" icon="entypo">
-  <input type="password" name=... />
+  <input type="password" name=... >
 </show-hide-password>
 ```
 

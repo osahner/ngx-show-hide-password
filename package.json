@@ -1,6 +1,6 @@
 {
   "name": "ngx-show-hide-password",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Angular2 (v4) Bootstrap 4 password component",
   "main": "index.ts",
   "scripts": {
