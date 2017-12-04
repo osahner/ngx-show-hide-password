@@ -1,7 +1,7 @@
 {
   "generator-angular2-library": {
     "promptValues": {
-      "gitRepositoryUrl": "https://github.com/username/repo"
+      "gitRepositoryUrl": "git+https://github.com/osahner/ngx-show-hide-password.git"
     }
   }
 }
