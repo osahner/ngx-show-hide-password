@@ -4,11 +4,6 @@
     "module": "es2015",
     "target": "es5",
     "baseUrl": ".",
-    "paths": {
-      "@angular/*": [
-        "../node_modules/@angular/*"
-      ]
-    },
     "stripInternal": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
