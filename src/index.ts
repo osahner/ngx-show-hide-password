@@ -15,7 +15,6 @@ export class ShowHidePasswordModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: ShowHidePasswordModule
-      // , providers: [SampleService]
     };
   }
 }

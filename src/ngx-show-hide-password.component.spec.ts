@@ -1,11 +1,18 @@
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ShowHidePasswordModule } from './';
+import { ShowHidePasswordModule } from './index';
 import { By } from '@angular/platform-browser';
 
-describe('ShowHidePasswordModule', () => {
-  
+
+@Component({ selector: 'test-cmp', template: '' })
+class TestComponent {
+  disabled;
+  model;
+}
+
+describe('ShowHidePasswordModule::Component', () => {
+
   beforeEach(
     () => {
       TestBed.configureTestingModule({
@@ -16,7 +23,7 @@ describe('ShowHidePasswordModule', () => {
         ]
       });
     });
-  
+
   it('should toggle state with a button', fakeAsync(() => {
     const fixture = TestBed.overrideComponent(TestComponent, {
       set: {
@@ -24,10 +31,10 @@ describe('ShowHidePasswordModule', () => {
       }
     }).createComponent(TestComponent);
     fixture.detectChanges();
-    
+
     const buttonDebugEl = fixture.debugElement.query(By.css('button'));
     const inputDebugEl = fixture.debugElement.query(By.css('input'));
-    
+
     expect(inputDebugEl.attributes['type']).toBe('password');
     buttonDebugEl.triggerEventHandler('click', {});
     tick();
@@ -36,7 +43,7 @@ describe('ShowHidePasswordModule', () => {
     tick();
     expect(inputDebugEl.attributes['type']).toBe('password');
   }));
-  
+
   it('should toggle state with a checkbox', fakeAsync(() => {
     const fixture = TestBed.overrideComponent(TestComponent, {
       set: {
@@ -44,10 +51,10 @@ describe('ShowHidePasswordModule', () => {
       }
     }).createComponent(TestComponent);
     fixture.detectChanges();
-    
+
     const checkboxDebugEl = fixture.debugElement.query(By.css('.input-group-addon > input'));
     const inputDebugEl = fixture.debugElement.query(By.css('input'));
-    
+
     expect(inputDebugEl.attributes['type']).toBe('password');
     checkboxDebugEl.triggerEventHandler('click', {});
     tick();
@@ -56,7 +63,7 @@ describe('ShowHidePasswordModule', () => {
     tick();
     expect(inputDebugEl.attributes['type']).toBe('password');
   }));
-  
+
   it('should throw error', fakeAsync(() => {
     TestBed.overrideComponent(TestComponent, {
       set: {
@@ -69,10 +76,4 @@ describe('ShowHidePasswordModule', () => {
     }).toThrow();
   }));
 });
-
-@Component({ selector: 'test-cmp', template: '' })
-class TestComponent {
-  disabled;
-  model;
-}
 
