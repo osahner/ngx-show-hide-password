@@ -28,6 +28,7 @@ Desktop.ini
 # Build files
 dist/*
 .playground
+init-test-bed.spec.js
 
 # coverage
 coverage
