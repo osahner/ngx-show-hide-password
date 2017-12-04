@@ -53,7 +53,7 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress', 'karma-typescript'],
+    reporters: ['progress', 'verbose', 'karma-typescript'],
 
     // web server port
     port: 9876,
@@ -75,7 +75,7 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: true,
+    singleRun: false,
 
     // Concurrency level
     // how many browser should be started simultaneous
@@ -84,6 +84,7 @@ module.exports = function(config) {
 
   if (process.env.TRAVIS) {
     configuration.browsers = ['Chrome_travis_ci'];
+    configuration.singleRun = true;
   }
 
   config.set(configuration);
