@@ -27,6 +27,7 @@ Desktop.ini
 
 # Build files
 dist/*
+playground
 .playground
 init-test-bed.spec.js
 
