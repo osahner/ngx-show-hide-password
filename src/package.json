@@ -1,6 +1,6 @@
 {
   "name": "ngx-show-hide-password",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/osahner/ngx-show-hide-password.git"
@@ -12,7 +12,8 @@
   "keywords": [
     "angular",
     "bootstrap",
-    "password"
+    "password",
+    "widget"
   ],
   "license": "MIT",
   "bugs": {
@@ -24,6 +25,6 @@
   "jsnext:main": "ngx-show-hide-password.js",
   "typings": "ngx-show-hide-password.d.ts",
   "peerDependencies": {
-    "@angular/core": "^4.2.4 || ^5.0.0"
+    "@angular/core": "^5.0.5"
   }
 }
