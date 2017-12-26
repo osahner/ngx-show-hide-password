@@ -8,7 +8,7 @@ Add split input button to password or text input. Toggles input type between "te
 
 #### Requires 
 
-* **Angular** `^4.2.4 || ^5.0.0`
+* **Angular** `^5.0.5`
 * **Bootstrap** `^4.0.0-beta.2`
 
 #### Optional Icons
@@ -58,8 +58,9 @@ Password hidden | Password exposed
 
 ### Changelog
 
+* v1.2.1 requires Angular v5, for Angular v4 use `@1.1.0` instead
 * v1.2.0 update components
-
+* v1.1.0 initial release
 
 ### LICENCE
 

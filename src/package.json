@@ -25,6 +25,6 @@
   "jsnext:main": "ngx-show-hide-password.js",
   "typings": "ngx-show-hide-password.d.ts",
   "peerDependencies": {
-    "@angular/core": "^4.2.4 || ^5.0.0"
+    "@angular/core": "^5.0.5"
   }
 }

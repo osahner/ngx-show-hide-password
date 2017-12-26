@@ -19,8 +19,8 @@
   },
   "angularCompilerOptions": {
     "annotateForClosureCompiler": true,
-    "skipMetadataEmit": false,
-    "skipTemplateCodegen": false,
+    "strictMetadataEmit": true,
+    "skipTemplateCodegen": true,
     "flatModuleOutFile": "ngx-show-hide-password.js",
     "flatModuleId": "ngx-show-hide-password"
   },
