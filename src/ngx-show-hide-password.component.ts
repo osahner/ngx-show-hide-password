@@ -12,20 +12,22 @@ import { Component, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
   selector: 'show-hide-password',
   template: `
     <ng-content></ng-content>
-    <span *ngIf="icon" class="input-group-btn">
-      <button class="btn btn-secondary" type="button" (click)="toggleShow($event)"
-        [attr.title]="isHidden ? 'Show password' : 'Hide password'" [ngSwitch]="icon">
+    <div class="input-group-append" *ngIf="icon">
+      <button class="btn btn-outline-secondary" type="button" (click)="toggleShow($event)"
+        [attr.label]="isHidden ? 'Show password' : 'Hide password'" [ngSwitch]="icon">
         <span *ngSwitchCase="'entypo'" class="icon"
           [ngClass]="{'icon-eye-with-line': !isHidden, 'icon-eye': isHidden}"
           [style.font-size]="size === 'lg' ? '1.5rem' : ''"></span>
         <i class="fa fa-fw" [ngClass]="{'fa-eye-slash': !isHidden, 'fa-eye': isHidden, 'fa-lg': size === 'lg'}"
           *ngSwitchDefault></i>
       </button>
-    </span>
-    <span *ngIf="!icon" class="input-group-addon">
-      <input type="checkbox" class="" (click)="toggleShow($event)"
-        [attr.title]="isHidden ? 'Show password' : 'Hide password'">
-    </span>
+    </div>
+    <div *ngIf="!icon" class="input-group-append">
+      <div class="input-group-text">
+        <input type="checkbox" class="" (click)="toggleShow($event)"
+          [attr.label]="isHidden ? 'Show password' : 'Hide password'">
+      </div>
+    </div>
   `
 })
 export class ShowHidePasswordComponent implements OnInit {
@@ -65,6 +67,7 @@ export class ShowHidePasswordComponent implements OnInit {
         this.renderer.addClass(this.elem.nativeElement, 'input-group-lg');
       }
       this.isHidden = this.input.type === 'password';
+      this.renderer.addClass(this.input, 'form-control'); // just to be sure
     } else {
       throw new Error(`No input element found. Please read the docs!`);
     }
