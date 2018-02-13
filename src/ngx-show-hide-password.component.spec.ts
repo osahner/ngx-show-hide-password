@@ -52,7 +52,7 @@ describe('ShowHidePasswordModule::Component', () => {
     }).createComponent(TestComponent);
     fixture.detectChanges();
 
-    const checkboxDebugEl = fixture.debugElement.query(By.css('.input-group-addon > input'));
+    const checkboxDebugEl = fixture.debugElement.query(By.css('.input-group-text > input'));
     const inputDebugEl = fixture.debugElement.query(By.css('input'));
 
     expect(inputDebugEl.attributes['type']).toBe('password');
