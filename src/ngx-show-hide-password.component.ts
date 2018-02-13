@@ -12,8 +12,8 @@ import { Component, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
   selector: 'show-hide-password',
   template: `
     <ng-content></ng-content>
-    <div class="input-group-append" *ngIf="icon">
-      <button class="btn btn-outline-secondary" type="button" (click)="toggleShow($event)"
+    <div class="input-group-append">
+      <button *ngIf="icon" class="btn btn-outline-secondary" type="button" (click)="toggleShow($event)"
         [attr.label]="isHidden ? 'Show password' : 'Hide password'" [ngSwitch]="icon">
         <span *ngSwitchCase="'entypo'" class="icon"
           [ngClass]="{'icon-eye-with-line': !isHidden, 'icon-eye': isHidden}"
@@ -21,9 +21,7 @@ import { Component, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
         <i class="fa fa-fw" [ngClass]="{'fa-eye-slash': !isHidden, 'fa-eye': isHidden, 'fa-lg': size === 'lg'}"
           *ngSwitchDefault></i>
       </button>
-    </div>
-    <div *ngIf="!icon" class="input-group-append">
-      <div class="input-group-text">
+      <div *ngIf="!icon" class="input-group-text">
         <input type="checkbox" class="" (click)="toggleShow($event)"
           [attr.label]="isHidden ? 'Show password' : 'Hide password'">
       </div>
