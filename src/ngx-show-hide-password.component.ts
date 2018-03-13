@@ -12,7 +12,7 @@ import { Component, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
   selector: 'show-hide-password',
   template: `
     <ng-content></ng-content>
-    <div class="input-group-append">
+    <div class="input-group-btn">
       <button *ngIf="icon" class="btn btn-outline-secondary" type="button" (click)="toggleShow($event)"
         [attr.label]="isHidden ? 'Show password' : 'Hide password'" [ngSwitch]="icon">
         <span *ngSwitchCase="'entypo'" class="icon"
