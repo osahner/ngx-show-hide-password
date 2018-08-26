@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { ShowHidePasswordModule } from './index';
 import { By } from '@angular/platform-browser';
 
-
 @Component({ selector: 'test-cmp', template: '' })
 class TestComponent {
   disabled;
@@ -12,17 +11,12 @@ class TestComponent {
 }
 
 describe('ShowHidePasswordModule::Component', () => {
-
-  beforeEach(
-    () => {
-      TestBed.configureTestingModule({
-        declarations: [TestComponent],
-        imports: [
-          FormsModule,
-          ShowHidePasswordModule.forRoot()
-        ]
-      });
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [TestComponent],
+      imports: [FormsModule, ShowHidePasswordModule.forRoot()]
     });
+  });
 
   it('should toggle state with a button', fakeAsync(() => {
     const fixture = TestBed.overrideComponent(TestComponent, {
@@ -76,4 +70,3 @@ describe('ShowHidePasswordModule::Component', () => {
     }).toThrow();
   }));
 });
-

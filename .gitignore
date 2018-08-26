@@ -3,6 +3,7 @@ node_modules/*
 npm-debug.log
 
 # TypeScript
+init-test-bed.spec.js
 src/*.js
 src/*.map
 src/*.d.ts
@@ -11,6 +12,7 @@ src/*.d.ts
 .idea
 .project
 .settings
+*.iml
 
 # VS Code
 .vscode/*
@@ -27,9 +29,11 @@ Desktop.ini
 
 # Build files
 dist/*
-playground
-.playground
-init-test-bed.spec.js
+playground/index.js
 
-# coverage
-coverage
+# Playground tmp files
+.playground
+bs-config.json
+
+coverage/
+

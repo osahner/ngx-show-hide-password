@@ -13,7 +13,7 @@ Add split input button to password or text input. Toggles input type between "te
 
 #### Optional Icons
 
-* [fontawesome](http://fontawesome.io/)
+* [fontawesome 4.7](http://fontawesome.io/)
 * [entypo](http://entypo.com/)
 
 ### Installation
@@ -41,7 +41,7 @@ import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 ```
 
 ```html
-<show-hide-password size="lg" icon="entypo">
+<show-hide-password size="lg" icon="entypo" btnStyle="primary" [btnOutline]="false">
   <input type="password" name=... >
 </show-hide-password>
 ```
@@ -53,11 +53,14 @@ Password hidden | Password exposed
 
 ### Attributes
 
+* **btnOutline**: boolean. default: `true`
+* **btnStyle**: `primary`, `secondary`, `success`, `warning`, `danger` or `info`. default: `secondary`
 * **size**: `sm`, `lg` or nothing
 * **icon**: `fontawesome`, `entypo` or empty|nothing (= checkbox)
 
 ### Changelog
 
+* v1.2.5 add 2 new attributes, btnStyle and btnOutline
 * v1.2.3 bootstrap 4.0.0 
 * v1.2.2 update jquery ~> 3.0.0
 * v1.2.1 requires Angular v5, for Angular v4 use `@1.1.0` instead
@@ -66,4 +69,4 @@ Password hidden | Password exposed
 
 ### LICENCE
 
-MIT
+MIT © [Oliver Sahner](mailto:osahner@gmail.com)
