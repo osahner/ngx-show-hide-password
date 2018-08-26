@@ -10,7 +10,6 @@ export * from './ngx-show-hide-password.component';
   exports: [ShowHidePasswordComponent],
   declarations: [ShowHidePasswordComponent]
 })
-
 export class ShowHidePasswordModule {
   static forRoot(): ModuleWithProviders {
     return {

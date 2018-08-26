@@ -13,7 +13,8 @@ import { Component, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
   template: `
     <ng-content></ng-content>
     <div class="input-group-append">
-      <button *ngIf="icon" class="btn btn-outline-secondary" type="button" (click)="toggleShow($event)"
+      <button *ngIf="icon" class="btn" [ngClass]="btnOutline ? 'btn-outline-' + btnStyle : 'btn-' + btnStyle"
+        type="button" (click)="toggleShow($event)"
         [attr.label]="isHidden ? 'Show password' : 'Hide password'" [ngSwitch]="icon">
         <span *ngSwitchCase="'entypo'" class="icon"
           [ngClass]="{'icon-eye-with-line': !isHidden, 'icon-eye': isHidden}"
@@ -29,6 +30,16 @@ import { Component, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
   `
 })
 export class ShowHidePasswordComponent implements OnInit {
+  /**
+   * Bootstrap 4 style, default is secondary
+   */
+  @Input()
+  public btnStyle: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' = 'secondary';
+  /**
+   * Button outline style, default is true
+   */
+  @Input()
+  public btnOutline = true;
   /**
    * can be 'sm' = small, 'lg' = large or empty = default
    */
@@ -47,11 +58,9 @@ export class ShowHidePasswordComponent implements OnInit {
    * current state
    */
   public isHidden: boolean;
-  
-  constructor(private elem: ElementRef,
-              private renderer: Renderer2) {
-  }
-  
+
+  constructor(private elem: ElementRef, private renderer: Renderer2) {}
+
   /**
    * init component
    */
@@ -70,7 +79,7 @@ export class ShowHidePasswordComponent implements OnInit {
       throw new Error(`No input element found. Please read the docs!`);
     }
   }
-  
+
   /**
    * toggles type of input (text|password)
    * @param $event not used
