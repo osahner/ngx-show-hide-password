@@ -50,6 +50,7 @@ Password hidden | Password exposed
 ------------ | -------------
 ![Hidden password](resources/hidden.png) | ![Exposed password](resources/exposed.png)
 
+Demo on [stackblitz](https://stackblitz.com/edit/angular-okrmdi?embed=1&file=src/app/app.component.html)
 
 ### Attributes
 
