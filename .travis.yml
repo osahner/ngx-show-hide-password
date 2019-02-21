@@ -17,7 +17,7 @@ cache:
      - ./node_modules
 
 install:
-  - npm install
+  - yarn install
 
 script:
-  - npm run test_lib -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+  - yarn test_lib --no-watch --no-progress --browsers=ChromeHeadlessCI

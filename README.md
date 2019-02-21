@@ -11,15 +11,14 @@ Add split input button to password or text input. Toggles input type between "te
 * **Angular** `^7`
 * **Bootstrap** `^4.1`
 
-#### Optional Icons
-
-* [fontawesome 4.7](http://fontawesome.io/)
-* [entypo](http://entypo.com/)
-
 ### Installation
 
 ```
 $ npm install ngx-show-hide-password --save
+```
+
+```
+$ yarn add ngx-show-hide-password
 ```
 
 ### Example
@@ -33,7 +32,7 @@ import { ShowHidePasswordModule } from 'ngx-show-hide-password';
   imports: [
     BrowserModule,
     FormsModule,
-    ShowHidePasswordModule.forRoot(),
+    ShowHidePasswordModule,
     ...
   ],
   ...
@@ -41,7 +40,7 @@ import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 ```
 
 ```html
-<show-hide-password size="lg" icon="entypo" btnStyle="primary" [btnOutline]="false">
+<show-hide-password size="lg" btnStyle="primary" [btnOutline]="false">
   <input type="password" name=... >
 </show-hide-password>
 ```
@@ -57,11 +56,10 @@ Demo on [stackblitz](https://stackblitz.com/edit/angular-okrmdi?embed=1&file=src
 * **btnOutline**: boolean. default: `true`
 * **btnStyle**: `primary`, `secondary`, `success`, `warning`, `danger` or `info`. default: `secondary`
 * **size**: `sm`, `lg` or nothing
-* **icon**: `fontawesome`, `entypo` or empty|nothing (= checkbox)
 
 ### Changelog
 
-* v2.0.0 switchted to @angular/cli and ng-packagr, requires Angular v7
+* v2.0.0 switchted to @angular/cli and ng-packagr, requires @angular/core v7, includes Font Awesome Eye/EyeSlash Icon
 * v1.2.5 add 2 new attributes, btnStyle and btnOutline
 * v1.2.3 bootstrap 4.0.0
 * v1.2.2 update jquery ~> 3.0.0

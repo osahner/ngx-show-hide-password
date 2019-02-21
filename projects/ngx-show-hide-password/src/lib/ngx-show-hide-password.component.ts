@@ -1,4 +1,5 @@
 import { Component, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 /**
  * Add a split input button to password or text input. Toggles input type between "text" and "password".
@@ -12,20 +13,12 @@ import { Component, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
   selector: 'show-hide-password',
   template: `
     <ng-content></ng-content>
-    <div class="input-group-append">
-      <button *ngIf="icon" class="btn" [ngClass]="btnOutline ? 'btn-outline-' + btnStyle : 'btn-' + btnStyle"
+    <div class="input-group-append ngx-show-hide-password">
+      <button class="btn" [ngClass]="btnOutline ? 'btn-outline-' + btnStyle : 'btn-' + btnStyle"
         type="button" (click)="toggleShow($event)"
-        [attr.label]="isHidden ? 'Show password' : 'Hide password'" [ngSwitch]="icon">
-        <span *ngSwitchCase="'entypo'" class="icon"
-          [ngClass]="{'icon-eye-with-line': !isHidden, 'icon-eye': isHidden}"
-          [style.font-size]="size === 'lg' ? '1.5rem' : ''"></span>
-        <i class="fa fa-fw" [ngClass]="{'fa-eye-slash': !isHidden, 'fa-eye': isHidden, 'fa-lg': size === 'lg'}"
-          *ngSwitchDefault></i>
+        [attr.label]="(isHidden ? 'Show password' : 'Hide password')">
+        <fa-icon [fixedWidth]="true" size="lg" [icon]="(isHidden ? faEye : faEyeSlash)"></fa-icon>
       </button>
-      <div *ngIf="!icon" class="input-group-text">
-        <input type="checkbox" class="" (click)="toggleShow($event)"
-          [attr.label]="isHidden ? 'Show password' : 'Hide password'">
-      </div>
     </div>
   `
 })
@@ -46,11 +39,6 @@ export class ShowHidePasswordComponent implements OnInit {
   @Input()
   public size: 'sm' | 'lg' | '';
   /**
-   * can be 'fontawesome', 'entypo' or empty for checkbox
-   */
-  @Input()
-  public icon: 'fontawesome' | 'entypo' | '';
-  /**
    * the shielded Input element
    */
   public input: any;
@@ -59,11 +47,11 @@ export class ShowHidePasswordComponent implements OnInit {
    */
   public isHidden: boolean;
 
+  faEye = faEye;
+  faEyeSlash = faEyeSlash;
+
   constructor(private elem: ElementRef, private renderer: Renderer2) {}
 
-  /**
-   * init component
-   */
   ngOnInit(): void {
     this.input = this.elem.nativeElement.querySelector('input');
     if (this.input) {

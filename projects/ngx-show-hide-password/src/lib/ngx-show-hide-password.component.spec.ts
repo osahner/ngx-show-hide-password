@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ShowHidePasswordModule } from './ngx-show-hide-password.module';
 import { By } from '@angular/platform-browser';
 
-@Component({ selector: 'test-cmp', template: '' })
+@Component({ selector: 'show-test', template: '' })
 class TestComponent {
   disabled;
   model;
@@ -18,7 +18,7 @@ describe('ShowHidePasswordModule::Component', () => {
     });
   });
 
-  it('should toggle state with a button', fakeAsync(() => {
+  it('should toggle state', fakeAsync(() => {
     const fixture = TestBed.overrideComponent(TestComponent, {
       set: {
         template: `<show-hide-password size="sm" icon="fontwaesome"><input type="password" [(ngModel)]="model"></show-hide-password>`
@@ -38,24 +38,24 @@ describe('ShowHidePasswordModule::Component', () => {
     expect(inputDebugEl.attributes['type']).toBe('password');
   }));
 
-  it('should toggle state with a checkbox', fakeAsync(() => {
+  it('should initialize with text input', fakeAsync(() => {
     const fixture = TestBed.overrideComponent(TestComponent, {
       set: {
-        template: `<show-hide-password size="sm"><input type="password" [(ngModel)]="model"></show-hide-password>`
+        template: `<show-hide-password size="sm" icon="fontwaesome"><input type="text" [(ngModel)]="model"></show-hide-password>`
       }
     }).createComponent(TestComponent);
     fixture.detectChanges();
 
-    const checkboxDebugEl = fixture.debugElement.query(By.css('.input-group-text > input'));
+    const buttonDebugEl = fixture.debugElement.query(By.css('button'));
     const inputDebugEl = fixture.debugElement.query(By.css('input'));
 
+    expect(inputDebugEl.attributes['type']).toBe('text');
+    buttonDebugEl.triggerEventHandler('click', {});
+    tick();
     expect(inputDebugEl.attributes['type']).toBe('password');
-    checkboxDebugEl.triggerEventHandler('click', {});
+    buttonDebugEl.triggerEventHandler('click', {});
     tick();
     expect(inputDebugEl.attributes['type']).toBe('text');
-    checkboxDebugEl.triggerEventHandler('click', {});
-    tick();
-    expect(inputDebugEl.attributes['type']).toBe('password');
   }));
 
   it('should throw error', fakeAsync(() => {
