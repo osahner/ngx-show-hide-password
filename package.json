@@ -1,13 +1,16 @@
 {
   "name": "ngx-show-hide-password-app",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "build_lib": "ng build ngx-show-hide-password",
+    "copy-license": "cp ./LICENSE ./dist/ngx-show-hide-password",
+    "copy-readme": "cp ./README.md ./dist/ngx-show-hide-password",
+    "copy-files": "yarn copy-license && yarn copy-readme",
     "npm_pack": "cd dist/ngx-show-hide-password && npm pack",
-    "package": "yarn build_lib && yarn npm_pack",
+    "package": "yarn build_lib && yarn copy-files && yarn npm_pack",
     "test": "yarn test_lib",
     "test_lib": "ng test ngx-show-hide-password",
     "lint": "yarn lint_lib",
