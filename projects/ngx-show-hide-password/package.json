@@ -1,0 +1,26 @@
+{
+  "name": "ngx-show-hide-password",
+  "version": "2.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/osahner/ngx-show-hide-password.git"
+  },
+  "author": {
+    "name": "Oliver Sahner",
+    "email": "osahner@gmail.com"
+  },
+  "keywords": [
+    "angular",
+    "bootstrap",
+    "password"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/osahner/ngx-show-hide-password/issues"
+  },
+  "homepage": "https://github.com/osahner/ngx-show-hide-password#readme",
+  "peerDependencies": {
+    "@angular/common": "^7.1.0",
+    "@angular/core": "^7.1.0"
+  }
+}

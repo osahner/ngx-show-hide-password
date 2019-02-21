@@ -2,14 +2,14 @@
 
 ## Add a show hide button to password input fields
 
-Add split input button to password or text input. Toggles input type between "text" and "password". 
+Add split input button to password or text input. Toggles input type between "text" and "password".
 
 [![Build Status](https://travis-ci.org/osahner/ngx-show-hide-password.svg?branch=master)](https://travis-ci.org/osahner/ngx-show-hide-password)
 
-#### Requires 
+#### Requires
 
-* **Angular** `^5.0.5`
-* **Bootstrap** `^4.0.0`
+* **Angular** `^7`
+* **Bootstrap** `^4.1`
 
 #### Optional Icons
 
@@ -61,8 +61,9 @@ Demo on [stackblitz](https://stackblitz.com/edit/angular-okrmdi?embed=1&file=src
 
 ### Changelog
 
+* v2.0.0 switchted to @angular/cli and ng-packagr, requires Angular v7
 * v1.2.5 add 2 new attributes, btnStyle and btnOutline
-* v1.2.3 bootstrap 4.0.0 
+* v1.2.3 bootstrap 4.0.0
 * v1.2.2 update jquery ~> 3.0.0
 * v1.2.1 requires Angular v5, for Angular v4 use `@1.1.0` instead
 * v1.2.0 update components
