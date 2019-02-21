@@ -13,12 +13,14 @@ Add split input button to password or text input. Toggles input type between "te
 
 ### Installation
 
-```
-$ npm install ngx-show-hide-password --save
+```bash
+npm install ngx-show-hide-password --save
+npm install @fortawesome/angular-fontawesome @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons --save
 ```
 
-```
-$ yarn add ngx-show-hide-password
+```bash
+yarn add ngx-show-hide-password
+yarn add @fortawesome/angular-fontawesome @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons
 ```
 
 ### Example
@@ -59,6 +61,7 @@ Demo on [stackblitz](https://stackblitz.com/edit/angular-okrmdi?embed=1&file=src
 
 ### Changelog
 
+* v2.0.2 fix build script and update readme
 * v2.0.0 switchted to @angular/cli and ng-packagr, requires @angular/core v7, includes Font Awesome Eye/EyeSlash Icon
 * v1.2.5 add 2 new attributes, btnStyle and btnOutline
 * v1.2.3 bootstrap 4.0.0
