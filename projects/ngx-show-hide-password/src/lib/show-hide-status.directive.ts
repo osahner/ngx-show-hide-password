@@ -6,6 +6,7 @@ export interface ShowHideStatusConfig {
   id: string;
   show?: string;
   hide?: string;
+  materialIcon?: boolean;
 }
 
 @Directive({
@@ -22,7 +23,8 @@ export class ShowHideStatusDirective implements AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     const defaultConfig = {
       show: 'showPassword',
-      hide: 'hidePassword'
+      hide: 'hidePassword',
+      materialIcon: false
     };
     this.config = {
       ...defaultConfig,
@@ -31,14 +33,18 @@ export class ShowHideStatusDirective implements AfterViewInit, OnDestroy {
     if (!this.config.id) {
       throw new Error(`No input id found. Please read the docs!`);
     }
-    this.subscription = this.service.getObservable(this.config.id).subscribe(show => this.updateClass(show));
-    // FIXME really dont like that - but startWith and share does not work either
-    this.updateClass(this.service.getShow(this.config.id));
+    this.subscription = this.service.getObservable(this.config.id).subscribe(show => this.updateStatus(show));
+
+    this.updateStatus(this.service.getShow(this.config.id));
   }
 
-  private updateClass(show: boolean) {
-    this.renderer.addClass(this.el.nativeElement, show ? this.config.hide : this.config.show);
-    this.renderer.removeClass(this.el.nativeElement, !show ? this.config.hide : this.config.show);
+  private updateStatus(show: boolean) {
+    if (this.config.materialIcon) {
+      this.renderer.setProperty(this.el.nativeElement, 'innerHTML', show ? this.config.hide : this.config.show);
+    } else {
+      this.renderer.addClass(this.el.nativeElement, show ? this.config.hide : this.config.show);
+      this.renderer.removeClass(this.el.nativeElement, !show ? this.config.hide : this.config.show);
+    }
   }
 
   ngOnDestroy(): void {
