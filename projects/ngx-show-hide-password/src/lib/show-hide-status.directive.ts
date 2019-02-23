@@ -1,8 +1,9 @@
-import { Directive, ElementRef, Renderer2, OnInit, OnDestroy, Input } from '@angular/core';
+import { Directive, ElementRef, Renderer2, OnDestroy, Input, AfterViewInit } from '@angular/core';
 import { ShowHideService } from './show-hide.service';
 import { Subscription } from 'rxjs';
 
 export interface ShowHideStatusConfig {
+  id: string;
   show?: string;
   hide?: string;
 }
@@ -10,7 +11,7 @@ export interface ShowHideStatusConfig {
 @Directive({
   selector: '[showHideStatus]'
 })
-export class ShowHideStatusDirective implements OnInit, OnDestroy {
+export class ShowHideStatusDirective implements AfterViewInit, OnDestroy {
   private subscription: Subscription;
   private config: ShowHideStatusConfig;
 
@@ -18,7 +19,7 @@ export class ShowHideStatusDirective implements OnInit, OnDestroy {
 
   constructor(private service: ShowHideService, private el: ElementRef, private renderer: Renderer2) {}
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     const defaultConfig = {
       show: 'showPassword',
       hide: 'hidePassword'
@@ -27,9 +28,12 @@ export class ShowHideStatusDirective implements OnInit, OnDestroy {
       ...defaultConfig,
       ...this.showHideStatus
     };
-    this.subscription = this.service.observable.subscribe(show => this.updateClass(show));
+    if (!this.config.id) {
+      throw new Error(`No input id found. Please read the docs!`);
+    }
+    this.subscription = this.service.getObservable(this.config.id).subscribe(show => this.updateClass(show));
     // FIXME really dont like that - but startWith and share does not work either
-    this.updateClass(this.service.getShow());
+    this.updateClass(this.service.getShow(this.config.id));
   }
 
   private updateClass(show: boolean) {
