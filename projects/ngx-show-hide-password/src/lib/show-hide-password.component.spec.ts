@@ -1,7 +1,7 @@
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ShowHidePasswordModule } from './ngx-show-hide-password.module';
+import { ShowHidePasswordModule } from './show-hide-password.module';
 import { By } from '@angular/platform-browser';
 
 @Component({ selector: 'show-test', template: '' })
@@ -21,7 +21,7 @@ describe('ShowHidePasswordModule::Component', () => {
   it('should toggle state', fakeAsync(() => {
     const fixture = TestBed.overrideComponent(TestComponent, {
       set: {
-        template: `<show-hide-password size="sm" icon="fontwaesome"><input type="password" [(ngModel)]="model"></show-hide-password>`
+        template: `<show-hide-password size="sm"><input type="password" [(ngModel)]="model"></show-hide-password>`
       }
     }).createComponent(TestComponent);
     fixture.detectChanges();
@@ -41,7 +41,7 @@ describe('ShowHidePasswordModule::Component', () => {
   it('should initialize with text input', fakeAsync(() => {
     const fixture = TestBed.overrideComponent(TestComponent, {
       set: {
-        template: `<show-hide-password size="sm" icon="fontwaesome"><input type="text" [(ngModel)]="model"></show-hide-password>`
+        template: `<show-hide-password size="sm"><input type="text" [(ngModel)]="model"></show-hide-password>`
       }
     }).createComponent(TestComponent);
     fixture.detectChanges();
