@@ -35,7 +35,7 @@ export class ShowHidePasswordComponent implements OnInit, OnDestroy {
   public btnOutline = true;
 
   @Input()
-  public size: 'sm' | 'lg' | '';
+  public size: 'sm' | 'lg';
 
   public input: any;
 

@@ -38,10 +38,6 @@ export class ShowHideService {
     return this.getIO(id).subject;
   }
 
-  public getShow(id: string): boolean {
-    return this.getIO(id).show;
-  }
-
   public setShow(id: string, show: boolean): void {
     const io = this.getIO(id);
     io.show = show;

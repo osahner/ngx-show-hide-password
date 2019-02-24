@@ -1,9 +1,9 @@
-import { Directive, ElementRef, Renderer2, OnDestroy, Input, AfterViewInit } from '@angular/core';
+import { Directive, ElementRef, Renderer2, OnDestroy, Input, AfterViewInit, ErrorHandler } from '@angular/core';
 import { ShowHideService } from './show-hide.service';
 import { Subscription } from 'rxjs';
 
 export interface ShowHideStatusConfig {
-  id: string;
+  id?: string;
   show?: string;
   hide?: string;
   materialIcon?: boolean;
@@ -18,7 +18,12 @@ export class ShowHideStatusDirective implements AfterViewInit, OnDestroy {
 
   @Input() showHideStatus?: ShowHideStatusConfig;
 
-  constructor(private service: ShowHideService, private el: ElementRef, private renderer: Renderer2) {}
+  constructor(
+    private service: ShowHideService,
+    private el: ElementRef,
+    private renderer: Renderer2,
+    private errorHandler: ErrorHandler
+  ) {}
 
   ngAfterViewInit(): void {
     const defaultConfig = {
@@ -31,9 +36,10 @@ export class ShowHideStatusDirective implements AfterViewInit, OnDestroy {
       ...this.showHideStatus
     };
     if (!this.config.id) {
-      throw new Error(`No input id found. Please read the docs!`);
+      this.errorHandler.handleError(new Error(`No input id found. Please read the docs!`));
+    } else {
+      this.subscription = this.service.getObservable(this.config.id).subscribe(show => this.updateStatus(show));
     }
-    this.subscription = this.service.getObservable(this.config.id).subscribe(show => this.updateStatus(show));
   }
 
   private updateStatus(show: boolean) {

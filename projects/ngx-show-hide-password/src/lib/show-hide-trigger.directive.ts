@@ -1,4 +1,4 @@
-import { Directive, HostListener, Input } from '@angular/core';
+import { Directive, HostListener, Input, ErrorHandler } from '@angular/core';
 import { ShowHideService } from './show-hide.service';
 
 @Directive({
@@ -7,13 +7,14 @@ import { ShowHideService } from './show-hide.service';
 export class ShowHideTriggerDirective {
   @Input() showHideTrigger?: string;
 
-  constructor(private service: ShowHideService) {}
+  constructor(private service: ShowHideService, private errorHandler: ErrorHandler) {}
 
   @HostListener('click')
   onClick() {
     if (!this.showHideTrigger) {
-      throw new Error(`No input id found. Please read the docs!`);
+      this.errorHandler.handleError(new Error(`No input id found. Please read the docs!`));
+    } else {
+      this.service.toggle(this.showHideTrigger);
     }
-    this.service.toggle(this.showHideTrigger);
   }
 }

@@ -20,4 +20,4 @@ install:
   - yarn install
 
 script:
-  - yarn test_lib --no-watch --no-progress --browsers=ChromeHeadlessCI
+  - yarn test_lib --no-watch --no-progress  --code-coverage --browsers=ChromeHeadlessCI
