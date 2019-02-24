@@ -22,8 +22,8 @@ export class ShowHideStatusDirective implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     const defaultConfig = {
-      show: 'showPassword',
-      hide: 'hidePassword',
+      show: 'visibility',
+      hide: 'visibility_off',
       materialIcon: false
     };
     this.config = {
@@ -34,16 +34,14 @@ export class ShowHideStatusDirective implements AfterViewInit, OnDestroy {
       throw new Error(`No input id found. Please read the docs!`);
     }
     this.subscription = this.service.getObservable(this.config.id).subscribe(show => this.updateStatus(show));
-
-    this.updateStatus(this.service.getShow(this.config.id));
   }
 
   private updateStatus(show: boolean) {
     if (this.config.materialIcon) {
       this.renderer.setProperty(this.el.nativeElement, 'innerHTML', show ? this.config.hide : this.config.show);
     } else {
-      this.renderer.addClass(this.el.nativeElement, show ? this.config.hide : this.config.show);
       this.renderer.removeClass(this.el.nativeElement, !show ? this.config.hide : this.config.show);
+      this.renderer.addClass(this.el.nativeElement, show ? this.config.hide : this.config.show);
     }
   }
 

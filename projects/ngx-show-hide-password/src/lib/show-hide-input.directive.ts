@@ -3,7 +3,7 @@ import { ShowHideService } from './show-hide.service';
 import { Subscription } from 'rxjs';
 
 @Directive({
-  selector: '[showHideInput]'
+  selector: 'input[showHideInput]'
 })
 export class ShowHideInputDirective implements OnInit, OnDestroy {
   private subscription: Subscription;

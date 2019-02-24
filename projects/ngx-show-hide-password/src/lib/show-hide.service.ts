@@ -1,45 +1,41 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subscriber } from 'rxjs';
-import { share } from 'rxjs/operators';
+import { Observable, Subject, ReplaySubject } from 'rxjs';
 
-interface IO {
+interface IState {
   id: string;
   show: boolean;
-  observable: Observable<boolean>;
-  subscriber?: Subscriber<boolean>;
+  subject?: Subject<boolean>;
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShowHideService {
-  private readonly observables = [];
+  private readonly states = [];
 
   constructor() {}
 
-  private getIO(id: string): IO {
-    let io = this.observables.find(o => o.id === id);
+  private getIO(id: string): IState {
+    let io = this.states.find(o => o.id === id);
     if (!io && id) {
       io = this.init(id);
     }
     return io;
   }
 
-  private init(id: string, show: boolean = false): IO {
-    const observable = new Observable(subscriber => {
-      this.getIO(id).subscriber = subscriber; // looks dangerous
-    }).pipe(share<boolean>());
+  private init(id: string, show: boolean = false): IState {
+    const subject = new ReplaySubject<boolean>(1);
     const io = {
       id,
       show,
-      observable
+      subject
     };
-    this.observables.push(io);
+    this.states.push(io);
     return io;
   }
 
   public getObservable(id: string): Observable<boolean> {
-    return this.getIO(id).observable;
+    return this.getIO(id).subject;
   }
 
   public getShow(id: string): boolean {
@@ -47,17 +43,14 @@ export class ShowHideService {
   }
 
   public setShow(id: string, show: boolean): void {
-    this.getIO(id).show = show;
+    const io = this.getIO(id);
+    io.show = show;
+    io.subject.next(io.show);
   }
 
   public toggle(id: string) {
-    this.getIO(id).show = !this.getIO(id).show;
-    this._next(id);
-  }
-
-  private _next(id: string) {
-    if (this.getIO(id).subscriber) {
-      this.getIO(id).subscriber.next(this.getIO(id).show);
-    }
+    const io = this.getIO(id);
+    io.show = !io.show;
+    io.subject.next(io.show);
   }
 }

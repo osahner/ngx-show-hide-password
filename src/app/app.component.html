@@ -23,11 +23,11 @@
   <div class="form-group">
     <label>Test with directive. start as password input</label>
     <div class="input-group input-group-sm">
-      <input id="test2" class="form-control" type="text" name="password" placeholder="Password" autocomplete="new-password" value="asdasda"
+      <input id="test1" class="form-control" type="password" name="password" placeholder="Password" autocomplete="new-password" value="asdasda"
         showHideInput>
       <div class="input-group-append ngx-show-hide-password">
-        <button class="btn btn-outline-primary" type="button" showHideTrigger="test2">
-          <i class="fas" [showHideStatus]="{show: 'fa-eye', hide: 'fa-eye-slash', id: 'test2'}"></i>
+        <button class="btn btn-outline-primary" type="button" showHideTrigger="test1">
+          <span [showHideStatus]="{materialIcon: true, show: 'show', hide: 'hide', id: 'test1'}"></span>
         </button>
       </div>
     </div>
@@ -36,11 +36,11 @@
   <div class="form-group">
     <label>Test with directive. start as password input</label>
     <div class="input-group input-group-sm">
-      <input id="test1" class="form-control" type="text" name="password" placeholder="Password" autocomplete="new-password" value="asdasda"
+      <input id="test2" class="form-control" type="text" name="password" placeholder="Password" autocomplete="new-password" value="asdasda"
         showHideInput>
       <div class="input-group-append ngx-show-hide-password">
-        <button class="btn btn-outline-primary" type="button" showHideTrigger="test1">
-          <span [showHideStatus]="{materialIcon: true, show: 'fa-eye', hide: 'hide', id: 'show'}"></span>
+        <button class="btn btn-outline-primary" type="button" showHideTrigger="test2">
+          <i class="fas" [showHideStatus]="{show: 'fa-eye', hide: 'fa-eye-slash', id: 'test2'}"></i>
         </button>
       </div>
     </div>
