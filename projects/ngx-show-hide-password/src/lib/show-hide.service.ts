@@ -44,7 +44,7 @@ export class ShowHideService {
     io.subject.next(io.show);
   }
 
-  public toggle(id: string) {
+  public toggleShow(id: string): void {
     const io = this.getIO(id);
     io.show = !io.show;
     io.subject.next(io.show);
