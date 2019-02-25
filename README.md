@@ -101,7 +101,7 @@ export interface ShowHideStatusConfig {
 - 2.0.3
   - add directives: **showHideInput**, **showHideTrigger** and **showHideStatus**
 - 2.0.0
-  - switchted to @angular/cli and ng-packagr,
+  - switched to @angular/cli and ng-packagr,
   - requires @angular/core v7 and @fortawesome/angular-fontawesome, uses Font Awesome Eye/EyeSlash Icon
 - 1.2.5
   - add new attributes: `btnStyle` and `btnOutline`
