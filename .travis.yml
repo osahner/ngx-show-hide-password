@@ -3,7 +3,7 @@ sudo: false
 
 language: node_js
 node_js:
-  - "8"
+  - "10"
 
 addons:
   apt:
@@ -17,9 +17,9 @@ cache:
      - ./node_modules
 
 install:
-  - npm install -g codecov
+  - yarn global add codecov
   - yarn install
 
 script:
-  - yarn test_lib --no-watch --no-progress  --code-coverage --browsers=ChromeHeadlessCI
+  - yarn test_lib --no-watch --no-progress --code-coverage --browsers=ChromeHeadlessCI
   - codecov

@@ -4,6 +4,7 @@
 
 [![Build Status](https://travis-ci.org/osahner/ngx-show-hide-password.svg?branch=master)](https://travis-ci.org/osahner/ngx-show-hide-password)
 [![npm version](https://badge.fury.io/js/ngx-show-hide-password.svg)](https://badge.fury.io/js/ngx-show-hide-password)
+[![codecov](https://codecov.io/gh/osahner/ngx-show-hide-password/branch/develop/graph/badge.svg)](https://codecov.io/gh/osahner/ngx-show-hide-password)
 
 ## Installation
 

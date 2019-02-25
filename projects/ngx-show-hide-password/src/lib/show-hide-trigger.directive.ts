@@ -11,10 +11,10 @@ export class ShowHideTriggerDirective {
 
   @HostListener('click')
   onClick() {
-    if (!this.showHideTrigger) {
-      this.errorHandler.handleError(new Error(`No input id found. Please read the docs!`));
-    } else {
+    if (this.showHideTrigger) {
       this.service.toggle(this.showHideTrigger);
+    } else {
+      this.errorHandler.handleError(new Error(`No input id found. Please read the docs!`));
     }
   }
 }

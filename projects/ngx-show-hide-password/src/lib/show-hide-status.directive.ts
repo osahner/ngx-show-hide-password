@@ -29,16 +29,17 @@ export class ShowHideStatusDirective implements AfterViewInit, OnDestroy {
     const defaultConfig = {
       show: 'visibility',
       hide: 'visibility_off',
-      materialIcon: false
+      materialIcon: false,
+      id: null
     };
     this.config = {
       ...defaultConfig,
       ...this.showHideStatus
     };
-    if (!this.config.id) {
-      this.errorHandler.handleError(new Error(`No input id found. Please read the docs!`));
-    } else {
+    if (this.config.id) {
       this.subscription = this.service.getObservable(this.config.id).subscribe(show => this.updateStatus(show));
+    } else {
+      this.errorHandler.handleError(new Error(`No input id found. Please read the docs!`));
     }
   }
 

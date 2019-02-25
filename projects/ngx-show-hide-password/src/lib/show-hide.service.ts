@@ -23,11 +23,11 @@ export class ShowHideService {
     return io;
   }
 
-  private init(id: string, show: boolean = false): IState {
+  private init(id: string): IState {
     const subject = new ReplaySubject<boolean>(1);
     const io = {
       id,
-      show,
+      show: false,
       subject
     };
     this.states.push(io);
