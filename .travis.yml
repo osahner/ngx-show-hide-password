@@ -17,7 +17,9 @@ cache:
      - ./node_modules
 
 install:
+  - npm install -g codecov
   - yarn install
 
 script:
   - yarn test_lib --no-watch --no-progress  --code-coverage --browsers=ChromeHeadlessCI
+  - codecov
