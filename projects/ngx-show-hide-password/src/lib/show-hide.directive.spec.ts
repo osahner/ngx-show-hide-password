@@ -113,6 +113,27 @@ describe('ShowHidePasswordModule::Directive', () => {
     expect(inputDebugEl.attributes['type']).toBe('text');
   }));
 
+  it('should fail because of missing id', fakeAsync(() => {
+    const fixture = TestBed.overrideComponent(TestComponent, {
+      set: {
+        template: `<input id="test2" type="text" name="password" showHideInput [(ngModel)]="model">
+        <button type="button" showHideTrigger>
+          <i [showHideStatus]="{show: 'fa-eye', hide: 'fa-eye-slash'}"></i>
+        </button>`
+      }
+    }).createComponent(TestComponent);
+    fixture.detectChanges();
+
+    const triggerDebugEl = fixture.debugElement.query(By.css('button'));
+    const statusDebugEl = fixture.debugElement.query(By.css('i'));
+    const inputDebugEl = fixture.debugElement.query(By.css('input'));
+
+    expect(inputDebugEl.attributes['type']).toBe('text');
+    triggerDebugEl.triggerEventHandler('click', {});
+    tick();
+    expect(inputDebugEl.attributes['type']).toBe('text');
+  }));
+
   it('should throw error', fakeAsync(() => {
     TestBed.overrideComponent(TestComponent, {
       set: {

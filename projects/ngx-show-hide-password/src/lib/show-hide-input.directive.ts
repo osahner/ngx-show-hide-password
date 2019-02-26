@@ -17,10 +17,6 @@ export class ShowHideInputDirective implements OnInit, OnDestroy {
     this.service.setShow(this.id, this.el.nativeElement.type !== 'password');
   }
 
-  public getShown(): boolean {
-    return this.service.getShow(this.id);
-  }
-
   ngOnInit(): void {
     this.subscription = this.service
       .getObservable(this.id)

@@ -4,6 +4,7 @@
 
 [![Build Status](https://travis-ci.org/osahner/ngx-show-hide-password.svg?branch=master)](https://travis-ci.org/osahner/ngx-show-hide-password)
 [![npm version](https://badge.fury.io/js/ngx-show-hide-password.svg)](https://badge.fury.io/js/ngx-show-hide-password)
+[![codecov](https://codecov.io/gh/osahner/ngx-show-hide-password/branch/develop/graph/badge.svg)](https://codecov.io/gh/osahner/ngx-show-hide-password)
 
 ## Installation
 
@@ -95,6 +96,24 @@ export interface ShowHideStatusConfig {
 | **show**         | _string_  | optional class/material icon identifier. default: `'visibility'`       |
 | **hide**         | _string_  | optional class/material icon identifier. default: `'visibility_off'`   |
 | **materialIcon** | _boolean_ | if true updates innerHTML instead of class attribute. default: `false` |
+
+### Service: ShowHideService
+
+- _function_ **getObservable**
+> returns _Observable_ for _id_
+```ts
+getObservable(id: string): Observable<boolean>
+```
+- _function_ **setShow**
+> inits Status for _id_
+```ts
+setShow(id: string, show: boolean): void
+```
+- _function_ **toggleShow**
+> toggles Status for _id_
+```ts
+toggleShow(id: string): void
+```
 
 ## Release History
 

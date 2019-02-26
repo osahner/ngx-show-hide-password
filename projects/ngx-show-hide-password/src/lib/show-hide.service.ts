@@ -23,11 +23,11 @@ export class ShowHideService {
     return io;
   }
 
-  private init(id: string, show: boolean = false): IState {
+  private init(id: string): IState {
     const subject = new ReplaySubject<boolean>(1);
     const io = {
       id,
-      show,
+      show: false,
       subject
     };
     this.states.push(io);
@@ -38,17 +38,13 @@ export class ShowHideService {
     return this.getIO(id).subject;
   }
 
-  public getShow(id: string): boolean {
-    return this.getIO(id).show;
-  }
-
   public setShow(id: string, show: boolean): void {
     const io = this.getIO(id);
     io.show = show;
     io.subject.next(io.show);
   }
 
-  public toggle(id: string) {
+  public toggleShow(id: string): void {
     const io = this.getIO(id);
     io.show = !io.show;
     io.subject.next(io.show);

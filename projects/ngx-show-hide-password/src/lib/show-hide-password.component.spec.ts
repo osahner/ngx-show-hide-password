@@ -41,7 +41,7 @@ describe('ShowHidePasswordModule::Component', () => {
   it('should initialize with text input', fakeAsync(() => {
     const fixture = TestBed.overrideComponent(TestComponent, {
       set: {
-        template: `<show-hide-password size="sm"><input type="text" [(ngModel)]="model"></show-hide-password>`
+        template: `<show-hide-password size="lg"><input type="text" [(ngModel)]="model"></show-hide-password>`
       }
     }).createComponent(TestComponent);
     fixture.detectChanges();
