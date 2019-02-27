@@ -1,6 +1,6 @@
-import { Directive, ElementRef, Renderer2, OnDestroy, Input, AfterViewInit, ErrorHandler } from '@angular/core';
-import { ShowHideService } from './show-hide.service';
+import { Directive, ElementRef, Renderer2, OnDestroy, Input, ErrorHandler } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { ShowHideService } from './show-hide.service';
 
 export interface ShowHideStatusConfig {
   id?: string;
@@ -12,11 +12,13 @@ export interface ShowHideStatusConfig {
 @Directive({
   selector: '[showHideStatus]'
 })
-export class ShowHideStatusDirective implements AfterViewInit, OnDestroy {
+export class ShowHideStatusDirective implements OnDestroy {
   private subscription: Subscription;
   private config: ShowHideStatusConfig;
 
-  @Input() showHideStatus?: ShowHideStatusConfig;
+  @Input() set showHideStatus(config: ShowHideStatusConfig) {
+    this.init(config);
+  }
 
   constructor(
     private service: ShowHideService,
@@ -25,7 +27,7 @@ export class ShowHideStatusDirective implements AfterViewInit, OnDestroy {
     private errorHandler: ErrorHandler
   ) {}
 
-  ngAfterViewInit(): void {
+  private init(config: ShowHideStatusConfig): void {
     const defaultConfig = {
       show: 'visibility',
       hide: 'visibility_off',
@@ -34,7 +36,7 @@ export class ShowHideStatusDirective implements AfterViewInit, OnDestroy {
     };
     this.config = {
       ...defaultConfig,
-      ...this.showHideStatus
+      ...config
     };
     if (this.config.id) {
       this.subscription = this.service.getObservable(this.config.id).subscribe(show => this.updateStatus(show));
