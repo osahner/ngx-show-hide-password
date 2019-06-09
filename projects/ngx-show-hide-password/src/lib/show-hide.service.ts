@@ -34,19 +34,21 @@ export class ShowHideService {
     return io;
   }
 
+  private saveAndProadcast(io: IState, show: boolean) {
+    io.show = show;
+    io.subject.next(io.show);
+  }
+
   public getObservable(id: string): Observable<boolean> {
     return this.getIO(id).subject;
   }
 
   public setShow(id: string, show: boolean): void {
-    const io = this.getIO(id);
-    io.show = show;
-    io.subject.next(io.show);
+    this.saveAndProadcast(this.getIO(id), show);
   }
 
   public toggleShow(id: string): void {
     const io = this.getIO(id);
-    io.show = !io.show;
-    io.subject.next(io.show);
+    this.saveAndProadcast(io, !io.show);
   }
 }

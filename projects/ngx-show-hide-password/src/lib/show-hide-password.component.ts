@@ -1,7 +1,18 @@
 import { Component, ElementRef, Input, OnInit, Renderer2, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { ShowHideService } from './show-hide.service';
-import { Subscription } from 'rxjs';
+
+export enum BtnStyle {
+  Primary = 'primary',
+  Secondary = 'secondary',
+  Success = 'success',
+  Danger = 'danger',
+  Warning = 'warning',
+  Info = 'info',
+  Dark = 'dark',
+  Light = 'light'
+}
 
 /**
  * Add a split input button to password or text input. Toggles input type between "text" and "password".
@@ -29,7 +40,7 @@ export class ShowHidePasswordComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
 
   @Input()
-  public btnStyle: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' = 'secondary';
+  public btnStyle: BtnStyle = BtnStyle.Secondary;
 
   @Input()
   public btnOutline = true;
