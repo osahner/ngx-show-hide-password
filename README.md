@@ -116,7 +116,8 @@ toggleShow(id: string): void
 ```
 
 ## Release History
-
+- 2.0.5
+  - update @angular/cli and @angular/core to v8
 - 2.0.3
   - add directives: **showHideInput**, **showHideTrigger** and **showHideStatus**
 - 2.0.0
