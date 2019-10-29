@@ -33,8 +33,8 @@
     "@angular/platform-browser-dynamic": "~8.2.12",
     "@angular/router": "~8.2.12",
     "@fortawesome/angular-fontawesome": "^0.5.0",
-    "@fortawesome/fontawesome-svg-core": "^1.2.21",
-    "@fortawesome/free-solid-svg-icons": "^5.10.1",
+    "@fortawesome/fontawesome-svg-core": "^1.2.25",
+    "@fortawesome/free-solid-svg-icons": "^5.11.2",
     "core-js": "^2.6.5",
     "rxjs": "~6.5.3",
     "tslib": "^1.10.0",
@@ -43,7 +43,7 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.15",
     "@angular/cli": "~8.3.15",
-    "@angular/compiler-cli": "~8.2.2",
+    "@angular/compiler-cli": "~8.2.12",
     "@angular/language-service": "~8.2.12",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
@@ -59,7 +59,7 @@
     "ng-packagr": "^5.7.1",
     "protractor": "~5.4.2",
     "ts-node": "~7.0.0",
-    "tsickle": "^0.35.0",
+    "tsickle": "^0.37.0",
     "tslint": "~5.11.0",
     "typescript": "~3.5.3"
   }

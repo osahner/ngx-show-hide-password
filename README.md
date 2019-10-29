@@ -116,6 +116,8 @@ toggleShow(id: string): void
 ```
 
 ## Release History
+- 2.1.0
+  - dependencies updated
 - 2.0.5
   - update @angular/cli and @angular/core to v8
 - 2.0.3
