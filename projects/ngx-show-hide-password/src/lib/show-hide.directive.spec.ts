@@ -1,10 +1,9 @@
-import { fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ShowHidePasswordModule } from './show-hide-password.module';
-import { By } from '@angular/platform-browser';
 
-@Component({ selector: 'lib-test', template: '' })
+@Component({ template: '' })
 class TestComponent {
   disabled;
   model;
@@ -33,13 +32,13 @@ describe('ShowHidePasswordModule::Directive', () => {
     const triggerDebugEl: HTMLElement = hostElement.querySelector('button');
     const inputDebugEl: HTMLInputElement = hostElement.querySelector('input');
 
-    expect(inputDebugEl.attributes['type'].value).toBe('password');
+    expect(inputDebugEl.getAttribute('type')).toBe('password');
     triggerDebugEl.dispatchEvent(new Event('click'));
     fixture.detectChanges();
-    expect(inputDebugEl.attributes['type'].value).toBe('text');
+    expect(inputDebugEl.getAttribute('type')).toBe('text');
     triggerDebugEl.dispatchEvent(new Event('click'));
     fixture.detectChanges();
-    expect(inputDebugEl.attributes['type'].value).toBe('password');
+    expect(inputDebugEl.getAttribute('type')).toBe('password');
   });
 
   it('should toggle status', () => {
@@ -93,7 +92,7 @@ describe('ShowHidePasswordModule::Directive', () => {
     expect(statusDebugEl.textContent).toBe('visibility');
   });
 
-  it('should initialize with text input', fakeAsync(() => {
+  it('should initialize with text input', () => {
     const fixture = TestBed.overrideComponent(TestComponent, {
       set: {
         template: `<input id="test2" type="text" name="password" showHideInput [(ngModel)]="model">
@@ -108,16 +107,16 @@ describe('ShowHidePasswordModule::Directive', () => {
     const triggerDebugEl: HTMLElement = hostElement.querySelector('button');
     const inputDebugEl: HTMLInputElement = hostElement.querySelector('input');
 
-    expect(inputDebugEl.attributes['type'].value).toBe('text');
+    expect(inputDebugEl.getAttribute('type')).toBe('text');
     triggerDebugEl.dispatchEvent(new Event('click'));
     fixture.detectChanges();
-    expect(inputDebugEl.attributes['type'].value).toBe('password');
+    expect(inputDebugEl.getAttribute('type')).toBe('password');
     triggerDebugEl.dispatchEvent(new Event('click'));
     fixture.detectChanges();
-    expect(inputDebugEl.attributes['type'].value).toBe('text');
-  }));
+    expect(inputDebugEl.getAttribute('type')).toBe('text');
+  });
 
-  it('should fail because of missing id', fakeAsync(() => {
+  it('should fail because of missing id', () => {
     const fixture = TestBed.overrideComponent(TestComponent, {
       set: {
         template: `<input id="test2" type="text" name="password" showHideInput [(ngModel)]="model">
@@ -132,13 +131,13 @@ describe('ShowHidePasswordModule::Directive', () => {
     const triggerDebugEl: HTMLElement = hostElement.querySelector('button');
     const inputDebugEl: HTMLInputElement = hostElement.querySelector('input');
 
-    expect(inputDebugEl.attributes['type'].value).toBe('text');
+    expect(inputDebugEl.getAttribute('type')).toBe('text');
     triggerDebugEl.dispatchEvent(new Event('click'));
     fixture.detectChanges();
-    expect(inputDebugEl.attributes['type'].value).toBe('text');
-  }));
+    expect(inputDebugEl.getAttribute('type')).toBe('text');
+  });
 
-  it('should throw error', fakeAsync(() => {
+  it('should throw error', () => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `<input type="text" name="password" showHideInput [(ngModel)]="model">
@@ -151,5 +150,5 @@ describe('ShowHidePasswordModule::Directive', () => {
       const fixture = TestBed.createComponent(TestComponent);
       fixture.detectChanges();
     }).toThrow();
-  }));
+  });
 });
