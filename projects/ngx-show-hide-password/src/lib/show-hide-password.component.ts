@@ -1,5 +1,5 @@
-import { Component, ElementRef, Input, OnInit, Renderer2, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, ElementRef, Input, OnInit, Renderer2, ChangeDetectionStrategy } from '@angular/core';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { ShowHideService } from './show-hide.service';
 
@@ -22,6 +22,7 @@ export enum BtnStyle {
  * <input type="password" name=... />
  * </show-hide-password>
  */
+@UntilDestroy()
 @Component({
   selector: 'show-hide-password',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -36,9 +37,7 @@ export enum BtnStyle {
   </div>
 `
 })
-export class ShowHidePasswordComponent implements OnInit, OnDestroy {
-  private subscription: Subscription;
-
+export class ShowHidePasswordComponent implements OnInit {
   @Input()
   public btnStyle: BtnStyle = BtnStyle.Secondary;
 
@@ -57,7 +56,11 @@ export class ShowHidePasswordComponent implements OnInit, OnDestroy {
   faEye = faEye;
   faEyeSlash = faEyeSlash;
 
-  constructor(private service: ShowHideService, private elem: ElementRef, private renderer: Renderer2) {}
+  constructor(
+    private service: ShowHideService,
+    private elem: ElementRef,
+    private renderer: Renderer2
+  ) {}
 
   ngOnInit(): void {
     this.input = this.elem.nativeElement.querySelector('input');
@@ -78,15 +81,12 @@ export class ShowHidePasswordComponent implements OnInit, OnDestroy {
     this.isHidden = this.input.type === 'password';
     this.renderer.addClass(this.input, 'form-control'); // just to be sure
     this.service.setShow(this.id, this.input.type !== 'password');
-    this.subscription = this.service.getObservable(this.id).subscribe(show => {
-      this.isHidden = !show;
-      this.renderer.setAttribute(this.input, 'type', show ? 'text' : 'password');
-    });
-  }
-
-  ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
+    this.service
+      .getObservable(this.id)
+      .pipe(untilDestroyed(this))
+      .subscribe(show => {
+        this.isHidden = !show;
+        this.renderer.setAttribute(this.input, 'type', show ? 'text' : 'password');
+      });
   }
 }

@@ -886,6 +886,11 @@
   dependencies:
     "@fortawesome/fontawesome-common-types" "^0.2.25"
 
+"@ngneat/until-destroy@^7.0.0":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@ngneat/until-destroy/-/until-destroy-7.0.0.tgz#151556abf33cf7e2308d8fc56b8e71e9c15b126f"
+  integrity sha512-D39wWolqotyUkSM7YQ1juhSNJLeVLxaIloGXcDdPBI+cHDDP/e10XcwAgm4eRyEiuUF0149XI8dhu1/ntbpMxA==
+
 "@ngtools/webpack@9.0.0-rc.2":
   version "9.0.0-rc.2"
   resolved "https://registry.yarnpkg.com/@ngtools/webpack/-/webpack-9.0.0-rc.2.tgz#184d578f1f8c2f336265b8233251858a5a54fa51"
