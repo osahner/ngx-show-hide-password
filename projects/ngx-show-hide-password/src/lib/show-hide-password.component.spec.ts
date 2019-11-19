@@ -26,16 +26,17 @@ describe('ShowHidePasswordModule::Component', () => {
     }).createComponent(TestComponent);
     fixture.detectChanges();
 
-    const triggerDebugEl = fixture.debugElement.query(By.css('button'));
-    const inputDebugEl = fixture.debugElement.query(By.css('input'));
+    const hostElement = fixture.nativeElement;
+    const triggerDebugEl: HTMLElement = hostElement.querySelector('button');
+    const inputDebugEl: HTMLInputElement = hostElement.querySelector('input');
 
-    expect(inputDebugEl.attributes['type']).toBe('password');
-    triggerDebugEl.triggerEventHandler('click', {});
-    tick();
-    expect(inputDebugEl.attributes['type']).toBe('text');
-    triggerDebugEl.triggerEventHandler('click', {});
-    tick();
-    expect(inputDebugEl.attributes['type']).toBe('password');
+    expect(inputDebugEl.attributes['type'].value).toBe('password');
+    triggerDebugEl.dispatchEvent(new Event('click'));
+    fixture.detectChanges();
+    expect(inputDebugEl.attributes['type'].value).toBe('text');
+    triggerDebugEl.dispatchEvent(new Event('click'));
+    fixture.detectChanges();
+    expect(inputDebugEl.attributes['type'].value).toBe('password');
   }));
 
   it('should initialize with text input', fakeAsync(() => {
@@ -46,16 +47,17 @@ describe('ShowHidePasswordModule::Component', () => {
     }).createComponent(TestComponent);
     fixture.detectChanges();
 
-    const triggerDebugEl = fixture.debugElement.query(By.css('button'));
-    const inputDebugEl = fixture.debugElement.query(By.css('input'));
+    const hostElement = fixture.nativeElement;
+    const triggerDebugEl: HTMLElement = hostElement.querySelector('button');
+    const inputDebugEl: HTMLInputElement = hostElement.querySelector('input');
 
-    expect(inputDebugEl.attributes['type']).toBe('text');
-    triggerDebugEl.triggerEventHandler('click', {});
-    tick();
-    expect(inputDebugEl.attributes['type']).toBe('password');
-    triggerDebugEl.triggerEventHandler('click', {});
-    tick();
-    expect(inputDebugEl.attributes['type']).toBe('text');
+    expect(inputDebugEl.attributes['type'].value).toBe('text');
+    triggerDebugEl.dispatchEvent(new Event('click'));
+    fixture.detectChanges();
+    expect(inputDebugEl.attributes['type'].value).toBe('password');
+    triggerDebugEl.dispatchEvent(new Event('click'));
+    fixture.detectChanges();
+    expect(inputDebugEl.attributes['type'].value).toBe('text');
   }));
 
   it('should throw error', fakeAsync(() => {

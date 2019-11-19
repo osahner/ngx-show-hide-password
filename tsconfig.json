@@ -26,5 +26,9 @@
         "dist/ngx-show-hide-password/*"
       ]
     }
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
   }
 }
