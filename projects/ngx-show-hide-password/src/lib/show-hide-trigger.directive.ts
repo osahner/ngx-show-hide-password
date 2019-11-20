@@ -14,7 +14,7 @@ export class ShowHideTriggerDirective {
     if (this.showHideTrigger) {
       this.service.toggleShow(this.showHideTrigger);
     } else {
-      this.errorHandler.handleError(new Error(`No input id found. Please read the docs!`));
+      this.errorHandler.handleError(new Error(`No input id found. Please read the docs.`));
     }
   }
 }

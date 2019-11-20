@@ -1,4 +1,11 @@
-import { Component, ElementRef, Input, OnInit, Renderer2, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+  Renderer2,
+  ChangeDetectionStrategy
+} from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { ShowHideService } from './show-hide.service';
@@ -13,6 +20,13 @@ export enum BtnStyle {
   Dark = 'dark',
   Light = 'light'
 }
+
+// hail jed https://gist.github.com/jed/982883
+const uuid = (a?: any) =>
+  a
+    // tslint:disable-next-line: no-bitwise
+    ? (a ^ ((Math.random() * 16) >> (a / 4))).toString(16)
+    : ('' + 1e7 + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, uuid);
 
 /**
  * Add a split input button to password or text input. Toggles input type between "text" and "password".
@@ -65,11 +79,11 @@ export class ShowHidePasswordComponent implements OnInit {
   ngOnInit(): void {
     this.input = this.elem.nativeElement.querySelector('input');
     if (!this.input) {
-      throw new Error(`No input element found. Please read the docs!`);
+      throw new Error(`No input element found. Please read the docs.`);
     }
     this.id = this.input.getAttribute('id');
     if (!this.id) {
-      this.id = 'showHideInput' + Math.round(Math.random() * 100000);
+      this.id = 'showHideInput' + uuid(1);
       this.renderer.setAttribute(this.input, 'id', this.id);
     }
     this.renderer.addClass(this.elem.nativeElement, 'input-group');

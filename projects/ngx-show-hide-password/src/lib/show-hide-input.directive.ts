@@ -16,7 +16,7 @@ export class ShowHideInputDirective implements OnInit {
   ) {
     this.id = this.el.nativeElement.getAttribute('id');
     if (!this.id) {
-      throw new Error(`No attribute id found. Please read the docs.`);
+      throw new Error(`No attribute [id] found. Please read the docs.`);
     }
     this.service.setShow(this.id, this.el.nativeElement.type !== 'password');
   }
