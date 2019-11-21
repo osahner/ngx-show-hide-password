@@ -24,8 +24,8 @@ export enum BtnStyle {
 // hail jed https://gist.github.com/jed/982883
 const uuid = (a?: any) =>
   a
-    // tslint:disable-next-line: no-bitwise
-    ? (a ^ ((Math.random() * 16) >> (a / 4))).toString(16)
+    ? // tslint:disable-next-line: no-bitwise
+      (a ^ ((Math.random() * 16) >> (a / 4))).toString(16)
     : ('' + 1e7 + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, uuid);
 
 /**
@@ -41,15 +41,23 @@ const uuid = (a?: any) =>
   selector: 'show-hide-password',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-  <ng-content></ng-content>
-  <div class="input-group-append ngx-show-hide-password">
-    <button class="btn" [ngClass]="(btnOutline ? 'btn-outline-' + btnStyle : 'btn-' + btnStyle)"
-      type="button" [showHideTrigger]="id">
-      <fa-icon [fixedWidth]="true" size="lg" [icon]="(isHidden ? faEye : faEyeSlash)"
-        [showHideStatus]="{id: id}"></fa-icon>
-    </button>
-  </div>
-`
+    <ng-content></ng-content>
+    <div class="input-group-append ngx-show-hide-password">
+      <button
+        class="btn"
+        [ngClass]="(btnOutline ? 'btn-outline-' + btnStyle : 'btn-' + btnStyle)"
+        type="button"
+        [showHideTrigger]="id"
+      >
+        <fa-icon
+          [fixedWidth]="true"
+          size="lg"
+          [icon]="(isHidden ? faEye : faEyeSlash)"
+          [showHideStatus]="{ id: id }"
+        ></fa-icon>
+      </button>
+    </div>
+  `
 })
 export class ShowHidePasswordComponent implements OnInit {
   @Input()
@@ -67,8 +75,8 @@ export class ShowHidePasswordComponent implements OnInit {
 
   public id: string;
 
-  faEye = faEye;
-  faEyeSlash = faEyeSlash;
+  public faEye = faEye;
+  public faEyeSlash = faEyeSlash;
 
   constructor(
     private service: ShowHideService,
@@ -79,11 +87,11 @@ export class ShowHidePasswordComponent implements OnInit {
   ngOnInit(): void {
     this.input = this.elem.nativeElement.querySelector('input');
     if (!this.input) {
-      throw new Error(`No input element found. Please read the docs.`);
+      throw new Error(`No input element found.`);
     }
     this.id = this.input.getAttribute('id');
     if (!this.id) {
-      this.id = 'showHideInput' + uuid(1);
+      this.id = 'showHideInput_' + uuid();
       this.renderer.setAttribute(this.input, 'id', this.id);
     }
     this.renderer.addClass(this.elem.nativeElement, 'input-group');

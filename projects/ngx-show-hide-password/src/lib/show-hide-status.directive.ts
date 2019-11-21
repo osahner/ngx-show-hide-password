@@ -44,7 +44,7 @@ export class ShowHideStatusDirective {
         .pipe(untilDestroyed(this))
         .subscribe(show => this.updateStatus(show));
     } else {
-      this.errorHandler.handleError(new Error(`No input id found. Please read the docs.`));
+      this.errorHandler.handleError(new Error(`Status can not be set without [id].`));
     }
   }
 
