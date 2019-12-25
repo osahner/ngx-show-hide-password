@@ -3,6 +3,4 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   templateUrl: './app.component.html'
 })
-export class AppComponent {
-  title = 'ngx-show-hide-password-app';
-}
+export class AppComponent {}
