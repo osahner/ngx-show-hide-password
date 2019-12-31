@@ -115,6 +115,13 @@ setShow(id: string, show: boolean): void
 toggleShow(id: string): void
 ```
 
+### How to customize 
+
+Just use the directives & service.
+- [example on stackblitz](https://stackblitz.com/edit/angular-dvy758?embed=1&file=src/app/app.component.html). 
+- some more [basic examples here](https://github.com/osahner/ngx-show-hide-password/tree/master/src/app/app.component.html).
+
+
 ## Release History
 - 2.2.0
   - update @angular/cli and @angular/core to v9
