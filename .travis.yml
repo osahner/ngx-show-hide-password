@@ -1,17 +1,10 @@
-dist: xenial
-
-language: node_js
-node_js:
-  - "12"
+dist: bionic
 
 addons:
-  apt:
-    update: true
-    sources:
-      - google-chrome
-    packages:
-      - dpkg
-      - google-chrome-stable
+  chrome: stable
+
+# Defaults
+language: node_js
 
 cache:
   directories:
