@@ -3,8 +3,8 @@ dist: bionic
 addons:
   chrome: stable
 
-# Defaults
-language: node_js
+node_js:
+  - "12"
 
 cache:
   directories:
