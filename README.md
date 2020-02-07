@@ -2,7 +2,7 @@
 
 > Add split input button to password or text input. Toggles input type between "text" and "password".
 
-[![Build Status](https://travis-ci.org/osahner/ngx-show-hide-password.svg?branch=master)](https://travis-ci.org/osahner/ngx-show-hide-password)
+[![Build Status](https://travis-ci.org/osahner/ngx-show-hide-password.svg?branch=develop)](https://travis-ci.org/osahner/ngx-show-hide-password)
 [![npm version](https://badge.fury.io/js/ngx-show-hide-password.svg)](https://badge.fury.io/js/ngx-show-hide-password)
 [![codecov](https://codecov.io/gh/osahner/ngx-show-hide-password/branch/master/graph/badge.svg)](https://codecov.io/gh/osahner/ngx-show-hide-password/branch/master)
 
@@ -118,13 +118,15 @@ toggleShow(id: string): void
 ### How to customize
 
 Just use the directives & service.
-- Full [example on stackblitz](https://stackblitz.com/edit/angular-dvy758?embed=1&file=src/app/app.component.html).
+- [example on stackblitz](https://stackblitz.com/edit/angular-dvy758?embed=1&file=src/app/app.component.html).
 - some more [basic examples here](https://github.com/osahner/ngx-show-hide-password/tree/master/src/app/app.component.html).
 
 
 ## Release History
-- 2.1.1
-  - dependencies updated, fixed travis
+- 2.2.1
+  - update @angular/cli and @angular/core to v9
+- 2.1.0
+  - dependencies updated
 - 2.0.5
   - update @angular/cli and @angular/core to v8
 - 2.0.3
@@ -143,7 +145,7 @@ Just use the directives & service.
 ### compatibility chart
 | local version | angular version |
 | ------------- | --------------- |
-| `@^2.2.0` (current develop branch)    | v9              |
+| `@^2.2.1`     | v9              |
 | `@~2.1.0`     | v8              |
 | `@~2.0.3`     | v7              |
 | `@~1.2.5`     | v5 and v6       |

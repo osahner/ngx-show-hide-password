@@ -1,6 +1,6 @@
 {
   "name": "ngx-show-hide-password",
-  "version": "2.1.0",
+  "version": "2.2.1",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/osahner/ngx-show-hide-password.git"
@@ -21,8 +21,8 @@
   },
   "homepage": "https://github.com/osahner/ngx-show-hide-password#readme",
   "peerDependencies": {
-    "@angular/common": "^8",
-    "@angular/core": "^8",
+    "@angular/common": "^9",
+    "@angular/core": "^9",
     "@fortawesome/angular-fontawesome": "^0.5",
     "@fortawesome/fontawesome-svg-core": "^1.2",
     "@fortawesome/free-solid-svg-icons": "^5.10"

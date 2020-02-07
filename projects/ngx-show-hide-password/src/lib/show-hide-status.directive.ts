@@ -1,5 +1,5 @@
-import { Directive, ElementRef, Renderer2, OnDestroy, Input, ErrorHandler } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Directive, ElementRef, Renderer2, Input, ErrorHandler } from '@angular/core';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { ShowHideService } from './show-hide.service';
 
 export interface ShowHideStatusConfig {
@@ -9,11 +9,11 @@ export interface ShowHideStatusConfig {
   materialIcon?: boolean;
 }
 
+@UntilDestroy()
 @Directive({
   selector: '[showHideStatus]'
 })
-export class ShowHideStatusDirective implements OnDestroy {
-  private subscription: Subscription;
+export class ShowHideStatusDirective {
   private config: ShowHideStatusConfig;
 
   @Input() set showHideStatus(config: ShowHideStatusConfig) {
@@ -39,24 +39,25 @@ export class ShowHideStatusDirective implements OnDestroy {
       ...config
     };
     if (this.config.id) {
-      this.subscription = this.service.getObservable(this.config.id).subscribe(show => this.updateStatus(show));
+      this.service
+        .getObservable(this.config.id)
+        .pipe(untilDestroyed(this))
+        .subscribe(show => this.updateStatus(show));
     } else {
-      this.errorHandler.handleError(new Error(`No input id found. Please read the docs!`));
+      this.errorHandler.handleError(new Error(`Status can not be set without [id].`));
     }
   }
 
   private updateStatus(show: boolean) {
     if (this.config.materialIcon) {
-      this.renderer.setProperty(this.el.nativeElement, 'innerHTML', show ? this.config.hide : this.config.show);
+      this.renderer.setProperty(
+        this.el.nativeElement,
+        'innerHTML',
+        show ? this.config.hide : this.config.show
+      );
     } else {
       this.renderer.removeClass(this.el.nativeElement, !show ? this.config.hide : this.config.show);
       this.renderer.addClass(this.el.nativeElement, show ? this.config.hide : this.config.show);
-    }
-  }
-
-  ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
     }
   }
 }

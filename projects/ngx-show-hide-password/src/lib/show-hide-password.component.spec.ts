@@ -1,10 +1,9 @@
-import { fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ShowHidePasswordModule } from './show-hide-password.module';
-import { By } from '@angular/platform-browser';
 
-@Component({ selector: 'lib-test', template: '' })
+@Component({ template: '' })
 class TestComponent {
   disabled;
   model;
@@ -18,7 +17,7 @@ describe('ShowHidePasswordModule::Component', () => {
     });
   });
 
-  it('should toggle input type', fakeAsync(() => {
+  it('should toggle input type', () => {
     const fixture = TestBed.overrideComponent(TestComponent, {
       set: {
         template: `<show-hide-password size="sm"><input type="password" [(ngModel)]="model"></show-hide-password>`
@@ -26,47 +25,49 @@ describe('ShowHidePasswordModule::Component', () => {
     }).createComponent(TestComponent);
     fixture.detectChanges();
 
-    const triggerDebugEl = fixture.debugElement.query(By.css('button'));
-    const inputDebugEl = fixture.debugElement.query(By.css('input'));
+    const hostElement = fixture.nativeElement;
+    const triggerDebugEl: HTMLElement = hostElement.querySelector('button');
+    const inputDebugEl: HTMLInputElement = hostElement.querySelector('input');
 
-    expect(inputDebugEl.attributes['type']).toBe('password');
-    triggerDebugEl.triggerEventHandler('click', {});
-    tick();
-    expect(inputDebugEl.attributes['type']).toBe('text');
-    triggerDebugEl.triggerEventHandler('click', {});
-    tick();
-    expect(inputDebugEl.attributes['type']).toBe('password');
-  }));
+    expect(inputDebugEl.getAttribute('type')).toBe('password');
+    triggerDebugEl.dispatchEvent(new Event('click'));
+    fixture.detectChanges();
+    expect(inputDebugEl.getAttribute('type')).toBe('text');
+    triggerDebugEl.dispatchEvent(new Event('click'));
+    fixture.detectChanges();
+    expect(inputDebugEl.getAttribute('type')).toBe('password');
+  });
 
-  it('should initialize with text input', fakeAsync(() => {
+  it('should initialize with text input', () => {
     const fixture = TestBed.overrideComponent(TestComponent, {
       set: {
-        template: `<show-hide-password size="lg"><input type="text" [(ngModel)]="model"></show-hide-password>`
+        template: `<show-hide-password size="lg"><input type="text" [(ngModel)]="model" id="secretpass"></show-hide-password>`
       }
     }).createComponent(TestComponent);
     fixture.detectChanges();
 
-    const triggerDebugEl = fixture.debugElement.query(By.css('button'));
-    const inputDebugEl = fixture.debugElement.query(By.css('input'));
+    const hostElement = fixture.nativeElement;
+    const triggerDebugEl: HTMLElement = hostElement.querySelector('button');
+    const inputDebugEl: HTMLInputElement = hostElement.querySelector('input');
 
-    expect(inputDebugEl.attributes['type']).toBe('text');
-    triggerDebugEl.triggerEventHandler('click', {});
-    tick();
-    expect(inputDebugEl.attributes['type']).toBe('password');
-    triggerDebugEl.triggerEventHandler('click', {});
-    tick();
-    expect(inputDebugEl.attributes['type']).toBe('text');
-  }));
+    expect(inputDebugEl.getAttribute('type')).toBe('text');
+    triggerDebugEl.dispatchEvent(new Event('click'));
+    fixture.detectChanges();
+    expect(inputDebugEl.getAttribute('type')).toBe('password');
+    triggerDebugEl.dispatchEvent(new Event('click'));
+    fixture.detectChanges();
+    expect(inputDebugEl.getAttribute('type')).toBe('text');
+  });
 
-  it('should throw error', fakeAsync(() => {
+  it('should throw error', () => {
     TestBed.overrideComponent(TestComponent, {
       set: {
-        template: `<show-hide-password size="sm"></show-hide-password>`
+        template: `<show-hide-password></show-hide-password>`
       }
     });
     expect(() => {
       const fixture = TestBed.createComponent(TestComponent);
       fixture.detectChanges();
     }).toThrow();
-  }));
+  });
 });

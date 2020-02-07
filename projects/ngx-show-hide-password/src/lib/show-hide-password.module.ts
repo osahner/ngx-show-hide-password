@@ -10,7 +10,17 @@ import { ShowHidePasswordComponent } from './show-hide-password.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule, FontAwesomeModule],
-  exports: [ShowHidePasswordComponent, ShowHideTriggerDirective, ShowHideInputDirective, ShowHideStatusDirective],
-  declarations: [ShowHidePasswordComponent, ShowHideTriggerDirective, ShowHideInputDirective, ShowHideStatusDirective]
+  exports: [
+    ShowHidePasswordComponent,
+    ShowHideTriggerDirective,
+    ShowHideInputDirective,
+    ShowHideStatusDirective
+  ],
+  declarations: [
+    ShowHidePasswordComponent,
+    ShowHideTriggerDirective,
+    ShowHideInputDirective,
+    ShowHideStatusDirective
+  ]
 })
 export class ShowHidePasswordModule {}

@@ -1,10 +1,9 @@
-import { fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ShowHidePasswordModule } from './show-hide-password.module';
-import { By } from '@angular/platform-browser';
 
-@Component({ selector: 'lib-test', template: '' })
+@Component({ template: '' })
 class TestComponent {
   disabled;
   model;
@@ -18,7 +17,7 @@ describe('ShowHidePasswordModule::Directive', () => {
     });
   });
 
-  it('should toggle input type', fakeAsync(() => {
+  it('should toggle input type', () => {
     const fixture = TestBed.overrideComponent(TestComponent, {
       set: {
         template: `<input id="test2" type="password" name="password" showHideInput [(ngModel)]="model">
@@ -29,19 +28,20 @@ describe('ShowHidePasswordModule::Directive', () => {
     }).createComponent(TestComponent);
     fixture.detectChanges();
 
-    const triggerDebugEl = fixture.debugElement.query(By.css('button'));
-    const inputDebugEl = fixture.debugElement.query(By.css('input'));
+    const hostElement = fixture.nativeElement;
+    const triggerDebugEl: HTMLElement = hostElement.querySelector('button');
+    const inputDebugEl: HTMLInputElement = hostElement.querySelector('input');
 
-    expect(inputDebugEl.attributes['type']).toBe('password');
-    triggerDebugEl.triggerEventHandler('click', {});
-    tick();
-    expect(inputDebugEl.attributes['type']).toBe('text');
-    triggerDebugEl.triggerEventHandler('click', {});
-    tick();
-    expect(inputDebugEl.attributes['type']).toBe('password');
-  }));
+    expect(inputDebugEl.getAttribute('type')).toBe('password');
+    triggerDebugEl.dispatchEvent(new Event('click'));
+    fixture.detectChanges();
+    expect(inputDebugEl.getAttribute('type')).toBe('text');
+    triggerDebugEl.dispatchEvent(new Event('click'));
+    fixture.detectChanges();
+    expect(inputDebugEl.getAttribute('type')).toBe('password');
+  });
 
-  it('should toggle status', fakeAsync(() => {
+  it('should toggle status', () => {
     const fixture = TestBed.overrideComponent(TestComponent, {
       set: {
         template: `<input id="test2" type="password" name="password" showHideInput [(ngModel)]="model">
@@ -52,22 +52,23 @@ describe('ShowHidePasswordModule::Directive', () => {
     }).createComponent(TestComponent);
     fixture.detectChanges();
 
-    const triggerDebugEl = fixture.debugElement.query(By.css('button'));
-    const statusDebugEl = fixture.debugElement.query(By.css('i'));
+    const hostElement = fixture.nativeElement;
+    const triggerDebugEl: HTMLElement = hostElement.querySelector('button');
+    const statusDebugEl: HTMLElement = hostElement.querySelector('i');
 
-    expect(statusDebugEl.classes['fa-eye']).toBe(true);
-    expect(statusDebugEl.classes['fa-eye-slash']).toBe(false);
-    triggerDebugEl.triggerEventHandler('click', {});
-    tick();
-    expect(statusDebugEl.classes['fa-eye']).toBe(false);
-    expect(statusDebugEl.classes['fa-eye-slash']).toBe(true);
-    triggerDebugEl.triggerEventHandler('click', {});
-    tick();
-    expect(statusDebugEl.classes['fa-eye']).toBe(true);
-    expect(statusDebugEl.classes['fa-eye-slash']).toBe(false);
-  }));
+    expect(statusDebugEl.classList.contains('fa-eye')).toBe(true);
+    expect(statusDebugEl.classList.contains('fa-eye-slash')).toBe(false);
+    triggerDebugEl.dispatchEvent(new Event('click'));
+    fixture.detectChanges();
+    expect(statusDebugEl.classList.contains('fa-eye')).toBe(false);
+    expect(statusDebugEl.classList.contains('fa-eye-slash')).toBe(true);
+    triggerDebugEl.dispatchEvent(new Event('click'));
+    fixture.detectChanges();
+    expect(statusDebugEl.classList.contains('fa-eye')).toBe(true);
+    expect(statusDebugEl.classList.contains('fa-eye-slash')).toBe(false);
+  });
 
-  it('should toggle status for material icons', fakeAsync(() => {
+  it('should toggle status for material icons', () => {
     const fixture = TestBed.overrideComponent(TestComponent, {
       set: {
         template: `<input id="test2" type="password" name="password" showHideInput [(ngModel)]="model">
@@ -78,19 +79,20 @@ describe('ShowHidePasswordModule::Directive', () => {
     }).createComponent(TestComponent);
     fixture.detectChanges();
 
-    const triggerDebugEl = fixture.debugElement.query(By.css('button'));
-    const statusDebugEl = fixture.debugElement.query(By.css('i'));
+    const hostElement = fixture.nativeElement;
+    const triggerDebugEl: HTMLElement = hostElement.querySelector('button');
+    const statusDebugEl: HTMLElement = hostElement.querySelector('i');
 
-    expect(statusDebugEl.properties.innerHTML).toBe('visibility');
-    triggerDebugEl.triggerEventHandler('click', {});
-    tick();
-    expect(statusDebugEl.properties.innerHTML).toBe('visibility_off');
-    triggerDebugEl.triggerEventHandler('click', {});
-    tick();
-    expect(statusDebugEl.properties.innerHTML).toBe('visibility');
-  }));
+    expect(statusDebugEl.textContent).toBe('visibility');
+    triggerDebugEl.dispatchEvent(new Event('click'));
+    fixture.detectChanges();
+    expect(statusDebugEl.textContent).toBe('visibility_off');
+    triggerDebugEl.dispatchEvent(new Event('click'));
+    fixture.detectChanges();
+    expect(statusDebugEl.textContent).toBe('visibility');
+  });
 
-  it('should initialize with text input', fakeAsync(() => {
+  it('should initialize with text input', () => {
     const fixture = TestBed.overrideComponent(TestComponent, {
       set: {
         template: `<input id="test2" type="text" name="password" showHideInput [(ngModel)]="model">
@@ -101,19 +103,20 @@ describe('ShowHidePasswordModule::Directive', () => {
     }).createComponent(TestComponent);
     fixture.detectChanges();
 
-    const triggerDebugEl = fixture.debugElement.query(By.css('button'));
-    const inputDebugEl = fixture.debugElement.query(By.css('input'));
+    const hostElement = fixture.nativeElement;
+    const triggerDebugEl: HTMLElement = hostElement.querySelector('button');
+    const inputDebugEl: HTMLInputElement = hostElement.querySelector('input');
 
-    expect(inputDebugEl.attributes['type']).toBe('text');
-    triggerDebugEl.triggerEventHandler('click', {});
-    tick();
-    expect(inputDebugEl.attributes['type']).toBe('password');
-    triggerDebugEl.triggerEventHandler('click', {});
-    tick();
-    expect(inputDebugEl.attributes['type']).toBe('text');
-  }));
+    expect(inputDebugEl.getAttribute('type')).toBe('text');
+    triggerDebugEl.dispatchEvent(new Event('click'));
+    fixture.detectChanges();
+    expect(inputDebugEl.getAttribute('type')).toBe('password');
+    triggerDebugEl.dispatchEvent(new Event('click'));
+    fixture.detectChanges();
+    expect(inputDebugEl.getAttribute('type')).toBe('text');
+  });
 
-  it('should fail because of missing id', fakeAsync(() => {
+  it('should fail because of missing id', () => {
     const fixture = TestBed.overrideComponent(TestComponent, {
       set: {
         template: `<input id="test2" type="text" name="password" showHideInput [(ngModel)]="model">
@@ -124,17 +127,17 @@ describe('ShowHidePasswordModule::Directive', () => {
     }).createComponent(TestComponent);
     fixture.detectChanges();
 
-    const triggerDebugEl = fixture.debugElement.query(By.css('button'));
-    const statusDebugEl = fixture.debugElement.query(By.css('i'));
-    const inputDebugEl = fixture.debugElement.query(By.css('input'));
+    const hostElement = fixture.nativeElement;
+    const triggerDebugEl: HTMLElement = hostElement.querySelector('button');
+    const inputDebugEl: HTMLInputElement = hostElement.querySelector('input');
 
-    expect(inputDebugEl.attributes['type']).toBe('text');
-    triggerDebugEl.triggerEventHandler('click', {});
-    tick();
-    expect(inputDebugEl.attributes['type']).toBe('text');
-  }));
+    expect(inputDebugEl.getAttribute('type')).toBe('text');
+    triggerDebugEl.dispatchEvent(new Event('click'));
+    fixture.detectChanges();
+    expect(inputDebugEl.getAttribute('type')).toBe('text');
+  });
 
-  it('should throw error', fakeAsync(() => {
+  it('should throw error', () => {
     TestBed.overrideComponent(TestComponent, {
       set: {
         template: `<input type="text" name="password" showHideInput [(ngModel)]="model">
@@ -147,5 +150,5 @@ describe('ShowHidePasswordModule::Directive', () => {
       const fixture = TestBed.createComponent(TestComponent);
       fixture.detectChanges();
     }).toThrow();
-  }));
+  });
 });
