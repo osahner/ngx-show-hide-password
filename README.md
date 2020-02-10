@@ -12,6 +12,7 @@
 npm install ngx-show-hide-password --save
 npm install @fortawesome/angular-fontawesome @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons --save
 ```
+for previous angular releases please check the compatibility chart of [ngx-show-hide-password](#compatibility-chart) *and* [@fortawesome/angular-fontawesome](https://github.com/FortAwesome/angular-fontawesome#compatiblity-table).
 
 ## Integration
 
