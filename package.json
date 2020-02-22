@@ -5,7 +5,7 @@
     "email": "osahner@gmail.com",
     "url": "https://osahner.github.io/"
   },
-  "version": "2.2.2",
+  "version": "2.2.3",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
