@@ -23,8 +23,8 @@
   "peerDependencies": {
     "@angular/common": "^9",
     "@angular/core": "^9",
-    "@fortawesome/angular-fontawesome": "^0.5",
+    "@fortawesome/angular-fontawesome": "^0.6",
     "@fortawesome/fontawesome-svg-core": "^1.2",
-    "@fortawesome/free-solid-svg-icons": "^5.10"
+    "@fortawesome/free-solid-svg-icons": "^5.12"
   }
 }
