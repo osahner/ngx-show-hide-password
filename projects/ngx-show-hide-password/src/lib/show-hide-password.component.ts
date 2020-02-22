@@ -6,7 +6,7 @@ import {
   Renderer2,
   ChangeDetectionStrategy
 } from '@angular/core';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { untilDestroyed } from 'ngx-take-until-destroy';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { ShowHideService } from './show-hide.service';
 
@@ -36,7 +36,7 @@ const uuid = (a?: any) =>
  * <input type="password" name=... />
  * </show-hide-password>
  */
-@UntilDestroy()
+
 @Component({
   selector: 'show-hide-password',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -105,10 +105,12 @@ export class ShowHidePasswordComponent implements OnInit {
     this.service.setShow(this.id, this.input.type !== 'password');
     this.service
       .getObservable(this.id)
-      .pipe(untilDestroyed(this))
+      .pipe(untilDestroyed(this, 'destroy'))
       .subscribe(show => {
         this.isHidden = !show;
         this.renderer.setAttribute(this.input, 'type', show ? 'text' : 'password');
       });
   }
+
+  destroy() {}
 }

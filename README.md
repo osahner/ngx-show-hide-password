@@ -124,7 +124,7 @@ Just use the directives & service.
 
 
 ## Release History
-- 2.2.1
+- 2.2.2
   - update @angular/cli and @angular/core to v9
 - 2.1.0
   - dependencies updated
@@ -146,7 +146,7 @@ Just use the directives & service.
 ### compatibility chart
 | local version | angular version |
 | ------------- | --------------- |
-| `@^2.2.1`     | v9              |
+| `@^2.2.2`     | v9              |
 | `@~2.1.0`     | v8              |
 | `@~2.0.3`     | v7              |
 | `@~1.2.5`     | v5 and v6       |

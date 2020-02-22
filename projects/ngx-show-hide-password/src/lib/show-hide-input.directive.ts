@@ -1,8 +1,7 @@
 import { Directive, ElementRef, Renderer2, OnInit } from '@angular/core';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { untilDestroyed } from 'ngx-take-until-destroy';
 import { ShowHideService } from './show-hide.service';
 
-@UntilDestroy()
 @Directive({
   selector: 'input[showHideInput]'
 })
@@ -24,9 +23,11 @@ export class ShowHideInputDirective implements OnInit {
   ngOnInit(): void {
     this.service
       .getObservable(this.id)
-      .pipe(untilDestroyed(this))
+      .pipe(untilDestroyed(this, 'destroy'))
       .subscribe(show =>
         this.renderer.setAttribute(this.el.nativeElement, 'type', show ? 'text' : 'password')
       );
   }
+
+  destroy() {}
 }

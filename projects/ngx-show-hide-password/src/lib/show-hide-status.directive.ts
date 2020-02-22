@@ -1,5 +1,5 @@
 import { Directive, ElementRef, Renderer2, Input, ErrorHandler } from '@angular/core';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { untilDestroyed } from 'ngx-take-until-destroy';
 import { ShowHideService } from './show-hide.service';
 
 export interface ShowHideStatusConfig {
@@ -9,7 +9,6 @@ export interface ShowHideStatusConfig {
   materialIcon?: boolean;
 }
 
-@UntilDestroy()
 @Directive({
   selector: '[showHideStatus]'
 })
@@ -41,12 +40,14 @@ export class ShowHideStatusDirective {
     if (this.config.id) {
       this.service
         .getObservable(this.config.id)
-        .pipe(untilDestroyed(this))
+        .pipe(untilDestroyed(this, 'destroy'))
         .subscribe(show => this.updateStatus(show));
     } else {
       this.errorHandler.handleError(new Error(`Status can not be set without [id].`));
     }
   }
+
+  destroy() {}
 
   private updateStatus(show: boolean) {
     if (this.config.materialIcon) {
