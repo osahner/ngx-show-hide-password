@@ -2,7 +2,7 @@
 
 > Add split input button to password or text input. Toggles input type between "text" and "password".
 
-[![Build Status](https://travis-ci.org/osahner/ngx-show-hide-password.svg?branch=develop)](https://travis-ci.org/osahner/ngx-show-hide-password)
+[![Build Status](https://travis-ci.org/osahner/ngx-show-hide-password.svg?branch=master)](https://travis-ci.org/osahner/ngx-show-hide-password)
 [![npm version](https://badge.fury.io/js/ngx-show-hide-password.svg)](https://badge.fury.io/js/ngx-show-hide-password)
 [![codecov](https://codecov.io/gh/osahner/ngx-show-hide-password/branch/master/graph/badge.svg)](https://codecov.io/gh/osahner/ngx-show-hide-password/branch/master)
 
@@ -146,7 +146,7 @@ Just use the directives & service.
 ### compatibility chart
 | local version | angular version |
 | ------------- | --------------- |
-| `@^2.2.2`     | v9              |
+| `@^2.2.3`     | v9              |
 | `@~2.1.0`     | v8              |
 | `@~2.0.3`     | v7              |
 | `@~1.2.5`     | v5 and v6       |
