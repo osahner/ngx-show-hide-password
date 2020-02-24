@@ -1,6 +1,6 @@
-import { Directive, ElementRef, Renderer2, Input, ErrorHandler } from '@angular/core';
-import { untilDestroyed } from 'ngx-take-until-destroy';
+import { Directive, ElementRef, Renderer2, Input, ErrorHandler, OnDestroy } from '@angular/core';
 import { ShowHideService } from './show-hide.service';
+import { Subscription } from 'rxjs';
 
 export interface ShowHideStatusConfig {
   id?: string;
@@ -12,8 +12,9 @@ export interface ShowHideStatusConfig {
 @Directive({
   selector: '[showHideStatus]'
 })
-export class ShowHideStatusDirective {
+export class ShowHideStatusDirective implements OnDestroy {
   private config: ShowHideStatusConfig;
+  private subscription: Subscription;
 
   @Input() set showHideStatus(config: ShowHideStatusConfig) {
     this.init(config);
@@ -38,16 +39,13 @@ export class ShowHideStatusDirective {
       ...config
     };
     if (this.config.id) {
-      this.service
+      this.subscription = this.service
         .getObservable(this.config.id)
-        .pipe(untilDestroyed(this, 'destroy'))
         .subscribe(show => this.updateStatus(show));
     } else {
       this.errorHandler.handleError(new Error(`Status can not be set without [id].`));
     }
   }
-
-  destroy() {}
 
   private updateStatus(show: boolean) {
     if (this.config.materialIcon) {
@@ -59,6 +57,12 @@ export class ShowHideStatusDirective {
     } else {
       this.renderer.removeClass(this.el.nativeElement, !show ? this.config.hide : this.config.show);
       this.renderer.addClass(this.el.nativeElement, show ? this.config.hide : this.config.show);
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
     }
   }
 }

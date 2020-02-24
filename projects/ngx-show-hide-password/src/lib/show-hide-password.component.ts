@@ -4,9 +4,10 @@ import {
   Input,
   OnInit,
   Renderer2,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  OnDestroy
 } from '@angular/core';
-import { untilDestroyed } from 'ngx-take-until-destroy';
+import { Subscription } from 'rxjs';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { ShowHideService } from './show-hide.service';
 
@@ -59,7 +60,9 @@ const uuid = (a?: any) =>
     </div>
   `
 })
-export class ShowHidePasswordComponent implements OnInit {
+export class ShowHidePasswordComponent implements OnInit, OnDestroy {
+  private subscription: Subscription;
+
   @Input()
   public btnStyle: BtnStyle = BtnStyle.Secondary;
 
@@ -103,14 +106,17 @@ export class ShowHidePasswordComponent implements OnInit {
     this.isHidden = this.input.type === 'password';
     this.renderer.addClass(this.input, 'form-control'); // just to be sure
     this.service.setShow(this.id, this.input.type !== 'password');
-    this.service
+    this.subscription = this.service
       .getObservable(this.id)
-      .pipe(untilDestroyed(this, 'destroy'))
       .subscribe(show => {
         this.isHidden = !show;
         this.renderer.setAttribute(this.input, 'type', show ? 'text' : 'password');
       });
   }
 
-  destroy() {}
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
 }

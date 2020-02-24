@@ -1,11 +1,12 @@
-import { Directive, ElementRef, Renderer2, OnInit } from '@angular/core';
-import { untilDestroyed } from 'ngx-take-until-destroy';
+import { Directive, ElementRef, Renderer2, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { ShowHideService } from './show-hide.service';
 
 @Directive({
   selector: 'input[showHideInput]'
 })
-export class ShowHideInputDirective implements OnInit {
+export class ShowHideInputDirective implements OnInit, OnDestroy {
+  private subscription: Subscription;
   private id: string;
 
   constructor(
@@ -23,11 +24,14 @@ export class ShowHideInputDirective implements OnInit {
   ngOnInit(): void {
     this.service
       .getObservable(this.id)
-      .pipe(untilDestroyed(this, 'destroy'))
       .subscribe(show =>
         this.renderer.setAttribute(this.el.nativeElement, 'type', show ? 'text' : 'password')
       );
   }
 
-  destroy() {}
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
 }
