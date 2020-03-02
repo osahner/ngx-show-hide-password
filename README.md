@@ -8,17 +8,21 @@
 
 ## Installation
 
-For up-to-date angular projects (v9):
+For an up-to-date angular project (version 9):
 ```sh
 npm install ngx-show-hide-password --save
-npm install @fortawesome/angular-fontawesome @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons --save
+npm install @fortawesome/angular-fontawesome \
+    @fortawesome/fontawesome-svg-core \
+    @fortawesome/free-solid-svg-icons --save
 ```
-:exclamation: for **previous** angular releases (v8 and below) please check the compatibility chart of [ngx-show-hide-password](#compatibility-chart) **and** [@fortawesome/angular-fontawesome](https://github.com/FortAwesome/angular-fontawesome#compatiblity-table).
+:exclamation: For previous Angular releases (version 8 and lower) please check the compatibility table of [ngx-show-hide-password](#compatibility-chart) **and** [@fortawesome/angular-fontawesome](https://github.com/FortAwesome/angular-fontawesome#compatiblity-table)!
 
-:white_check_mark: e.g. for angular v8:
+:white_check_mark: e.g. for angular version 8:
 ```sh
 npm install ngx-show-hide-password@~2.1.0 --save
-npm install @fortawesome/angular-fontawesome@^0.5  @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons --save
+npm install @fortawesome/angular-fontawesome@^0.5 \
+    @fortawesome/fontawesome-svg-core \
+    @fortawesome/free-solid-svg-icons --save
 ```
 
 ## Integration
@@ -26,7 +30,7 @@ npm install @fortawesome/angular-fontawesome@^0.5  @fortawesome/fontawesome-svg-
 ```ts
 // app.module.ts
 import { ShowHidePasswordModule } from 'ngx-show-hide-password';
-// no need to import @fortawesome/angular-fontawesome
+// no need to import @fortawesome/angular-fontawesome for the component
 ...
 @NgModule({
   ...
@@ -63,6 +67,12 @@ import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 | Password hidden                          | Password exposed                           |
 | ---------------------------------------- | ------------------------------------------ |
 | ![Hidden password](resources/hidden.png) | ![Exposed password](resources/exposed.png) |
+
+
+### How to customize and some examples how to use the directives & service
+
+- [example on stackblitz](https://stackblitz.com/edit/angular-dvy758?embed=1&file=src/app/app.component.html).
+- some more [basic examples here](https://github.com/osahner/ngx-show-hide-password/tree/master/src/app/app.component.html).
 
 
 ## Documentation
@@ -122,13 +132,6 @@ setShow(id: string, show: boolean): void
 ```ts
 toggleShow(id: string): void
 ```
-
-### How to customize
-
-Just use the directives & service.
-- [example on stackblitz](https://stackblitz.com/edit/angular-dvy758?embed=1&file=src/app/app.component.html).
-- some more [basic examples here](https://github.com/osahner/ngx-show-hide-password/tree/master/src/app/app.component.html).
-
 
 ## Release History
 - 2.2.2
