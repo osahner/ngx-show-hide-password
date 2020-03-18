@@ -46,4 +46,17 @@
     </div>
   </div>
 
+  <div class="form-group">
+    <label>Test with directive with bound id.</label>
+    <div class="input-group input-group-sm">
+      <input [id]="bindId" class="form-control" type="password" name="password" placeholder="Password"
+             autocomplete="new-password" value="asdasda" showHideInput>
+      <div class="input-group-append ngx-show-hide-password">
+        <button class="btn btn-outline-primary" type="button" [showHideTrigger]="bindId">
+          <span [showHideStatus]="{materialIcon: true, show: 'show', hide: 'hide', id: bindId}"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
 </form>
