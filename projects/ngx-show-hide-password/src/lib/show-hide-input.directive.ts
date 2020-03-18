@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Renderer2, OnInit, OnDestroy } from '@angular/core';
+import { Directive, ElementRef, Renderer2, OnInit, OnDestroy, HostBinding, AfterViewInit, Input } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ShowHideService } from './show-hide.service';
 
@@ -7,21 +7,23 @@ import { ShowHideService } from './show-hide.service';
 })
 export class ShowHideInputDirective implements OnInit, OnDestroy {
   private subscription: Subscription;
-  private id: string;
+  @Input() id: string;
 
-  constructor(
-    private service: ShowHideService,
-    private el: ElementRef,
-    private renderer: Renderer2
-  ) {
-    this.id = this.el.nativeElement.getAttribute('id');
+  private registerElementId() {
     if (!this.id) {
       throw new Error(`No attribute [id] found.`);
     }
     this.service.setShow(this.id, this.el.nativeElement.type !== 'password');
   }
 
+  constructor(
+    private service: ShowHideService,
+    private el: ElementRef,
+    private renderer: Renderer2
+  ) {  }
+
   ngOnInit(): void {
+    this.registerElementId();
     this.service
       .getObservable(this.id)
       .subscribe(show =>
