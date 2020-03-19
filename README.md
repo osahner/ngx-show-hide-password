@@ -93,13 +93,13 @@ import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 
 | attribute      | type     | description                              |
 | -------------- | -------- | ---------------------------------------- |
-| **id** | _string_ | unique id for input, trigger ans status. **\* required** but only if you don't have an HTML element **id** attribute |
+| **id** | _string_ | unique id. |
 
 #### Directive: showHideTrigger
 
 | type     | description                              |
 | -------- | ---------------------------------------- |
-| _string_ | unique id for input, trigger ans status. **\* required** |
+| _string_ | unique id. **\* required** |
 
 #### Directive: showHideStatus
 
@@ -114,7 +114,7 @@ export interface ShowHideStatusConfig {
 
 | attribute        | type      | description                                                            |
 | ---------------- | --------- | ---------------------------------------------------------------------- |
-| **id**           | _string_  | unique id for input, trigger ans status. **\* required**                               |
+| **id**           | _string_  | unique id. **\* required**                               |
 | **show**         | _string_  | optional class/material icon identifier. default: `'visibility'`       |
 | **hide**         | _string_  | optional class/material icon identifier. default: `'visibility_off'`   |
 | **materialIcon** | _boolean_ | if true updates innerHTML instead of class attribute. default: `false` |
