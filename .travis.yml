@@ -4,7 +4,7 @@ addons:
   chrome: stable
 
 node_js:
-  - "12"
+  - 12
 
 cache:
   directories:
