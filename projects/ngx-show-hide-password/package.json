@@ -26,5 +26,8 @@
     "@fortawesome/angular-fontawesome": "^0.6",
     "@fortawesome/fontawesome-svg-core": "^1.2",
     "@fortawesome/free-solid-svg-icons": "^5.12"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
   }
 }
