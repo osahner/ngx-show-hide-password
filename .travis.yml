@@ -7,12 +7,13 @@ node_js:
   - 12
 
 cache:
-  directories:
-     - ./node_modules
+  yarn: false
+
+before_install:
+  - yarn global add codecov
 
 install:
-  - yarn global add codecov
-  - yarn install
+  - yarn install --frozen-lockfile
 
 script:
   - yarn test_lib --no-watch --no-progress --code-coverage --browsers=ChromeHeadlessCI
