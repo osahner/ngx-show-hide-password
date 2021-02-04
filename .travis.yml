@@ -15,7 +15,7 @@ before_install:
   - yarn global add codecov
 
 install:
-  - yarn install --frozen-lockfile
+  - yarn install
 
 script:
   - yarn test_lib --no-watch --no-progress --code-coverage --browsers=ChromeHeadlessCI

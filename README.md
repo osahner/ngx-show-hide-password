@@ -138,6 +138,8 @@ toggleShow(id: string): void
 ```
 
 ## Release History
+- 2.3.1
+  - update @angular/cli and @angular/core to v11, @fortawesome/angular-fontawesome v0.8
 - 2.3.0
   - update @angular/cli and @angular/core to v10, @fortawesome/angular-fontawesome v0.7, @fortawesome/free-solid-svg-icons v5.14
 - 2.2.4
@@ -164,6 +166,7 @@ toggleShow(id: string): void
 ### compatibility chart
 | local version | angular version |
 | ------------- | --------------- |
+| `@^2.3.1`     | v11              |
 | `@^2.3.0`     | v10              |
 | `@^2.2.3`     | v9              |
 | `@~2.1.0`     | v8              |
