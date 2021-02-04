@@ -23,11 +23,11 @@
   "peerDependencies": {
     "@angular/common": "^10",
     "@angular/core": "^10",
-    "@fortawesome/angular-fontawesome": "^0.7",
-    "@fortawesome/fontawesome-svg-core": "^1.2",
-    "@fortawesome/free-solid-svg-icons": "^5.14"
+    "@fortawesome/angular-fontawesome": "^0.7 | ^0.8",
+    "@fortawesome/fontawesome-svg-core": "^1",
+    "@fortawesome/free-solid-svg-icons": "^5"
   },
   "dependencies": {
-    "tslib": "^2.0.0"
+    "tslib": "^2"
   }
 }
