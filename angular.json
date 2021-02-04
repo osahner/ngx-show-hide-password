@@ -102,7 +102,7 @@
       "prefix": "",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/ngx-show-hide-password/tsconfig.lib.json",
             "project": "projects/ngx-show-hide-password/ng-package.json"
