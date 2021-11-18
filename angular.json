@@ -89,13 +89,6 @@
             "scripts": [],
             "assets": ["src/favicon.ico", "src/assets"]
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
-          }
         }
       }
     },
@@ -123,16 +116,6 @@
             "main": "projects/ngx-show-hide-password/src/test.ts",
             "tsConfig": "projects/ngx-show-hide-password/tsconfig.spec.json",
             "karmaConfig": "projects/ngx-show-hide-password/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/ngx-show-hide-password/tsconfig.lib.json",
-              "projects/ngx-show-hide-password/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**"]
           }
         }
       }
