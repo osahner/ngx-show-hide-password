@@ -2,9 +2,9 @@
 
 > Add split input button to password or text input. Toggles input type between "text" and "password".
 
-[![Build Status](https://travis-ci.org/osahner/ngx-show-hide-password.svg?branch=master)](https://travis-ci.org/osahner/ngx-show-hide-password)
+[![Build Status](https://travis-ci.org/osahner/ngx-show-hide-password.svg?branch=develop)](https://travis-ci.org/osahner/ngx-show-hide-password)
 [![npm version](https://badge.fury.io/js/ngx-show-hide-password.svg)](https://badge.fury.io/js/ngx-show-hide-password)
-[![codecov](https://codecov.io/gh/osahner/ngx-show-hide-password/branch/master/graph/badge.svg)](https://codecov.io/gh/osahner/ngx-show-hide-password/branch/master)
+[![codecov](https://codecov.io/gh/osahner/ngx-show-hide-password/branch/develop/graph/badge.svg)](https://codecov.io/gh/osahner/ngx-show-hide-password/branch/master)
 
 ## Installation
 
@@ -138,8 +138,8 @@ toggleShow(id: string): void
 ```
 
 ## Release History
-- 2.3.1
-  - update @angular/cli and @angular/core to v11, @fortawesome/angular-fontawesome v0.8
+- 2.4.0
+  - update @angular/cli and @angular/core to v13, @fortawesome/angular-fontawesome v1
 - 2.3.0
   - update @angular/cli and @angular/core to v10, @fortawesome/angular-fontawesome v0.7, @fortawesome/free-solid-svg-icons v5.14
 - 2.2.4

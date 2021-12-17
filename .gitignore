@@ -37,4 +37,5 @@ playground/index.js
 bs-config.json
 
 coverage/
-
+.angular/
+.vscode/
