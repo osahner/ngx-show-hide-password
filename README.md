@@ -4,7 +4,7 @@
 
 [![Build Status](https://travis-ci.org/osahner/ngx-show-hide-password.svg?branch=develop)](https://travis-ci.org/osahner/ngx-show-hide-password)
 [![npm version](https://badge.fury.io/js/ngx-show-hide-password.svg)](https://badge.fury.io/js/ngx-show-hide-password)
-[![codecov](https://codecov.io/gh/osahner/ngx-show-hide-password/branch/develop/graph/badge.svg)](https://codecov.io/gh/osahner/ngx-show-hide-password/branch/develop)
+[![codecov](https://codecov.io/gh/osahner/ngx-show-hide-password/branch/develop/graph/badge.svg)](https://codecov.io/gh/osahner/ngx-show-hide-password/branch/master)
 
 ## Installation
 
@@ -89,13 +89,17 @@ import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 ### Directive: showHideInput
 > Demo on [stackblitz](https://stackblitz.com/edit/angular-2srzhs?embed=1&file=src/app/app.component.html)
 
-The element must have a valid **id** attribute.
+:information_source: All directives (and the service) are bound to the same unique **id**. This can be the attribute **id** of the HTML input element or you can enter a synthetic ID.
+
+| attribute      | type     | description                              |
+| -------------- | -------- | ---------------------------------------- |
+| **id** | _string_ | unique id. |
 
 #### Directive: showHideTrigger
 
 | type     | description                              |
 | -------- | ---------------------------------------- |
-| _string_ | id of the input element. **\* required** |
+| _string_ | unique id. **\* required** |
 
 #### Directive: showHideStatus
 
@@ -110,7 +114,7 @@ export interface ShowHideStatusConfig {
 
 | attribute        | type      | description                                                            |
 | ---------------- | --------- | ---------------------------------------------------------------------- |
-| **id**           | _string_  | id of the input element. **\* required**                               |
+| **id**           | _string_  | unique id. **\* required**                               |
 | **show**         | _string_  | optional class/material icon identifier. default: `'visibility'`       |
 | **hide**         | _string_  | optional class/material icon identifier. default: `'visibility_off'`   |
 | **materialIcon** | _boolean_ | if true updates innerHTML instead of class attribute. default: `false` |
@@ -134,8 +138,12 @@ toggleShow(id: string): void
 ```
 
 ## Release History
+- 2.4.0
+  - update @angular/cli and @angular/core to v13, @fortawesome/angular-fontawesome v1
 - 2.3.0
   - update @angular/cli and @angular/core to v10, @fortawesome/angular-fontawesome v0.7, @fortawesome/free-solid-svg-icons v5.14
+- 2.2.4
+  - ShowHideInputDirective no longer needs an Input Attribute ID. ID is now an `Input()`. Thanks to @aboodz
 - 2.2.2
   - update @angular/cli and @angular/core to v9
 - 2.1.0
@@ -158,6 +166,7 @@ toggleShow(id: string): void
 ### compatibility chart
 | local version | angular version |
 | ------------- | --------------- |
+| `@^2.3.1`     | v11              |
 | `@^2.3.0`     | v10              |
 | `@^2.2.3`     | v9              |
 | `@~2.1.0`     | v8              |
