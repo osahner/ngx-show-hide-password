@@ -1,3 +1,4 @@
+/* eslint-disable @angular-eslint/directive-selector */
 import { Directive, ElementRef, Renderer2, Input, ErrorHandler, OnDestroy } from '@angular/core';
 import { ShowHideService } from './show-hide.service';
 import { Subscription } from 'rxjs';

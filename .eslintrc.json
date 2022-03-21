@@ -22,7 +22,9 @@
         ],
         "arrow-parens": ["off", "always"],
         "import/order": "off",
-        "@typescript-eslint/member-ordering": "off"
+        "@typescript-eslint/member-ordering": "off",
+        "@angular-eslint/component-selector": "off",
+        "@typescript-eslint/naming-convention": "off"
       }
     },
     {

@@ -1,3 +1,4 @@
+/* eslint-disable no-bitwise */
 import {
   Component,
   ElementRef,
@@ -5,7 +6,7 @@ import {
   OnInit,
   Renderer2,
   ChangeDetectionStrategy,
-  OnDestroy
+  OnDestroy,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
@@ -19,13 +20,13 @@ export enum BtnStyle {
   Warning = 'warning',
   Info = 'info',
   Dark = 'dark',
-  Light = 'light'
+  Light = 'light',
 }
 
 // hail jed https://gist.github.com/jed/982883
 const uuid = (a?: any) =>
   a
-    ? (a ^ ((Math.random() * 16) >> (a / 4))).toString(16) // eslint-disable-line: no-bitwise
+    ? (a ^ ((Math.random() * 16) >> (a / 4))).toString(16)
     : ('' + 1e7 + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, uuid);
 
 /**
@@ -42,22 +43,20 @@ const uuid = (a?: any) =>
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <ng-content></ng-content>
-    <div class="input-group-append ngx-show-hide-password">
-      <button
-        class="btn"
-        [ngClass]="(btnOutline ? 'btn-outline-' + btnStyle : 'btn-' + btnStyle)"
-        type="button"
-        [showHideTrigger]="id"
-      >
-        <fa-icon
-          [fixedWidth]="true"
-          size="lg"
-          [icon]="(isHidden ? faEye : faEyeSlash)"
-          [showHideStatus]="{ id: id }"
-        ></fa-icon>
-      </button>
-    </div>
-  `
+    <button
+      class="btn ngx-show-hide-password"
+      [ngClass]="btnOutline ? 'btn-outline-' + btnStyle : 'btn-' + btnStyle"
+      type="button"
+      [showHideTrigger]="id"
+    >
+      <fa-icon
+        [fixedWidth]="true"
+        size="lg"
+        [icon]="isHidden ? faEye : faEyeSlash"
+        [showHideStatus]="{ id: id }"
+      ></fa-icon>
+    </button>
+  `,
 })
 export class ShowHidePasswordComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
@@ -105,12 +104,10 @@ export class ShowHidePasswordComponent implements OnInit, OnDestroy {
     this.isHidden = this.input.type === 'password';
     this.renderer.addClass(this.input, 'form-control'); // just to be sure
     this.service.setShow(this.id, this.input.type !== 'password');
-    this.subscription = this.service
-      .getObservable(this.id)
-      .subscribe(show => {
-        this.isHidden = !show;
-        this.renderer.setAttribute(this.input, 'type', show ? 'text' : 'password');
-      });
+    this.subscription = this.service.getObservable(this.id).subscribe((show) => {
+      this.isHidden = !show;
+      this.renderer.setAttribute(this.input, 'type', show ? 'text' : 'password');
+    });
   }
 
   ngOnDestroy(): void {
