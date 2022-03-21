@@ -8,7 +8,7 @@
 
 ## Installation
 
-For an up-to-date angular project (version 10):
+For an up-to-date angular project version 13 and Bootstrap 5:
 ```sh
 npm install ngx-show-hide-password --save
 npm install @fortawesome/angular-fontawesome \
@@ -138,6 +138,8 @@ toggleShow(id: string): void
 ```
 
 ## Release History
+- 2.6.0
+  - (breaking) update ShowHideComponent to Bootstrap 5
 - 2.5.0
   - update @fortawesome icons v6
 - 2.4.0
@@ -166,17 +168,19 @@ toggleShow(id: string): void
   - initial release
 
 ### compatibility chart
-| local version | angular version |
-| ------------- | --------------- |
-| `@^2.4.0`     | v13              |
-| `@^2.3.1`     | v11              |
-| `@^2.3.0`     | v10              |
-| `@^2.2.3`     | v9              |
-| `@~2.1.0`     | v8              |
-| `@~2.0.3`     | v7              |
-| `@~1.2.5`     | v5 and v6       |
-| `@~1.1.0`     | v4              |
+| local version | angular version | Bootstrap version |
+| ------------- | --------------- | ----------------- |
+| `@^2.6.0`     | v13             | v5                |
+| `@^2.4.0`     | v13             | v4                |
+| `@^2.3.1`     | v11             |                   |
+| `@^2.3.0`     | v10             |                   |
+| `@^2.2.3`     | v9              |                   |
+| `@~2.1.0`     | v8              |                   |
+| `@~2.0.3`     | v7              |                   |
+| `@~1.2.5`     | v5 and v6       |                   |
+| `@~1.1.0`     | v4              |                   |
 
+:exclamation: The Bootstrap version is only important if you use the `show-hide-password` Component.
 
 ## LICENCE
 
