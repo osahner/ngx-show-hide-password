@@ -138,7 +138,7 @@ toggleShow(id: string): void
 ```
 
 ## Release History
-- 2.6.0
+- 2.6.1
   - (breaking) update ShowHideComponent to Bootstrap 5
 - 2.5.0
   - update @fortawesome icons v6
@@ -170,7 +170,7 @@ toggleShow(id: string): void
 ### compatibility chart
 | local version | angular version | Bootstrap version |
 | ------------- | --------------- | ----------------- |
-| `@^2.6.0`     | v13             | v5                |
+| `@^2.6.1`     | v13             | v5                |
 | `@^2.4.0`     | v13             | v4                |
 | `@^2.3.1`     | v11             |                   |
 | `@^2.3.0`     | v10             |                   |
