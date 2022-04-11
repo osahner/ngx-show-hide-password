@@ -138,6 +138,8 @@ toggleShow(id: string): void
 ```
 
 ## Release History
+- 2.6.2
+  - enable angular strict mode
 - 2.6.1
   - (breaking) update ShowHideComponent to Bootstrap 5
 - 2.5.0
