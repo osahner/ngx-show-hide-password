@@ -4,20 +4,20 @@ import { Observable, Subject, ReplaySubject } from 'rxjs';
 interface IState {
   id: string;
   show: boolean;
-  subject?: Subject<boolean>;
+  subject: Subject<boolean>;
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShowHideService {
-  private readonly states = [];
+  private readonly states: IState[] = [];
 
   constructor() {}
 
   private getIO(id: string): IState {
     let io = this.states.find(o => o.id === id);
-    if (!io && id) {
+    if (!io) {
       io = this.init(id);
     }
     return io;

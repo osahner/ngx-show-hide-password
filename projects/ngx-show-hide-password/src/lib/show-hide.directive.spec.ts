@@ -5,8 +5,8 @@ import { ShowHidePasswordModule } from './show-hide-password.module';
 
 @Component({ template: '' })
 class TestComponent {
-  disabled;
-  model;
+  disabled: boolean | undefined;
+  model: any;
 }
 
 describe('ShowHidePasswordModule::Directive', () => {

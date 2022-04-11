@@ -59,7 +59,7 @@ const uuid = (a?: any) =>
   `,
 })
 export class ShowHidePasswordComponent implements OnInit, OnDestroy {
-  private subscription: Subscription;
+  private subscription?: Subscription;
 
   @Input()
   public btnStyle: BtnStyle = BtnStyle.Secondary;
@@ -68,13 +68,13 @@ export class ShowHidePasswordComponent implements OnInit, OnDestroy {
   public btnOutline = true;
 
   @Input()
-  public size: 'sm' | 'lg';
+  public size?: 'sm' | 'lg';
 
   public input: any;
 
-  public isHidden: boolean;
+  public isHidden?: boolean;
 
-  public id: string;
+  public id?: string;
 
   public faEye = faEye;
   public faEyeSlash = faEyeSlash;

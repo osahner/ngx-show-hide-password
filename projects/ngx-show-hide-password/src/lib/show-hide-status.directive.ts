@@ -9,13 +9,19 @@ export interface ShowHideStatusConfig {
   hide?: string;
   materialIcon?: boolean;
 }
+const defaultConfig: ShowHideStatusConfig = {
+  show: 'visibility',
+  hide: 'visibility_off',
+  materialIcon: false,
+  id: undefined,
+};
 
 @Directive({
-  selector: '[showHideStatus]'
+  selector: '[showHideStatus]',
 })
 export class ShowHideStatusDirective implements OnDestroy {
-  private config: ShowHideStatusConfig;
-  private subscription: Subscription;
+  private config: ShowHideStatusConfig = defaultConfig;
+  private subscription?: Subscription;
 
   @Input() set showHideStatus(config: ShowHideStatusConfig) {
     this.init(config);
@@ -29,20 +35,14 @@ export class ShowHideStatusDirective implements OnDestroy {
   ) {}
 
   private init(config: ShowHideStatusConfig): void {
-    const defaultConfig = {
-      show: 'visibility',
-      hide: 'visibility_off',
-      materialIcon: false,
-      id: null
-    };
     this.config = {
       ...defaultConfig,
-      ...config
+      ...config,
     };
     if (this.config.id) {
       this.subscription = this.service
         .getObservable(this.config.id)
-        .subscribe(show => this.updateStatus(show));
+        .subscribe((show) => this.updateStatus(show));
     } else {
       this.errorHandler.handleError(new Error(`Status can not be set without [id].`));
     }
@@ -56,8 +56,14 @@ export class ShowHideStatusDirective implements OnDestroy {
         show ? this.config.hide : this.config.show
       );
     } else {
-      this.renderer.removeClass(this.el.nativeElement, !show ? this.config.hide : this.config.show);
-      this.renderer.addClass(this.el.nativeElement, show ? this.config.hide : this.config.show);
+      this.renderer.removeClass(
+        this.el.nativeElement,
+        (!show ? this.config.hide : this.config.show) ?? ''
+      );
+      this.renderer.addClass(
+        this.el.nativeElement,
+        (show ? this.config.hide : this.config.show) ?? ''
+      );
     }
   }
 
