@@ -140,6 +140,7 @@ toggleShow(id: string): void
 ## Release History
 - 2.6.2
   - enable angular strict mode
+  - [renamed default branch to main](#rename-local-master-branch-to-main)
 - 2.6.1
   - (breaking) update ShowHideComponent to Bootstrap 5
 - 2.5.0
@@ -183,6 +184,13 @@ toggleShow(id: string): void
 | `@~1.1.0`     | v4              |                   |
 
 :exclamation: The Bootstrap version is only important if you use the `show-hide-password` Component.
+
+ #### Rename local master branch to main
+```shell
+git branch -m master main
+git fetch origin
+git branch -u origin/main main
+```
 
 ## LICENCE
 
