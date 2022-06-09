@@ -8,7 +8,7 @@
 
 ## Installation
 
-For an up-to-date angular project version 13 and Bootstrap 5:
+For an up-to-date angular project version 14 and Bootstrap 5:
 ```sh
 npm install ngx-show-hide-password --save
 npm install @fortawesome/angular-fontawesome \
@@ -138,6 +138,8 @@ toggleShow(id: string): void
 ```
 
 ## Release History
+- 2.6.4
+  - update @angular/cli and @angular/core to v14
 - 2.6.2
   - enable angular strict mode
   - [renamed default branch to main](#rename-local-master-branch-to-main)
@@ -173,6 +175,7 @@ toggleShow(id: string): void
 ### compatibility chart
 | local version | angular version | Bootstrap version |
 | ------------- | --------------- | ----------------- |
+| `@^2.6.4`     | v14             | v5                |
 | `@^2.6.1`     | v13             | v5                |
 | `@^2.4.0`     | v13             | v4                |
 | `@^2.3.1`     | v11             |                   |
