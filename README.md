@@ -138,6 +138,8 @@ toggleShow(id: string): void
 ```
 
 ## Release History
+- 2.6.5
+  - update @angular/cli and @angular/core to v15
 - 2.6.4
   - update @angular/cli and @angular/core to v14
 - 2.6.2
@@ -175,6 +177,7 @@ toggleShow(id: string): void
 ### compatibility chart
 | local version | angular version | Bootstrap version |
 | ------------- | --------------- | ----------------- |
+| `@^2.6.5`     | v15             | v5                |
 | `@^2.6.4`     | v14             | v5                |
 | `@^2.6.1`     | v13             | v5                |
 | `@^2.4.0`     | v13             | v4                |

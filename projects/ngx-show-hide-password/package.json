@@ -21,8 +21,8 @@
   },
   "homepage": "https://github.com/osahner/ngx-show-hide-password#readme",
   "peerDependencies": {
-    "@angular/common": ">=10.0.0 <15.0.0",
-    "@angular/core": ">=10.0.0 <15.0.0",
+    "@angular/common": ">=15.0.0 <16.0.0",
+    "@angular/core": ">=15.0.0 <16.0.0",
     "@fortawesome/angular-fontawesome": ">=0.7 <1",
     "@fortawesome/fontawesome-svg-core": "^1 || ^6",
     "@fortawesome/free-solid-svg-icons": "^5 || ^6"
