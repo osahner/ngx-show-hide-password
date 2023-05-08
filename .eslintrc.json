@@ -1,11 +1,18 @@
 {
   "root": true,
-  "ignorePatterns": ["dist/**/*"],
+  "ignorePatterns": [
+    "dist/**/*"
+  ],
   "overrides": [
     {
-      "files": ["*.ts"],
+      "files": [
+        "*.ts"
+      ],
       "parserOptions": {
-        "project": ["tsconfig.json", "e2e/tsconfig.json"],
+        "project": [
+          "tsconfig.json",
+          "e2e/tsconfig.json"
+        ],
         "createDefaultProgram": true
       },
       "extends": [
@@ -20,7 +27,10 @@
             "accessibility": "explicit"
           }
         ],
-        "arrow-parens": ["off", "always"],
+        "arrow-parens": [
+          "off",
+          "always"
+        ],
         "import/order": "off",
         "@typescript-eslint/member-ordering": "off",
         "@angular-eslint/component-selector": "off",
@@ -28,8 +38,12 @@
       }
     },
     {
-      "files": ["*.html"],
-      "extends": ["plugin:@angular-eslint/template/recommended"],
+      "files": [
+        "*.html"
+      ],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended"
+      ],
       "rules": {}
     }
   ]
