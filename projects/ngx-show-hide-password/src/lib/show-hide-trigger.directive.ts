@@ -3,7 +3,8 @@ import { ShowHideService } from './show-hide.service';
 
 @Directive({
   // eslint-disable-next-line @angular-eslint/directive-selector
-  selector: '[showHideTrigger]'
+  selector: '[showHideTrigger]',
+  standalone: true,
 })
 export class ShowHideTriggerDirective {
   @Input() showHideTrigger?: string;

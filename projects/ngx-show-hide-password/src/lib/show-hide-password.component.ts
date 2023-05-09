@@ -11,6 +11,10 @@ import {
 import { Subscription } from 'rxjs';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { ShowHideService } from './show-hide.service';
+import { ShowHideStatusDirective } from './show-hide-status.directive';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ShowHideTriggerDirective } from './show-hide-trigger.directive';
+import { NgClass } from '@angular/common';
 
 export enum BtnStyle {
   Primary = 'primary',
@@ -39,6 +43,7 @@ const uuid = (a?: any) =>
  */
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'show-hide-password',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
@@ -57,6 +62,8 @@ const uuid = (a?: any) =>
       ></fa-icon>
     </button>
   `,
+  standalone: true,
+  imports: [NgClass, ShowHideTriggerDirective, FontAwesomeModule, ShowHideStatusDirective],
 })
 export class ShowHidePasswordComponent implements OnInit, OnDestroy {
   private subscription?: Subscription;

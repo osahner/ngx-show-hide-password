@@ -8,7 +8,7 @@ interface IState {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ShowHideService {
   private readonly states: IState[] = [];
@@ -16,7 +16,7 @@ export class ShowHideService {
   constructor() {}
 
   private getIO(id: string): IState {
-    let io = this.states.find(o => o.id === id);
+    let io = this.states.find((o) => o.id === id);
     if (!io) {
       io = this.init(id);
     }
@@ -28,7 +28,7 @@ export class ShowHideService {
     const io = {
       id,
       show: false,
-      subject
+      subject,
     };
     this.states.push(io);
     return io;

@@ -18,6 +18,7 @@ const defaultConfig: ShowHideStatusConfig = {
 
 @Directive({
   selector: '[showHideStatus]',
+  standalone: true,
 })
 export class ShowHideStatusDirective implements OnDestroy {
   private config: ShowHideStatusConfig = defaultConfig;

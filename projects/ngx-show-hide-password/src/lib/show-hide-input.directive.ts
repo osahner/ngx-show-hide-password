@@ -1,19 +1,11 @@
-import {
-  Directive,
-  ElementRef,
-  Renderer2,
-  OnInit,
-  OnDestroy,
-  HostBinding,
-  AfterViewInit,
-  Input,
-} from '@angular/core';
+import { Directive, ElementRef, Renderer2, OnInit, OnDestroy, Input } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ShowHideService } from './show-hide.service';
 
 @Directive({
   // eslint-disable-next-line @angular-eslint/directive-selector
   selector: 'input[showHideInput]',
+  standalone: true,
 })
 export class ShowHideInputDirective implements OnInit, OnDestroy {
   private subscription?: Subscription;

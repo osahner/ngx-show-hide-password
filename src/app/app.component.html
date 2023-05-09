@@ -2,31 +2,57 @@
   <div class="form-group">
     <label>Test</label>
     <show-hide-password size="sm">
-      <input type="text" name="password" placeholder="Password" autocomplete="new-password" value="test test test">
+      <input
+        type="text"
+        name="password"
+        placeholder="Password"
+        autocomplete="new-password"
+        value="test test test"
+      />
     </show-hide-password>
   </div>
 
   <div class="form-group">
     <label>Test</label>
     <show-hide-password size="lg" [btnOutline]="false">
-      <input type="password" name="password" placeholder="Password" autocomplete="new-password" value="test test test">
+      <input
+        type="password"
+        name="password"
+        placeholder="Password"
+        autocomplete="new-password"
+        value="test test test"
+      />
     </show-hide-password>
   </div>
 
   <div class="form-group">
     <label>Test</label>
     <show-hide-password size="sm" [btnStyle]="BtnStyle.Primary">
-      <input type="password" name="password" placeholder="Password" autocomplete="new-password">
+      <input type="password" name="password" placeholder="Password" autocomplete="new-password" />
     </show-hide-password>
   </div>
 
   <div class="form-group">
     <label>Test with directive. start as password input</label>
     <div class="input-group input-group-sm">
-      <input id="test1" class="form-control" type="password" name="password" placeholder="Password"
-        autocomplete="new-password" value="asdasda" showHideInput>
-      <button class="btn btn-outline-primary ngx-show-hide-password" type="button" showHideTrigger="test1">
-        <span [showHideStatus]="{materialIcon: true, show: 'show', hide: 'hide', id: 'test1'}"></span>
+      <input
+        id="test1"
+        class="form-control"
+        type="password"
+        name="password"
+        placeholder="Password"
+        autocomplete="new-password"
+        value="asdasda"
+        showHideInput
+      />
+      <button
+        class="btn btn-outline-primary ngx-show-hide-password"
+        type="button"
+        showHideTrigger="test1"
+      >
+        <span
+          [showHideStatus]="{ materialIcon: true, show: 'show', hide: 'hide', id: 'test1' }"
+        ></span>
       </button>
     </div>
   </div>
@@ -34,10 +60,22 @@
   <div class="form-group">
     <label>Test with directive. start as password input</label>
     <div class="input-group input-group-sm">
-      <input id="test2" class="form-control" type="text" name="password" placeholder="Password"
-        autocomplete="new-password" value="asdasda" showHideInput>
-      <button class="btn btn-outline-primary ngx-show-hide-password" type="button" showHideTrigger="test2">
-        <i class="fas" [showHideStatus]="{show: 'fa-eye', hide: 'fa-eye-slash', id: 'test2'}"></i>
+      <input
+        id="test2"
+        class="form-control"
+        type="text"
+        name="password"
+        placeholder="Password"
+        autocomplete="new-password"
+        value="asdasda"
+        showHideInput
+      />
+      <button
+        class="btn btn-outline-primary ngx-show-hide-password"
+        type="button"
+        showHideTrigger="test2"
+      >
+        <i class="fas" [showHideStatus]="{ show: 'fa-eye', hide: 'fa-eye-slash', id: 'test2' }"></i>
       </button>
     </div>
   </div>
@@ -45,12 +83,25 @@
   <div class="form-group">
     <label>Test with directive with bound id.</label>
     <div class="input-group input-group-sm">
-      <input [id]="bindId" class="form-control" type="password" name="password" placeholder="Password"
-        autocomplete="new-password" value="asdasda" showHideInput>
-      <button class="btn btn-outline-primary ngx-show-hide-password" type="button" [showHideTrigger]="bindId">
-        <span [showHideStatus]="{materialIcon: true, show: 'show', hide: 'hide', id: bindId}"></span>
+      <input
+        [id]="bindId"
+        class="form-control"
+        type="password"
+        name="password"
+        placeholder="Password"
+        autocomplete="new-password"
+        value="asdasda"
+        showHideInput
+      />
+      <button
+        class="btn btn-outline-primary ngx-show-hide-password"
+        type="button"
+        [showHideTrigger]="bindId"
+      >
+        <span
+          [showHideStatus]="{ materialIcon: true, show: 'show', hide: 'hide', id: bindId }"
+        ></span>
       </button>
     </div>
   </div>
-
 </form>

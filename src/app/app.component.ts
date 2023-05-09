@@ -1,8 +1,22 @@
 import { Component } from '@angular/core';
-import { BtnStyle } from 'ngx-show-hide-password';
+import {
+  BtnStyle,
+  ShowHidePasswordComponent,
+  ShowHideInputDirective,
+  ShowHideStatusDirective,
+  ShowHideTriggerDirective,
+} from 'projects/ngx-show-hide-password/src/public_api';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
+  standalone: true,
+  imports: [
+    ShowHidePasswordComponent,
+    ShowHideInputDirective,
+    ShowHideStatusDirective,
+    ShowHideTriggerDirective,
+  ],
 })
 export class AppComponent {
   bindId = 'bindId';

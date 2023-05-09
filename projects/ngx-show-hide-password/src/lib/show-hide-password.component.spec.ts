@@ -1,9 +1,22 @@
 import { TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ShowHidePasswordModule } from './show-hide-password.module';
+import { ShowHidePasswordComponent } from './show-hide-password.component';
+import { ShowHideInputDirective } from './show-hide-input.directive';
+import { ShowHideStatusDirective } from './show-hide-status.directive';
+import { ShowHideTriggerDirective } from './show-hide-trigger.directive';
 
-@Component({ template: '' })
+@Component({
+  template: '',
+  standalone: true,
+  imports: [
+    FormsModule,
+    ShowHidePasswordComponent,
+    ShowHideInputDirective,
+    ShowHideStatusDirective,
+    ShowHideTriggerDirective,
+  ],
+})
 class TestComponent {
   disabled?: boolean;
   model?: any;
@@ -12,16 +25,21 @@ class TestComponent {
 describe('ShowHidePasswordModule::Component', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestComponent],
-      imports: [FormsModule, ShowHidePasswordModule]
+      imports: [FormsModule, TestComponent],
     });
+  });
+
+  it('should create the test component', () => {
+    const fixture = TestBed.createComponent(TestComponent);
+    const app = fixture.componentInstance;
+    expect(app).toBeTruthy();
   });
 
   it('should toggle input type', () => {
     const fixture = TestBed.overrideComponent(TestComponent, {
       set: {
-        template: `<show-hide-password size="sm"><input type="password" [(ngModel)]="model"></show-hide-password>`
-      }
+        template: `<show-hide-password size="sm"><input type="password" [(ngModel)]="model"></show-hide-password>`,
+      },
     }).createComponent(TestComponent);
     fixture.detectChanges();
 
@@ -41,8 +59,8 @@ describe('ShowHidePasswordModule::Component', () => {
   it('should initialize with text input', () => {
     const fixture = TestBed.overrideComponent(TestComponent, {
       set: {
-        template: `<show-hide-password size="lg"><input type="text" [(ngModel)]="model" id="secretpass"></show-hide-password>`
-      }
+        template: `<show-hide-password size="lg"><input type="text" [(ngModel)]="model" id="secretpass"></show-hide-password>`,
+      },
     }).createComponent(TestComponent);
     fixture.detectChanges();
 
@@ -62,8 +80,8 @@ describe('ShowHidePasswordModule::Component', () => {
   it('should throw error', () => {
     TestBed.overrideComponent(TestComponent, {
       set: {
-        template: `<show-hide-password></show-hide-password>`
-      }
+        template: `<show-hide-password></show-hide-password>`,
+      },
     });
     expect(() => {
       const fixture = TestBed.createComponent(TestComponent);

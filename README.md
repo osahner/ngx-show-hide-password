@@ -8,9 +8,17 @@
 
 ## Installation
 
-For an up-to-date angular project version 14 and Bootstrap 5:
+For an upt-to-date angular project version 16 with standalone Componentents:
 ```sh
 npm install ngx-show-hide-password --save
+npm install @fortawesome/angular-fontawesome \
+    @fortawesome/fontawesome-svg-core \
+    @fortawesome/free-solid-svg-icons --save
+```
+
+For angular project version 15 and Bootstrap 5:
+```sh
+npm install ngx-show-hide-password@2.6.5 --save
 npm install @fortawesome/angular-fontawesome \
     @fortawesome/fontawesome-svg-core \
     @fortawesome/free-solid-svg-icons --save
@@ -27,6 +35,33 @@ npm install @fortawesome/angular-fontawesome@^0.5 \
 
 ## Integration
 
+### with standalone components:
+```ts
+// nothing to do in main.ts
+
+...
+// component.ts
+import {
+  ShowHidePasswordComponent,
+  ShowHideInputDirective,
+  ShowHideStatusDirective,
+  ShowHideTriggerDirective,
+} from 'ngx-show-hide-password';
+
+@Component({
+  ...
+  standalone: true,
+  imports: [
+    ShowHidePasswordComponent,
+    ShowHideInputDirective,
+    ShowHideStatusDirective,
+    ShowHideTriggerDirective,
+  ],
+})
+export class AppComponent {}
+```
+
+### as module (pre v16):
 ```ts
 // app.module.ts
 import { ShowHidePasswordModule } from 'ngx-show-hide-password';
@@ -43,7 +78,7 @@ import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 })
 ```
 
-### as component ...
+### template as component ...
 
 ```html
 <show-hide-password size="lg" btnStyle="primary" [btnOutline]="false">
@@ -51,7 +86,7 @@ import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 </show-hide-password>
 ```
 
-### or with directives ...
+### or template with directives ...
 
 ```html
 <mat-form-field>
@@ -138,6 +173,8 @@ toggleShow(id: string): void
 ```
 
 ## Release History
+- 2.7.0
+  - update @angular/cli and @angular/core to v16, migrate to standalone components
 - 2.6.5
   - update @angular/cli and @angular/core to v15
 - 2.6.4
@@ -175,19 +212,20 @@ toggleShow(id: string): void
   - initial release
 
 ### compatibility chart
-| local version | angular version | Bootstrap version |
-| ------------- | --------------- | ----------------- |
-| `@^2.6.5`     | v15             | v5                |
-| `@^2.6.4`     | v14             | v5                |
-| `@^2.6.1`     | v13             | v5                |
-| `@^2.4.0`     | v13             | v4                |
-| `@^2.3.1`     | v11             |                   |
-| `@^2.3.0`     | v10             |                   |
-| `@^2.2.3`     | v9              |                   |
-| `@~2.1.0`     | v8              |                   |
-| `@~2.0.3`     | v7              |                   |
-| `@~1.2.5`     | v5 and v6       |                   |
-| `@~1.1.0`     | v4              |                   |
+| local version | angular version | Bootstrap version | standalone |
+| ------------- | --------------- | ----------------- | ---------- |
+| `@^2.7.0`     | v16             | v5                | ✅         |
+| `@^2.6.5`     | v15             | v5                |            |
+| `@^2.6.4`     | v14             | v5                |            |
+| `@^2.6.1`     | v13             | v5                |            |
+| `@^2.4.0`     | v13             | v4                |            |
+| `@^2.3.1`     | v11             |                   |            |
+| `@^2.3.0`     | v10             |                   |            |
+| `@^2.2.3`     | v9              |                   |            |
+| `@~2.1.0`     | v8              |                   |            |
+| `@~2.0.3`     | v7              |                   |            |
+| `@~1.2.5`     | v5 and v6       |                   |            |
+| `@~1.1.0`     | v4              |                   |            |
 
 :exclamation: The Bootstrap version is only important if you use the `show-hide-password` Component.
 
