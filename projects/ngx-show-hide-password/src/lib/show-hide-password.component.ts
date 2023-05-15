@@ -6,9 +6,9 @@ import {
   OnInit,
   Renderer2,
   ChangeDetectionStrategy,
-  OnDestroy,
+  effect,
+  Injector,
 } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { ShowHideService } from './show-hide.service';
 import { ShowHideStatusDirective } from './show-hide-status.directive';
@@ -65,9 +65,7 @@ const uuid = (a?: any) =>
   standalone: true,
   imports: [NgClass, ShowHideTriggerDirective, FontAwesomeModule, ShowHideStatusDirective],
 })
-export class ShowHidePasswordComponent implements OnInit, OnDestroy {
-  private subscription?: Subscription;
-
+export class ShowHidePasswordComponent implements OnInit {
   @Input()
   public btnStyle: BtnStyle = BtnStyle.Secondary;
 
@@ -89,7 +87,8 @@ export class ShowHidePasswordComponent implements OnInit, OnDestroy {
   constructor(
     private service: ShowHideService,
     private elem: ElementRef,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private injector: Injector
   ) {}
 
   ngOnInit(): void {
@@ -111,15 +110,14 @@ export class ShowHidePasswordComponent implements OnInit, OnDestroy {
     this.isHidden = this.input.type === 'password';
     this.renderer.addClass(this.input, 'form-control'); // just to be sure
     this.service.setShow(this.id, this.input.type !== 'password');
-    this.subscription = this.service.getObservable(this.id).subscribe((show) => {
-      this.isHidden = !show;
-      this.renderer.setAttribute(this.input, 'type', show ? 'text' : 'password');
-    });
-  }
 
-  ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
+    effect(
+      () => {
+        const show = this.service.getSignal(this.id)();
+        this.isHidden = !show;
+        this.renderer.setAttribute(this.input, 'type', show ? 'text' : 'password');
+      },
+      { injector: this.injector }
+    );
   }
 }

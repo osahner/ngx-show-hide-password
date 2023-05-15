@@ -1,5 +1,4 @@
-import { Directive, ElementRef, Renderer2, OnInit, OnDestroy, Input } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Directive, ElementRef, Renderer2, OnInit, Input, effect, Injector } from '@angular/core';
 import { ShowHideService } from './show-hide.service';
 
 @Directive({
@@ -7,27 +6,27 @@ import { ShowHideService } from './show-hide.service';
   selector: 'input[showHideInput]',
   standalone: true,
 })
-export class ShowHideInputDirective implements OnInit, OnDestroy {
-  private subscription?: Subscription;
+export class ShowHideInputDirective implements OnInit {
   @Input({ required: true }) id!: string;
 
   constructor(
     private service: ShowHideService,
     private el: ElementRef,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private injector: Injector
   ) {}
 
   ngOnInit(): void {
     this.service.setShow(this.id, this.el.nativeElement.type !== 'password');
-
-    this.service
-      .getObservable(this.id)
-      .subscribe((show) =>
-        this.renderer.setAttribute(this.el.nativeElement, 'type', show ? 'text' : 'password')
-      );
-  }
-
-  ngOnDestroy(): void {
-    this.subscription?.unsubscribe();
+    effect(
+      () => {
+        this.renderer.setAttribute(
+          this.el.nativeElement,
+          'type',
+          this.service.getSignal(this.id)() ? 'text' : 'password'
+        );
+      },
+      { injector: this.injector }
+    );
   }
 }

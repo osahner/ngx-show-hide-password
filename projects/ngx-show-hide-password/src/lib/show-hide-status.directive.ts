@@ -1,7 +1,14 @@
 /* eslint-disable @angular-eslint/directive-selector */
-import { Directive, ElementRef, Renderer2, Input, ErrorHandler, OnDestroy } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  Renderer2,
+  Input,
+  ErrorHandler,
+  effect,
+  Injector,
+} from '@angular/core';
 import { ShowHideService } from './show-hide.service';
-import { Subscription } from 'rxjs';
 
 export interface ShowHideStatusConfig {
   id?: string;
@@ -9,20 +16,18 @@ export interface ShowHideStatusConfig {
   hide?: string;
   materialIcon?: boolean;
 }
-const defaultConfig: ShowHideStatusConfig = {
+const defaultConfig: Partial<ShowHideStatusConfig> = {
   show: 'visibility',
   hide: 'visibility_off',
   materialIcon: false,
-  id: undefined,
 };
 
 @Directive({
   selector: '[showHideStatus]',
   standalone: true,
 })
-export class ShowHideStatusDirective implements OnDestroy {
-  private config: ShowHideStatusConfig = defaultConfig;
-  private subscription?: Subscription;
+export class ShowHideStatusDirective {
+  private config: Partial<ShowHideStatusConfig> = defaultConfig;
 
   @Input({ required: true }) set showHideStatus(config: ShowHideStatusConfig) {
     this.init(config);
@@ -32,7 +37,8 @@ export class ShowHideStatusDirective implements OnDestroy {
     private service: ShowHideService,
     private el: ElementRef,
     private renderer: Renderer2,
-    private errorHandler: ErrorHandler
+    private errorHandler: ErrorHandler,
+    private injector: Injector
   ) {}
 
   private init(config: ShowHideStatusConfig): void {
@@ -41,9 +47,12 @@ export class ShowHideStatusDirective implements OnDestroy {
       ...config,
     };
     if (this.config.id) {
-      this.subscription = this.service
-        .getObservable(this.config.id)
-        .subscribe((show) => this.updateStatus(show));
+      effect(
+        () => {
+          this.updateStatus(this.service.getSignal(this.config.id!!)());
+        },
+        { injector: this.injector }
+      );
     } else {
       this.errorHandler.handleError(new Error(`Status can not be set without [id].`));
     }
@@ -65,12 +74,6 @@ export class ShowHideStatusDirective implements OnDestroy {
         this.el.nativeElement,
         (show ? this.config.hide : this.config.show) ?? ''
       );
-    }
-  }
-
-  ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
     }
   }
 }
