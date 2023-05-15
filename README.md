@@ -157,7 +157,7 @@ export interface ShowHideStatusConfig {
 - _function_ **getSignal**
 > return _Signal_ for input with _id_
 ```ts
-getObservable(id: string): Observable<boolean>
+getSignal(id: string): WritableSignal<boolean>
 ```
 - _function_ **setShow**
 > set Status for input with _id_
