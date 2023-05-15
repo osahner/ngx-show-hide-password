@@ -81,7 +81,7 @@ export class ShowHidePasswordComponent implements OnInit, OnDestroy {
 
   public isHidden?: boolean;
 
-  public id?: string;
+  public id!: string;
 
   public faEye = faEye;
   public faEyeSlash = faEyeSlash;

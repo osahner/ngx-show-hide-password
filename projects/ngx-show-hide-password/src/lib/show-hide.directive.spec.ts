@@ -148,19 +148,4 @@ describe('ShowHidePasswordModule::Directive', () => {
     fixture.detectChanges();
     expect(inputDebugEl.getAttribute('type')).toBe('text');
   });
-
-  it('should throw error', () => {
-    TestBed.overrideComponent(TestComponent, {
-      set: {
-        template: `<input type="text" name="password" showHideInput [(ngModel)]="model">
-        <button type="button" showHideTrigger="test2">
-          <i [showHideStatus]="{show: 'fa-eye', hide: 'fa-eye-slash', id: 'test2'}"></i>
-        </button>`,
-      },
-    });
-    expect(() => {
-      const fixture = TestBed.createComponent(TestComponent);
-      fixture.detectChanges();
-    }).toThrow();
-  });
 });

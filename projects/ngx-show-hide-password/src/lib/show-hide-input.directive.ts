@@ -9,7 +9,7 @@ import { ShowHideService } from './show-hide.service';
 })
 export class ShowHideInputDirective implements OnInit, OnDestroy {
   private subscription?: Subscription;
-  @Input() id?: string;
+  @Input({ required: true }) id!: string;
 
   constructor(
     private service: ShowHideService,
@@ -18,22 +18,16 @@ export class ShowHideInputDirective implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    if (!this.id) {
-      throw new Error(`No attribute [id] found.`);
-    } else {
-      this.service.setShow(this.id, this.el.nativeElement.type !== 'password');
+    this.service.setShow(this.id, this.el.nativeElement.type !== 'password');
 
-      this.service
-        .getObservable(this.id)
-        .subscribe((show) =>
-          this.renderer.setAttribute(this.el.nativeElement, 'type', show ? 'text' : 'password')
-        );
-    }
+    this.service
+      .getObservable(this.id)
+      .subscribe((show) =>
+        this.renderer.setAttribute(this.el.nativeElement, 'type', show ? 'text' : 'password')
+      );
   }
 
   ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
+    this.subscription?.unsubscribe();
   }
 }

@@ -24,7 +24,7 @@ export class ShowHideStatusDirective implements OnDestroy {
   private config: ShowHideStatusConfig = defaultConfig;
   private subscription?: Subscription;
 
-  @Input() set showHideStatus(config: ShowHideStatusConfig) {
+  @Input({ required: true }) set showHideStatus(config: ShowHideStatusConfig) {
     this.init(config);
   }
 
