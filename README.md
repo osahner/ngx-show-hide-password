@@ -61,7 +61,7 @@ import {
 export class AppComponent {}
 ```
 
-### as module (pre v16):
+### as module (angular pre v16 and ngx-show-hide-password pre v2.7.0):
 ```ts
 // app.module.ts
 import { ShowHidePasswordModule } from 'ngx-show-hide-password';
@@ -79,7 +79,6 @@ import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 ```
 
 ### template as component ...
-
 ```html
 <show-hide-password size="lg" btnStyle="primary" [btnOutline]="false">
   <input type="password" name="..." >
@@ -87,7 +86,6 @@ import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 ```
 
 ### or template with directives ...
-
 ```html
 <mat-form-field>
   <input id="mysecretpassword" type="password" placeholder="Password" matInput showHideInput>
@@ -156,8 +154,8 @@ export interface ShowHideStatusConfig {
 
 ### Service: ShowHideService
 
-- _function_ **getObservable**
-> return _Observable_ for input with _id_
+- _function_ **getSignal**
+> return _Signal_ for input with _id_
 ```ts
 getObservable(id: string): Observable<boolean>
 ```
@@ -173,6 +171,8 @@ toggleShow(id: string): void
 ```
 
 ## Release History
+- 2.7.1
+  - replaced Observables with Subjects, made @Input() id required
 - 2.7.0
   - update @angular/cli and @angular/core to v16, migrate to standalone components
 - 2.6.5
