@@ -58,7 +58,15 @@ import {
     ShowHideTriggerDirective,
   ],
 })
-export class AppComponent {}
+export class AppComponent {
+  constructor(private showHideService: ShowHideService) {
+    ...
+    effect(() => {
+      const show = this.showHideService.getSignal('password')();
+      ...
+    });
+  }
+}
 ```
 
 ### as module (angular pre v16 and ngx-show-hide-password pre v2.7.0):
