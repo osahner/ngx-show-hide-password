@@ -2,15 +2,23 @@
 
 > Add split input button to password or text input. Toggles input type between "text" and "password".
 
-[![Build Status](https://travis-ci.com/osahner/ngx-show-hide-password.svg?branch=develop)](https://travis-ci.com/osahner/ngx-show-hide-password)
+[![Build Status](https://api.travis-ci.com/osahner/ngx-show-hide-password.svg?branch=master)](https://app.travis-ci.com/github/osahner/ngx-show-hide-password)
 [![npm version](https://badge.fury.io/js/ngx-show-hide-password.svg)](https://badge.fury.io/js/ngx-show-hide-password)
-[![codecov](https://codecov.io/gh/osahner/ngx-show-hide-password/branch/develop/graph/badge.svg)](https://codecov.io/gh/osahner/ngx-show-hide-password/branch/master)
+[![codecov](https://codecov.io/gh/osahner/ngx-show-hide-password/branch/master/graph/badge.svg)](https://codecov.io/gh/osahner/ngx-show-hide-password/branch/master)
 
 ## Installation
 
-For an up-to-date angular project (version 10):
+For an upt-to-date angular project version 16 with standalone Componentents:
 ```sh
 npm install ngx-show-hide-password --save
+npm install @fortawesome/angular-fontawesome \
+    @fortawesome/fontawesome-svg-core \
+    @fortawesome/free-solid-svg-icons --save
+```
+
+For angular project version 15 and Bootstrap 5:
+```sh
+npm install ngx-show-hide-password@2.6.5 --save
 npm install @fortawesome/angular-fontawesome \
     @fortawesome/fontawesome-svg-core \
     @fortawesome/free-solid-svg-icons --save
@@ -27,6 +35,41 @@ npm install @fortawesome/angular-fontawesome@^0.5 \
 
 ## Integration
 
+### with standalone components:
+```ts
+// nothing to do in main.ts
+
+...
+// component.ts
+import {
+  ShowHidePasswordComponent,
+  ShowHideInputDirective,
+  ShowHideStatusDirective,
+  ShowHideTriggerDirective,
+} from 'ngx-show-hide-password';
+
+@Component({
+  ...
+  standalone: true,
+  imports: [
+    ShowHidePasswordComponent,
+    ShowHideInputDirective,
+    ShowHideStatusDirective,
+    ShowHideTriggerDirective,
+  ],
+})
+export class AppComponent {
+  constructor(private showHideService: ShowHideService) {
+    ...
+    effect(() => {
+      const show = this.showHideService.getSignal('password')();
+      ...
+    });
+  }
+}
+```
+
+### as module (angular pre v16 and ngx-show-hide-password pre v2.7.0):
 ```ts
 // app.module.ts
 import { ShowHidePasswordModule } from 'ngx-show-hide-password';
@@ -43,16 +86,14 @@ import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 })
 ```
 
-### as component ...
-
+### template as component ...
 ```html
 <show-hide-password size="lg" btnStyle="primary" [btnOutline]="false">
   <input type="password" name="..." >
 </show-hide-password>
 ```
 
-### or with directives ...
-
+### or template with directives ...
 ```html
 <mat-form-field>
   <input id="mysecretpassword" type="password" placeholder="Password" matInput showHideInput>
@@ -121,10 +162,10 @@ export interface ShowHideStatusConfig {
 
 ### Service: ShowHideService
 
-- _function_ **getObservable**
-> return _Observable_ for input with _id_
+- _function_ **getSignal**
+> return _Signal_ for input with _id_
 ```ts
-getObservable(id: string): Observable<boolean>
+getSignal(id: string): WritableSignal<boolean>
 ```
 - _function_ **setShow**
 > set Status for input with _id_
@@ -138,6 +179,21 @@ toggleShow(id: string): void
 ```
 
 ## Release History
+- 2.7.1
+  - replaced Observables with Subjects, made @Input() id required
+- 2.7.0
+  - update @angular/cli and @angular/core to v16, migrate to standalone components
+- 2.6.5
+  - update @angular/cli and @angular/core to v15
+- 2.6.4
+  - update @angular/cli and @angular/core to v14
+- 2.6.2
+  - enable angular strict mode
+  - [renamed default branch to main](#rename-local-master-branch-to-main)
+- 2.6.1
+  - (breaking) update ShowHideComponent to Bootstrap 5
+- 2.5.0
+  - update @fortawesome icons v6
 - 2.4.0
   - update @angular/cli and @angular/core to v13, @fortawesome/angular-fontawesome v1
 - 2.3.0
@@ -164,17 +220,29 @@ toggleShow(id: string): void
   - initial release
 
 ### compatibility chart
-| local version | angular version |
-| ------------- | --------------- |
-| `@^2.4.0`     | v13              |
-| `@^2.3.1`     | v11              |
-| `@^2.3.0`     | v10              |
-| `@^2.2.3`     | v9              |
-| `@~2.1.0`     | v8              |
-| `@~2.0.3`     | v7              |
-| `@~1.2.5`     | v5 and v6       |
-| `@~1.1.0`     | v4              |
+| local version | angular version | Bootstrap version | standalone |
+| ------------- | --------------- | ----------------- | ---------- |
+| `@^2.7.0`     | v16             | v5                | ✅         |
+| `@^2.6.5`     | v15             | v5                |            |
+| `@^2.6.4`     | v14             | v5                |            |
+| `@^2.6.1`     | v13             | v5                |            |
+| `@^2.4.0`     | v13             | v4                |            |
+| `@^2.3.1`     | v11             |                   |            |
+| `@^2.3.0`     | v10             |                   |            |
+| `@^2.2.3`     | v9              |                   |            |
+| `@~2.1.0`     | v8              |                   |            |
+| `@~2.0.3`     | v7              |                   |            |
+| `@~1.2.5`     | v5 and v6       |                   |            |
+| `@~1.1.0`     | v4              |                   |            |
 
+:exclamation: The Bootstrap version is only important if you use the `show-hide-password` Component.
+
+ #### Rename local master branch to main
+```shell
+git branch -m master main
+git fetch origin
+git branch -u origin/main main
+```
 
 ## LICENCE
 

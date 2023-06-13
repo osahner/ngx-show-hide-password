@@ -41,8 +41,8 @@
       }
     },
     "ngx-show-hide-password-tester": {
-      "root": "projects/ngx-show-hide-password-tester/",
-      "sourceRoot": "projects/ngx-show-hide-password-tester/src",
+      "root": "",
+      "sourceRoot": "src",
       "projectType": "application",
       "prefix": "app",
       "schematics": {},
@@ -51,15 +51,17 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/ngx-show-hide-password-tester",
-            "index": "projects/ngx-show-hide-password-tester/src/index.html",
-            "main": "projects/ngx-show-hide-password-tester/src/main.ts",
-            "polyfills": "projects/ngx-show-hide-password-tester/src/polyfills.ts",
-            "tsConfig": "projects/ngx-show-hide-password-tester/tsconfig.app.json",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.app.json",
             "assets": [
-              "projects/ngx-show-hide-password-tester/src/favicon.ico",
-              "projects/ngx-show-hide-password-tester/src/assets"
+              "src/favicon.ico",
+              "src/assets"
             ],
-            "styles": ["projects/ngx-show-hide-password-tester/src/styles.css"],
+            "styles": [
+              "src/styles.scss"
+            ],
             "scripts": [],
             "vendorChunk": true,
             "extractLicenses": false,
@@ -67,14 +69,16 @@
             "sourceMap": true,
             "optimization": false,
             "namedChunks": true,
-            "allowedCommonJsDependencies": ["i18n-iso-countries"]
+            "allowedCommonJsDependencies": [
+              "i18n-iso-countries"
+            ]
           },
           "configurations": {
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "projects/ngx-show-hide-password-tester/src/environments/environment.ts",
-                  "with": "projects/ngx-show-hide-password-tester/src/environments/environment.prod.ts"
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -119,15 +123,17 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/ngx-show-hide-password-tester/src/test.ts",
-            "polyfills": "projects/ngx-show-hide-password-tester/src/polyfills.ts",
-            "tsConfig": "projects/ngx-show-hide-password-tester/tsconfig.spec.json",
-            "karmaConfig": "projects/ngx-show-hide-password-tester/karma.conf.js",
-            "styles": ["projects/ngx-show-hide-password-tester/src/styles.css"],
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.spec.json",
+            "karmaConfig": "src/karma.conf.js",
+            "styles": [
+              "src/styles.scss"
+            ],
             "scripts": [],
             "assets": [
-              "projects/ngx-show-hide-password-tester/src/favicon.ico",
-              "projects/ngx-show-hide-password-tester/src/assets"
+              "src/favicon.ico",
+              "src/assets"
             ]
           }
         },
@@ -135,16 +141,25 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
-              "projects/ngx-show-hide-password-tester//**/*.ts",
-              "projects/ngx-show-hide-password-tester//**/*.html"
+              "src//**/*.ts",
+              "src//**/*.html"
             ]
           }
         }
       }
     }
   },
-  "defaultProject": "ngx-show-hide-password",
   "cli": {
-    "defaultCollection": "@angular-eslint/schematics"
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
+  },
+  "schematics": {
+    "@angular-eslint/schematics:application": {
+      "setParserOptionsProject": true
+    },
+    "@angular-eslint/schematics:library": {
+      "setParserOptionsProject": true
+    }
   }
 }

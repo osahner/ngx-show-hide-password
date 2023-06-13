@@ -1,3 +1,4 @@
+/* eslint-disable no-bitwise */
 import {
   Component,
   ElementRef,
@@ -5,11 +6,15 @@ import {
   OnInit,
   Renderer2,
   ChangeDetectionStrategy,
-  OnDestroy
+  effect,
+  Injector,
 } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { ShowHideService } from './show-hide.service';
+import { ShowHideStatusDirective } from './show-hide-status.directive';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ShowHideTriggerDirective } from './show-hide-trigger.directive';
+import { NgClass } from '@angular/common';
 
 export enum BtnStyle {
   Primary = 'primary',
@@ -19,13 +24,13 @@ export enum BtnStyle {
   Warning = 'warning',
   Info = 'info',
   Dark = 'dark',
-  Light = 'light'
+  Light = 'light',
 }
 
 // hail jed https://gist.github.com/jed/982883
 const uuid = (a?: any) =>
   a
-    ? (a ^ ((Math.random() * 16) >> (a / 4))).toString(16) // eslint-disable-line: no-bitwise
+    ? (a ^ ((Math.random() * 16) >> (a / 4))).toString(16)
     : ('' + 1e7 + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, uuid);
 
 /**
@@ -38,30 +43,29 @@ const uuid = (a?: any) =>
  */
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'show-hide-password',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <ng-content></ng-content>
-    <div class="input-group-append ngx-show-hide-password">
-      <button
-        class="btn"
-        [ngClass]="(btnOutline ? 'btn-outline-' + btnStyle : 'btn-' + btnStyle)"
-        type="button"
-        [showHideTrigger]="id"
-      >
-        <fa-icon
-          [fixedWidth]="true"
-          size="lg"
-          [icon]="(isHidden ? faEye : faEyeSlash)"
-          [showHideStatus]="{ id: id }"
-        ></fa-icon>
-      </button>
-    </div>
-  `
+    <button
+      class="btn ngx-show-hide-password"
+      [ngClass]="btnOutline ? 'btn-outline-' + btnStyle : 'btn-' + btnStyle"
+      type="button"
+      [showHideTrigger]="id"
+    >
+      <fa-icon
+        [fixedWidth]="true"
+        size="lg"
+        [icon]="isHidden ? faEye : faEyeSlash"
+        [showHideStatus]="{ id: id }"
+      ></fa-icon>
+    </button>
+  `,
+  standalone: true,
+  imports: [NgClass, ShowHideTriggerDirective, FontAwesomeModule, ShowHideStatusDirective],
 })
-export class ShowHidePasswordComponent implements OnInit, OnDestroy {
-  private subscription: Subscription;
-
+export class ShowHidePasswordComponent implements OnInit {
   @Input()
   public btnStyle: BtnStyle = BtnStyle.Secondary;
 
@@ -69,13 +73,13 @@ export class ShowHidePasswordComponent implements OnInit, OnDestroy {
   public btnOutline = true;
 
   @Input()
-  public size: 'sm' | 'lg';
+  public size?: 'sm' | 'lg';
 
   public input: any;
 
-  public isHidden: boolean;
+  public isHidden?: boolean;
 
-  public id: string;
+  public id!: string;
 
   public faEye = faEye;
   public faEyeSlash = faEyeSlash;
@@ -83,7 +87,8 @@ export class ShowHidePasswordComponent implements OnInit, OnDestroy {
   constructor(
     private service: ShowHideService,
     private elem: ElementRef,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private injector: Injector
   ) {}
 
   ngOnInit(): void {
@@ -105,17 +110,14 @@ export class ShowHidePasswordComponent implements OnInit, OnDestroy {
     this.isHidden = this.input.type === 'password';
     this.renderer.addClass(this.input, 'form-control'); // just to be sure
     this.service.setShow(this.id, this.input.type !== 'password');
-    this.subscription = this.service
-      .getObservable(this.id)
-      .subscribe(show => {
+
+    effect(
+      () => {
+        const show = this.service.getSignal(this.id)();
         this.isHidden = !show;
         this.renderer.setAttribute(this.input, 'type', show ? 'text' : 'password');
-      });
-  }
-
-  ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
+      },
+      { injector: this.injector }
+    );
   }
 }

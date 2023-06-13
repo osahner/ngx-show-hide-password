@@ -5,24 +5,30 @@
     {
       "files": ["*.ts"],
       "parserOptions": {
-        "project": ["tsconfig.json", "e2e/tsconfig.json"],
+        "project": ["tsconfig.json"],
         "createDefaultProgram": true
       },
       "extends": [
-        "plugin:@angular-eslint/ng-cli-compat",
-        "plugin:@angular-eslint/ng-cli-compat--formatting-add-on",
+        "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "rules": {
-        "@typescript-eslint/explicit-member-accessibility": [
-          "off",
+        "@angular-eslint/directive-selector": [
+          "error",
           {
-            "accessibility": "explicit"
+            "type": "attribute",
+            "prefix": "app",
+            "style": "camelCase"
           }
         ],
-        "arrow-parens": ["off", "always"],
-        "import/order": "off",
-        "@typescript-eslint/member-ordering": "off"
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "app",
+            "style": "kebab-case"
+          }
+        ]
       }
     },
     {

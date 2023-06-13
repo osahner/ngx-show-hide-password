@@ -1,30 +1,25 @@
-import { Directive, ElementRef, Renderer2, OnInit, Input, effect } from '@angular/core';
+import { Directive, ElementRef, Renderer2, OnInit, Input, effect, Injector } from '@angular/core';
 import { ShowHideService } from './show-hide.service';
 
 @Directive({
-  selector: 'input[showHideInput]'
+  // eslint-disable-next-line @angular-eslint/directive-selector
+  selector: 'input[showHideInput]',
+  standalone: true,
 })
 export class ShowHideInputDirective implements OnInit {
   @Input({ required: true }) id!: string;
-  @Input(/* { transform: booleanAttribute } */) disabled: boolean = false;
 
   constructor(
     private service: ShowHideService,
     private el: ElementRef,
-    private renderer: Renderer2
-  ) {
-    this.id = this.el.nativeElement.getAttribute('id');
-    if (!this.id) {
-      throw new Error(`No attribute [id] found.`);
-    }
-    this.service.setShow(this.id, this.el.nativeElement.type !== 'password');
-  }
+    private renderer: Renderer2,
+    private injector: Injector
+  ) {}
 
   ngOnInit(): void {
     this.service.setShow(this.id, this.el.nativeElement.type !== 'password');
     effect(
       () => {
-        if (this.disabled) return;
         this.renderer.setAttribute(
           this.el.nativeElement,
           'type',

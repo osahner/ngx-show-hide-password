@@ -1,19 +1,31 @@
 import { TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ShowHidePasswordModule } from './show-hide-password.module';
+import { ShowHidePasswordComponent } from './show-hide-password.component';
+import { ShowHideInputDirective } from './show-hide-input.directive';
+import { ShowHideStatusDirective } from './show-hide-status.directive';
+import { ShowHideTriggerDirective } from './show-hide-trigger.directive';
 
-@Component({ template: '' })
+@Component({
+  template: '',
+  standalone: true,
+  imports: [
+    FormsModule,
+    ShowHidePasswordComponent,
+    ShowHideInputDirective,
+    ShowHideStatusDirective,
+    ShowHideTriggerDirective,
+  ],
+})
 class TestComponent {
-  disabled;
-  model;
+  disabled: boolean | undefined;
+  model: any;
 }
 
 describe('ShowHidePasswordModule::Directive', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestComponent],
-      imports: [FormsModule, ShowHidePasswordModule]
+      imports: [FormsModule, TestComponent],
     });
   });
 
@@ -23,8 +35,8 @@ describe('ShowHidePasswordModule::Directive', () => {
         template: `<input id="test2" type="password" name="password" showHideInput [(ngModel)]="model">
         <button type="button" showHideTrigger="test2">
           <i [showHideStatus]="{show: 'fa-eye', hide: 'fa-eye-slash', id: 'test2'}"></i>
-        </button>`
-      }
+        </button>`,
+      },
     }).createComponent(TestComponent);
     fixture.detectChanges();
 
@@ -47,8 +59,8 @@ describe('ShowHidePasswordModule::Directive', () => {
         template: `<input id="test2" type="password" name="password" showHideInput [(ngModel)]="model">
         <button type="button" showHideTrigger="test2">
           <i [showHideStatus]="{show: 'fa-eye', hide: 'fa-eye-slash', id: 'test2'}"></i>
-        </button>`
-      }
+        </button>`,
+      },
     }).createComponent(TestComponent);
     fixture.detectChanges();
 
@@ -74,8 +86,8 @@ describe('ShowHidePasswordModule::Directive', () => {
         template: `<input id="test2" type="password" name="password" showHideInput [(ngModel)]="model">
         <button type="button" showHideTrigger="test2">
           <i [showHideStatus]="{materialIcon: true, id: 'test2'}"></i>
-        </button>`
-      }
+        </button>`,
+      },
     }).createComponent(TestComponent);
     fixture.detectChanges();
 
@@ -98,8 +110,8 @@ describe('ShowHidePasswordModule::Directive', () => {
         template: `<input id="test2" type="text" name="password" showHideInput [(ngModel)]="model">
         <button type="button" showHideTrigger="test2">
           <i [showHideStatus]="{show: 'fa-eye', hide: 'fa-eye-slash', id: 'test2'}"></i>
-        </button>`
-      }
+        </button>`,
+      },
     }).createComponent(TestComponent);
     fixture.detectChanges();
 
@@ -122,8 +134,8 @@ describe('ShowHidePasswordModule::Directive', () => {
         template: `<input id="test2" type="text" name="password" showHideInput [(ngModel)]="model">
         <button type="button" showHideTrigger>
           <i [showHideStatus]="{show: 'fa-eye', hide: 'fa-eye-slash'}"></i>
-        </button>`
-      }
+        </button>`,
+      },
     }).createComponent(TestComponent);
     fixture.detectChanges();
 
@@ -135,20 +147,5 @@ describe('ShowHidePasswordModule::Directive', () => {
     triggerDebugEl.dispatchEvent(new Event('click'));
     fixture.detectChanges();
     expect(inputDebugEl.getAttribute('type')).toBe('text');
-  });
-
-  it('should throw error', () => {
-    TestBed.overrideComponent(TestComponent, {
-      set: {
-        template: `<input type="text" name="password" showHideInput [(ngModel)]="model">
-        <button type="button" showHideTrigger="test2">
-          <i [showHideStatus]="{show: 'fa-eye', hide: 'fa-eye-slash', id: 'test2'}"></i>
-        </button>`
-      }
-    });
-    expect(() => {
-      const fixture = TestBed.createComponent(TestComponent);
-      fixture.detectChanges();
-    }).toThrow();
   });
 });
