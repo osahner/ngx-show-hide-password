@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { Observable, Subject, ReplaySubject } from 'rxjs';
 
 interface IState {
   id: string;
   show: boolean;
-  subject?: Subject<boolean>;
+  subject?: WritableSubject<boolean>;
 }
 
 @Injectable({
@@ -24,7 +24,7 @@ export class ShowHideService {
   }
 
   private init(id: string): IState {
-    const subject = new ReplaySubject<boolean>(1);
+    const subject = signal(false);
     const io = {
       id,
       show: false,
