@@ -22,6 +22,7 @@ const defaultConfig: Partial<ShowHideStatusConfig> = {
   materialIcon: false,
 };
 
+// TODO: don't trigger on disabled element
 @Directive({
   selector: '[showHideStatus]',
   standalone: true,

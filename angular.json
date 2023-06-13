@@ -22,11 +22,10 @@
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular-devkit/build-angular:jest",
           "options": {
-            "main": "projects/ngx-show-hide-password/src/test.ts",
-            "tsConfig": "projects/ngx-show-hide-password/tsconfig.spec.json",
-            "karmaConfig": "projects/ngx-show-hide-password/karma.conf.js"
+            "polyfills": ["zone.js", "zone.js/testing"],
+            "tsConfig": "projects/ngx-show-hide-password/tsconfig.spec.json"
           }
         },
         "lint": {
@@ -121,20 +120,10 @@
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular-devkit/build-angular:jest",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.spec.json",
-            "karmaConfig": "src/karma.conf.js",
-            "styles": [
-              "src/styles.scss"
-            ],
-            "scripts": [],
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ]
+            "tsConfig": "tsconfig.spec.json",
+            "polyfills": ["zone.js", "zone.js/testing"]
           }
         },
         "lint": {

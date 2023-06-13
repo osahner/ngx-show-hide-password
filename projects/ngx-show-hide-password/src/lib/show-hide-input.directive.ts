@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Renderer2, OnInit, Input, effect, Injector } from '@angular/core';
+import { Directive, ElementRef, Renderer2, OnInit, Input, effect, Injector, booleanAttribute } from '@angular/core';
 import { ShowHideService } from './show-hide.service';
 
 @Directive({
@@ -8,6 +8,7 @@ import { ShowHideService } from './show-hide.service';
 })
 export class ShowHideInputDirective implements OnInit {
   @Input({ required: true }) id!: string;
+  @Input({ transform: booleanAttribute }) disabled: boolean = false;
 
   constructor(
     private service: ShowHideService,
@@ -20,6 +21,8 @@ export class ShowHideInputDirective implements OnInit {
     this.service.setShow(this.id, this.el.nativeElement.type !== 'password');
     effect(
       () => {
+        console.log(this.disabled)
+        if (this.disabled) return;
         this.renderer.setAttribute(
           this.el.nativeElement,
           'type',
