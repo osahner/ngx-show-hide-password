@@ -179,6 +179,8 @@ toggleShow(id: string): void
 ```
 
 ## Release History
+- 2.7.2
+  - update @angular/cli and @angular/core to v17
 - 2.7.1
   - replaced Observables with Subjects, made @Input() id required
 - 2.7.0
@@ -222,6 +224,7 @@ toggleShow(id: string): void
 ### compatibility chart
 | local version | angular version | Bootstrap version | standalone |
 | ------------- | --------------- | ----------------- | ---------- |
+| `@^2.7.2`     | v17             | v5                | ✅         |
 | `@^2.7.0`     | v16             | v5                | ✅         |
 | `@^2.6.5`     | v15             | v5                |            |
 | `@^2.6.4`     | v14             | v5                |            |

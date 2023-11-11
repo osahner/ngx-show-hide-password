@@ -21,7 +21,6 @@ export class ShowHideInputDirective implements OnInit {
     this.service.setShow(this.id, this.el.nativeElement.type !== 'password');
     effect(
       () => {
-        console.log(this.disabled)
         if (this.disabled) return;
         this.renderer.setAttribute(
           this.el.nativeElement,

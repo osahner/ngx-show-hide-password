@@ -80,6 +80,7 @@ describe('ShowHidePasswordModule::Directive', () => {
     expect(statusDebugEl.classList.contains('fa-eye-slash')).toBe(false);
   });
 
+  // TODO: don't trigger on disabled element
   it('should not toggle, because input is disabled', () => {
     const fixture = TestBed.overrideComponent(TestComponent, {
       set: {
