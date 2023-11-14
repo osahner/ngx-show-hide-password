@@ -39,3 +39,4 @@ bs-config.json
 coverage/
 .angular/
 .vscode/
+.nx
