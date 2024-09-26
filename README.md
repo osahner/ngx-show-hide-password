@@ -226,6 +226,7 @@ toggleShow(id: string): void
 ### compatibility chart
 | local version | angular version | Bootstrap version | standalone |
 | ------------- | --------------- | ----------------- | ---------- |
+| `@^2.7.4`     | v18             | v5                | ✅         |
 | `@^2.7.2`     | v17             | v5                | ✅         |
 | `@^2.7.0`     | v16             | v5                | ✅         |
 | `@^2.6.5`     | v15             | v5                |            |
