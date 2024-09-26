@@ -1,4 +1,13 @@
-import { Directive, ElementRef, Renderer2, OnInit, Input, effect, Injector, booleanAttribute } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  Renderer2,
+  OnInit,
+  effect,
+  Injector,
+  inject,
+  input,
+} from '@angular/core';
 import { ShowHideService } from './show-hide.service';
 
 @Directive({
@@ -7,25 +16,25 @@ import { ShowHideService } from './show-hide.service';
   standalone: true,
 })
 export class ShowHideInputDirective implements OnInit {
-  @Input({ required: true }) id!: string;
-  @Input({ transform: booleanAttribute }) disabled: boolean = false;
+  private service = inject(ShowHideService);
+  private el = inject(ElementRef);
+  private renderer = inject(Renderer2);
+  private injector = inject(Injector);
 
-  constructor(
-    private service: ShowHideService,
-    private el: ElementRef,
-    private renderer: Renderer2,
-    private injector: Injector
-  ) {}
+  id = input.required<string>();
+  disabled = input(false, {
+    transform: (value: boolean | string) => (typeof value === 'string' ? value === '' : value),
+  });
 
   ngOnInit(): void {
-    this.service.setShow(this.id, this.el.nativeElement.type !== 'password');
+    this.service.setShow(this.id(), this.el.nativeElement.type !== 'password');
     effect(
       () => {
-        if (this.disabled) return;
+        if (this.disabled()) return;
         this.renderer.setAttribute(
           this.el.nativeElement,
           'type',
-          this.service.getSignal(this.id)() ? 'text' : 'password'
+          this.service.getSignal(this.id())() ? 'text' : 'password'
         );
       },
       { injector: this.injector }

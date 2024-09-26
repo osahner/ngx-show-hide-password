@@ -2,12 +2,13 @@
 import {
   Component,
   ElementRef,
-  Input,
   OnInit,
   Renderer2,
   ChangeDetectionStrategy,
   effect,
   Injector,
+  inject,
+  input,
 } from '@angular/core';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { ShowHideService } from './show-hide.service';
@@ -50,7 +51,7 @@ const uuid = (a?: any) =>
     <ng-content></ng-content>
     <button
       class="btn ngx-show-hide-password"
-      [ngClass]="btnOutline ? 'btn-outline-' + btnStyle : 'btn-' + btnStyle"
+      [ngClass]="btnOutline() ? 'btn-outline-' + btnStyle() : 'btn-' + btnStyle()"
       type="button"
       [showHideTrigger]="id"
     >
@@ -66,14 +67,18 @@ const uuid = (a?: any) =>
   imports: [NgClass, ShowHideTriggerDirective, FontAwesomeModule, ShowHideStatusDirective],
 })
 export class ShowHidePasswordComponent implements OnInit {
-  @Input()
-  public btnStyle: BtnStyle = BtnStyle.Secondary;
+  private service = inject(ShowHideService);
+  private elem = inject(ElementRef);
+  private renderer = inject(Renderer2);
+  private injector = inject(Injector);
 
-  @Input()
-  public btnOutline = true;
+  btnStyle = input<BtnStyle>(BtnStyle.Secondary);
 
-  @Input()
-  public size?: 'sm' | 'lg';
+  btnOutline = input(true, {
+    transform: (value: boolean | string) => (typeof value === 'string' ? value === '' : value),
+  });
+
+  size = input<'sm' | 'lg' | ''>('');
 
   public input: any;
 
@@ -83,13 +88,6 @@ export class ShowHidePasswordComponent implements OnInit {
 
   public faEye = faEye;
   public faEyeSlash = faEyeSlash;
-
-  constructor(
-    private service: ShowHideService,
-    private elem: ElementRef,
-    private renderer: Renderer2,
-    private injector: Injector
-  ) {}
 
   ngOnInit(): void {
     this.input = this.elem.nativeElement.querySelector('input');
@@ -102,9 +100,9 @@ export class ShowHidePasswordComponent implements OnInit {
       this.renderer.setAttribute(this.input, 'id', this.id);
     }
     this.renderer.addClass(this.elem.nativeElement, 'input-group');
-    if (this.size === 'sm') {
+    if (this.size() === 'sm') {
       this.renderer.addClass(this.elem.nativeElement, 'input-group-sm');
-    } else if (this.size === 'lg') {
+    } else if (this.size() === 'lg') {
       this.renderer.addClass(this.elem.nativeElement, 'input-group-lg');
     }
     this.isHidden = this.input.type === 'password';

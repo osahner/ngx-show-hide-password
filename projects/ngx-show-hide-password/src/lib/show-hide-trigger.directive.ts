@@ -1,4 +1,4 @@
-import { Directive, HostListener, Input, ErrorHandler } from '@angular/core';
+import { Directive, HostListener, inject, input } from '@angular/core';
 import { ShowHideService } from './show-hide.service';
 
 @Directive({
@@ -7,12 +7,12 @@ import { ShowHideService } from './show-hide.service';
   standalone: true,
 })
 export class ShowHideTriggerDirective {
-  @Input({ required: true }) showHideTrigger!: string;
+  private service = inject(ShowHideService);
 
-  constructor(private service: ShowHideService, private errorHandler: ErrorHandler) {}
+  showHideTrigger = input.required<string>();
 
   @HostListener('click')
   onClick() {
-    this.service.toggleShow(this.showHideTrigger);
+    this.service.toggleShow(this.showHideTrigger());
   }
 }

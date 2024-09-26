@@ -7,6 +7,7 @@ import {
   ErrorHandler,
   effect,
   Injector,
+  inject,
 } from '@angular/core';
 import { ShowHideService } from './show-hide.service';
 
@@ -28,19 +29,17 @@ const defaultConfig: Partial<ShowHideStatusConfig> = {
   standalone: true,
 })
 export class ShowHideStatusDirective {
+  private service = inject(ShowHideService);
+  private el = inject(ElementRef);
+  private renderer = inject(Renderer2);
+  private errorHandler = inject(ErrorHandler);
+  private injector = inject(Injector);
+
   private config: Partial<ShowHideStatusConfig> = defaultConfig;
 
   @Input({ required: true }) set showHideStatus(config: ShowHideStatusConfig) {
     this.init(config);
   }
-
-  constructor(
-    private service: ShowHideService,
-    private el: ElementRef,
-    private renderer: Renderer2,
-    private errorHandler: ErrorHandler,
-    private injector: Injector
-  ) {}
 
   private init(config: ShowHideStatusConfig): void {
     this.config = {
