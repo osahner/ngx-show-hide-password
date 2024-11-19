@@ -7,15 +7,14 @@ import { ShowHideStatusDirective } from './show-hide-status.directive';
 import { ShowHideTriggerDirective } from './show-hide-trigger.directive';
 
 @Component({
-  template: '',
-  standalone: true,
-  imports: [
-    FormsModule,
-    ShowHidePasswordComponent,
-    ShowHideInputDirective,
-    ShowHideStatusDirective,
-    ShowHideTriggerDirective,
-  ],
+    template: '',
+    imports: [
+        FormsModule,
+        ShowHidePasswordComponent,
+        ShowHideInputDirective,
+        ShowHideStatusDirective,
+        ShowHideTriggerDirective,
+    ]
 })
 class TestComponent {
   disabled: boolean | undefined;

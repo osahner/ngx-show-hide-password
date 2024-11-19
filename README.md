@@ -179,6 +179,8 @@ toggleShow(id: string): void
 ```
 
 ## Release History
+- 2.8.0
+  - update @angular/cli and @angular/core to v19
 - 2.7.4
   - update @angular/cli and @angular/core to v18
 - 2.7.2
@@ -226,6 +228,7 @@ toggleShow(id: string): void
 ### compatibility chart
 | local version | angular version | Bootstrap version | standalone |
 | ------------- | --------------- | ----------------- | ---------- |
+| `@^2.8.0`     | v19             | v5                | ✅         |
 | `@^2.7.4`     | v18             | v5                | ✅         |
 | `@^2.7.2`     | v17             | v5                | ✅         |
 | `@^2.7.0`     | v16             | v5                | ✅         |
