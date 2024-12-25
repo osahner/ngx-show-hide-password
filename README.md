@@ -179,7 +179,7 @@ toggleShow(id: string): void
 ```
 
 ## Release History
-- 19.0.0
+- 19.0.1
   - bump version to 19 (follow angular version)
 - 2.8.0
   - update @angular/cli and @angular/core to v19
@@ -230,6 +230,7 @@ toggleShow(id: string): void
 ### compatibility chart
 | local version | angular version | Bootstrap version | standalone |
 | ------------- | --------------- | ----------------- | ---------- |
+| `@^19.0.0`    | v19             | v5                | ✅         |
 | `@^2.8.0`     | v19             | v5                | ✅         |
 | `@^2.7.4`     | v18             | v5                | ✅         |
 | `@^2.7.2`     | v17             | v5                | ✅         |
