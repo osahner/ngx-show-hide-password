@@ -1,20 +1,15 @@
 import { TestBed } from '@angular/core/testing';
-import { Component } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ShowHidePasswordComponent } from './show-hide-password.component';
 import { ShowHideInputDirective } from './show-hide-input.directive';
-import { ShowHideStatusDirective } from './show-hide-status.directive';
 import { ShowHideTriggerDirective } from './show-hide-trigger.directive';
+import { ShowHideStatusDirective } from './show-hide-status.directive';
+import { ShowHideService } from './show-hide.service';
 
 @Component({
-    template: '',
-    imports: [
-        FormsModule,
-        ShowHidePasswordComponent,
-        ShowHideInputDirective,
-        ShowHideStatusDirective,
-        ShowHideTriggerDirective,
-    ]
+  template: '',
+  imports: [FormsModule],
 })
 class TestComponent {
   disabled: boolean | undefined;
@@ -22,10 +17,19 @@ class TestComponent {
 }
 
 describe('ShowHidePasswordModule::Directive', () => {
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [FormsModule, TestComponent],
-    });
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [
+        FormsModule,
+        TestComponent,
+        ShowHidePasswordComponent,
+        ShowHideInputDirective,
+        ShowHideStatusDirective,
+        ShowHideTriggerDirective,
+      ],
+      providers: [ShowHideService],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
+    })
   });
 
   it('should toggle input type', () => {
@@ -33,7 +37,7 @@ describe('ShowHidePasswordModule::Directive', () => {
       set: {
         template: `<input id="test2" type="password" name="password" showHideInput [(ngModel)]="model" />
         <button type="button" showHideTrigger="test2">
-          <i [showHideStatus]="{show: 'fa-eye', hide: 'fa-eye-slash', id: 'test2'}"></i>
+          <span [showHideStatus]="{show: 'fa-eye', hide: 'fa-eye-slash', id: 'test2'}"></span>
         </button>`,
       },
     }).createComponent(TestComponent);
@@ -57,7 +61,7 @@ describe('ShowHidePasswordModule::Directive', () => {
       set: {
         template: `<input id="test2" type="password" name="password" showHideInput [(ngModel)]="model" />
         <button type="button" showHideTrigger="test2">
-          <i [showHideStatus]="{show: 'fa-eye', hide: 'fa-eye-slash', id: 'test2'}"></i>
+          <span [showHideStatus]="{show: 'fa-eye', hide: 'fa-eye-slash', id: 'test2'}"></span>
         </button>`,
       },
     }).createComponent(TestComponent);
@@ -85,7 +89,7 @@ describe('ShowHidePasswordModule::Directive', () => {
       set: {
         template: `<input id="test2" type="password" name="password" showHideInput disabled [(ngModel)]="model" />
         <button type="button" showHideTrigger="test2">
-          <i [showHideStatus]="{show: 'fa-eye', hide: 'fa-eye-slash', id: 'test2'}"></i>
+          <span [showHideStatus]="{show: 'fa-eye', hide: 'fa-eye-slash', id: 'test2'}"></span>
         </button>`,
       },
     }).createComponent(TestComponent);
@@ -109,7 +113,7 @@ describe('ShowHidePasswordModule::Directive', () => {
       set: {
         template: `<input id="test2" type="password" name="password" showHideInput [(ngModel)]="model" />
         <button type="button" showHideTrigger="test2">
-          <i [showHideStatus]="{materialIcon: true, id: 'test2'}"></i>
+          <span [showHideStatus]="{materialIcon: true, id: 'test2'}"></span>
         </button>`,
       },
     }).createComponent(TestComponent);
@@ -133,7 +137,7 @@ describe('ShowHidePasswordModule::Directive', () => {
       set: {
         template: `<input id="test2" type="text" name="password" showHideInput [(ngModel)]="model" />
         <button type="button" showHideTrigger="test2">
-          <i [showHideStatus]="{show: 'fa-eye', hide: 'fa-eye-slash', id: 'test2'}"></i>
+          <span [showHideStatus]="{show: 'fa-eye', hide: 'fa-eye-slash', id: 'test2'}"></span>
         </button>`,
       },
     }).createComponent(TestComponent);
@@ -157,7 +161,7 @@ describe('ShowHidePasswordModule::Directive', () => {
       set: {
         template: `<input id="test2" type="text" name="password" showHideInput [(ngModel)]="model" />
         <button type="button" showHideTrigger>
-          <i [showHideStatus]="{show: 'fa-eye', hide: 'fa-eye-slash'}"></i>
+          <span [showHideStatus]="{show: 'fa-eye', hide: 'fa-eye-slash'}"></span>
         </button>`,
       },
     }).createComponent(TestComponent);

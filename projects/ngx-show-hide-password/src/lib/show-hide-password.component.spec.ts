@@ -1,20 +1,16 @@
 import { TestBed } from '@angular/core/testing';
-import { Component } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ShowHidePasswordComponent } from './show-hide-password.component';
-import { ShowHideInputDirective } from './show-hide-input.directive';
-import { ShowHideStatusDirective } from './show-hide-status.directive';
-import { ShowHideTriggerDirective } from './show-hide-trigger.directive';
+import {
+  ShowHideInputDirective,
+  ShowHidePasswordComponent,
+  ShowHideStatusDirective,
+  ShowHideTriggerDirective,
+} from 'ngx-show-hide-password';
 
 @Component({
-    template: '',
-    imports: [
-        FormsModule,
-        ShowHidePasswordComponent,
-        ShowHideInputDirective,
-        ShowHideStatusDirective,
-        ShowHideTriggerDirective,
-    ]
+  template: '',
+  imports: [FormsModule],
 })
 class TestComponent {
   disabled?: boolean;
@@ -22,9 +18,17 @@ class TestComponent {
 }
 
 describe('ShowHidePasswordModule::Component', () => {
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [FormsModule, TestComponent],
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [
+        FormsModule,
+        TestComponent,
+        ShowHidePasswordComponent,
+        ShowHideInputDirective,
+        ShowHideStatusDirective,
+        ShowHideTriggerDirective,
+      ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA],
     });
   });
 

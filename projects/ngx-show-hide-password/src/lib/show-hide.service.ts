@@ -12,8 +12,6 @@ interface IState {
 export class ShowHideService {
   private readonly states: IState[] = [];
 
-  constructor() {}
-
   private getIO(id: string): IState {
     let io = this.states.find((o) => o.id === id);
     if (!io) {
@@ -23,7 +21,6 @@ export class ShowHideService {
   }
 
   private init(id: string): IState {
-    // const subject = new ReplaySubject<boolean>(1);
     const subject = signal(false);
     const io = {
       id,
@@ -36,7 +33,7 @@ export class ShowHideService {
 
   private saveAndProadcast(io: IState, show: boolean) {
     io.show = show;
-    io.subject.update((value) => io.show);
+    io.subject.set(io.show);
   }
 
   public getSignal(id: string): WritableSignal<boolean> {

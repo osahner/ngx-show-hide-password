@@ -44,11 +44,11 @@ const uuid = (a?: any) =>
  */
 
 @Component({
-    // eslint-disable-next-line @angular-eslint/component-selector
-    selector: 'show-hide-password',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    template: `
-    <ng-content></ng-content>
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'show-hide-password',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <ng-content />
     <button
       class="btn ngx-show-hide-password"
       [ngClass]="btnOutline() ? 'btn-outline-' + btnStyle() : 'btn-' + btnStyle()"
@@ -63,7 +63,7 @@ const uuid = (a?: any) =>
       ></fa-icon>
     </button>
   `,
-    imports: [NgClass, ShowHideTriggerDirective, FontAwesomeModule, ShowHideStatusDirective]
+  imports: [NgClass, ShowHideTriggerDirective, FontAwesomeModule, ShowHideStatusDirective],
 })
 export class ShowHidePasswordComponent implements OnInit {
   private service = inject(ShowHideService);

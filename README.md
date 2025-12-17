@@ -8,7 +8,8 @@
 
 ## Installation
 
-For an upt-to-date angular project version 16 with standalone Componentents:
+For an upt-to-date angular project version 20 with standalone Componentents:
+
 ```sh
 npm install ngx-show-hide-password --save
 npm install @fortawesome/angular-fontawesome \
@@ -17,15 +18,18 @@ npm install @fortawesome/angular-fontawesome \
 ```
 
 For angular project version 15 and Bootstrap 5:
+
 ```sh
 npm install ngx-show-hide-password@2.6.5 --save
 npm install @fortawesome/angular-fontawesome \
     @fortawesome/fontawesome-svg-core \
     @fortawesome/free-solid-svg-icons --save
 ```
+
 :exclamation: For previous Angular releases please check the compatibility table of [ngx-show-hide-password](#compatibility-chart) **and** [@fortawesome/angular-fontawesome](https://github.com/FortAwesome/angular-fontawesome#compatiblity-table)!
 
 :white_check_mark: e.g. for angular version 8:
+
 ```sh
 npm install ngx-show-hide-password@~2.1.0 --save
 npm install @fortawesome/angular-fontawesome@^0.5 \
@@ -35,7 +39,8 @@ npm install @fortawesome/angular-fontawesome@^0.5 \
 
 ## Integration
 
-### with standalone components:
+### with standalone components
+
 ```ts
 // nothing to do in main.ts
 
@@ -69,11 +74,13 @@ export class AppComponent {
 }
 ```
 
-### as module (angular pre v16 and ngx-show-hide-password pre v2.7.0):
+### as module (angular pre v16 and ngx-show-hide-password pre v2.7.0)
+
 ```ts
 // app.module.ts
 import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 // no need to import @fortawesome/angular-fontawesome for the component
+
 ...
 @NgModule({
   ...
@@ -86,18 +93,21 @@ import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 })
 ```
 
-### template as component ...
+### template as component
+
 ```html
 <show-hide-password size="lg" btnStyle="primary" [btnOutline]="false">
-  <input type="password" name="..." >
+  <input type="password" name="..." />
 </show-hide-password>
 ```
 
-### or template with directives ...
+### or template with directives
+
 ```html
 <mat-form-field>
-  <input id="mysecretpassword" type="password" placeholder="Password" matInput showHideInput>
-  <i matSuffix
+  <input id="mysecretpassword" type="password" placeholder="Password" matInput showHideInput />
+  <i
+    matSuffix
     class="material-icons"
     showHideTrigger="mysecretpassword"
     [showHideStatus]="{ materialIcon: true, id: 'mysecretpassword' }"
@@ -109,16 +119,15 @@ import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 | ---------------------------------------- | ------------------------------------------ |
 | ![Hidden password](resources/hidden.png) | ![Exposed password](resources/exposed.png) |
 
-
 ### How to customize and some examples how to use the directives & service
 
 - [example on stackblitz](https://stackblitz.com/edit/angular-dvy758?embed=1&file=src/app/app.component.html).
 - some more [basic examples here](https://github.com/osahner/ngx-show-hide-password/tree/master/src/app/app.component.html).
 
-
 ## Documentation
 
 ### Component: show-hide-password
+
 > Demo on [stackblitz](https://stackblitz.com/edit/angular-okrmdi?embed=1&file=src/app/app.component.html)
 
 | attribute      | type      | description                                                                                          |
@@ -128,18 +137,19 @@ import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 | **size**       | _string_  | `'sm'`, `'lg'`. default: nothing.                                                                    |
 
 ### Directive: showHideInput
+
 > Demo on [stackblitz](https://stackblitz.com/edit/angular-2srzhs?embed=1&file=src/app/app.component.html)
 
 :information_source: All directives (and the service) are bound to the same unique **id**. This can be the attribute **id** of the HTML input element or you can enter a synthetic ID.
 
-| attribute      | type     | description                              |
-| -------------- | -------- | ---------------------------------------- |
-| **id** | _string_ | unique id. |
+| attribute | type     | description |
+| --------- | -------- | ----------- |
+| **id**    | _string_ | unique id.  |
 
 #### Directive: showHideTrigger
 
-| type     | description                              |
-| -------- | ---------------------------------------- |
+| type     | description                |
+| -------- | -------------------------- |
 | _string_ | unique id. **\* required** |
 
 #### Directive: showHideStatus
@@ -155,7 +165,7 @@ export interface ShowHideStatusConfig {
 
 | attribute        | type      | description                                                            |
 | ---------------- | --------- | ---------------------------------------------------------------------- |
-| **id**           | _string_  | unique id. **\* required**                               |
+| **id**           | _string_  | unique id. **\* required**                                             |
 | **show**         | _string_  | optional class/material icon identifier. default: `'visibility'`       |
 | **hide**         | _string_  | optional class/material icon identifier. default: `'visibility_off'`   |
 | **materialIcon** | _boolean_ | if true updates innerHTML instead of class attribute. default: `false` |
@@ -163,22 +173,33 @@ export interface ShowHideStatusConfig {
 ### Service: ShowHideService
 
 - _function_ **getSignal**
+
 > return _Signal_ for input with _id_
+
 ```ts
 getSignal(id: string): WritableSignal<boolean>
 ```
+
 - _function_ **setShow**
+
 > set Status for input with _id_
+
 ```ts
 setShow(id: string, show: boolean): void
 ```
+
 - _function_ **toggleShow**
+
 > toggles Status for input with _id_
+
 ```ts
 toggleShow(id: string): void
 ```
 
 ## Release History
+
+- 20.0.0
+  - update @angular/cli and @angular/core to v20 (interims release, lacking proper test coverage)
 - 19.0.1
   - bump version to 19 (follow angular version)
 - 2.8.0
@@ -228,8 +249,10 @@ toggleShow(id: string): void
   - initial release
 
 ### compatibility chart
+
 | local version | angular version | Bootstrap version | standalone |
 | ------------- | --------------- | ----------------- | ---------- |
+| `@^20.0.0`    | v20             | v5                | ✅         |
 | `@^19.0.0`    | v19             | v5                | ✅         |
 | `@^2.8.0`     | v19             | v5                | ✅         |
 | `@^2.7.4`     | v18             | v5                | ✅         |
@@ -249,7 +272,8 @@ toggleShow(id: string): void
 
 :exclamation: The Bootstrap version is only important if you use the `show-hide-password` Component.
 
- #### Rename local master branch to main
+#### Rename local master branch to main
+
 ```shell
 git branch -m master main
 git fetch origin
