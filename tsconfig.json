@@ -21,10 +21,6 @@
     "typeRoots": [
       "node_modules/@types"
     ],
-    "lib": [
-      "ES2022",
-      "dom"
-    ],
     "paths": {
       "ngx-show-hide-password": [
         "dist/ngx-show-hide-password"
