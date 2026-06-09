@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   BtnStyle,
   ShowHidePasswordComponent,
@@ -10,6 +10,7 @@ import {
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ShowHidePasswordComponent,
     ShowHideInputDirective,

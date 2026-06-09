@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
   ShowHideInputDirective,
@@ -10,6 +10,7 @@ import {
 
 @Component({
   template: '',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [FormsModule],
 })
 class TestComponent {

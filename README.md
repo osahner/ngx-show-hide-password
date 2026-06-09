@@ -198,6 +198,8 @@ toggleShow(id: string): void
 
 ## Release History
 
+- 22.0.0
+  - update @angular/cli and @angular/core to v22, upgrade peer dependencies to @fortawesome/angular-fontawesome v5 (interims release, **still** lacking proper test coverage)
 - 20.0.1
   - upgrade peer dependencies to include @fortawesome/angular-fontawesome v4 and Font Awesome v7, (signal form not yet implemented)
 - 20.0.0
@@ -254,6 +256,7 @@ toggleShow(id: string): void
 
 | local version | angular version | Bootstrap version | standalone |
 | ------------- | --------------- | ----------------- | ---------- |
+| `@^22.0.0`    | v22/v23         | v5                | ✅         |
 | `@^20.0.1`    | v20/v21         | v5                | ✅         |
 | `@^19.0.0`    | v19             | v5                | ✅         |
 | `@^2.8.0`     | v19             | v5                | ✅         |
